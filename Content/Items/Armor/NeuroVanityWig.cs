@@ -9,7 +9,7 @@ namespace Neurosama.Content.Items.Armor
 	{
 		public override void SetDefaults() {
 			Item.width = 22;
-			Item.height = 196;
+			Item.height = 30;
 
             Item.rare = ItemRarityID.Cyan;
             Item.value = Item.sellPrice(0, 3);
