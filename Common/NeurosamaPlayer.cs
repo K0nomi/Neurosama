@@ -7,6 +7,8 @@ namespace Neurosama.Common
     {
         public bool neuroFumoEquipped;
         public bool evilFumoEquipped;
+        public bool neuroFumoVanityEquipped;
+        public bool evilFumoVanityEquipped;
 
         public override void Initialize() => ResetEquips();
         public override void ResetEffects() => ResetEquips();
@@ -16,11 +18,11 @@ namespace Neurosama.Common
         {
             if (Player.armor[10].type == ModContent.ItemType<NeuroFumo>())
             {
-                neuroFumoEquipped = true;
+                neuroFumoVanityEquipped = true;
             }
             else if (Player.armor[10].type == ModContent.ItemType<EvilFumo>())
             {
-                evilFumoEquipped = true;
+                evilFumoVanityEquipped = true;
             }
         }
 
@@ -28,6 +30,8 @@ namespace Neurosama.Common
         {
             neuroFumoEquipped = false;
             evilFumoEquipped = false;
+            neuroFumoVanityEquipped = false;
+            evilFumoVanityEquipped = false;
         }
     }
 }

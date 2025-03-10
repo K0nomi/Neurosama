@@ -19,15 +19,10 @@ namespace Neurosama.Content.Items.Furniture
 
             // TODO: render properly in player select menu
             Item.vanity = true;
-            ArmorIDs.Head.Sets.DrawHatHair[Item.headSlot] = true;
+            ArmorIDs.Head.Sets.DrawFullHair[Item.headSlot] = true;
         }
 
         public override void UpdateEquip(Player player)
-        {
-            player.GetModPlayer<NeurosamaPlayer>().neuroFumoEquipped = true;
-        }
-
-        public override void UpdateVanity(Player player)
         {
             player.GetModPlayer<NeurosamaPlayer>().neuroFumoEquipped = true;
         }

@@ -16,10 +16,13 @@ namespace Neurosama.Common
 
         public override bool GetDefaultVisibility(PlayerDrawSet drawInfo)
         {
-            NeurosamaPlayer modPlayer = drawInfo.drawPlayer.GetModPlayer<NeurosamaPlayer>();
+            Player drawPlayer = drawInfo.drawPlayer;
+            NeurosamaPlayer modPlayer = drawPlayer.GetModPlayer<NeurosamaPlayer>();
 
-            if (modPlayer.neuroFumoEquipped ||
-                modPlayer.evilFumoEquipped)
+            if (modPlayer.neuroFumoEquipped & drawPlayer.armor[10].IsAir ||
+                modPlayer.evilFumoEquipped & drawPlayer.armor[10].IsAir ||
+                modPlayer.neuroFumoVanityEquipped ||
+                modPlayer.evilFumoVanityEquipped)
             {
                 return true;
             }
@@ -61,17 +64,33 @@ namespace Neurosama.Common
             // Get dye shader
             int dyeShader = drawPlayer.dye?[0].dye ?? 0;
 
-            // Draw the equipped item
-            // TODO: fix evil always sitting on top and inability to stack 2 neuros or 2 evils
-            if (modPlayer.neuroFumoEquipped)
-            {
-                DrawFumo(drawInfo, drawPlayer, dyeShader, headPosition, neuroFumoTexture);
-            }
+            // Draw the equipped items
+            int totalFumos =
+                (modPlayer.neuroFumoEquipped ? 1 : 0) +
+                (modPlayer.evilFumoEquipped ? 1 : 0) +
+                (modPlayer.neuroFumoVanityEquipped ? 1 : 0) +
+                (modPlayer.evilFumoVanityEquipped ? 1 : 0);
 
-            if (modPlayer.evilFumoEquipped)
+            if (totalFumos == 1)
             {
-                Vector2 doubleFumoOffset = modPlayer.neuroFumoEquipped ? new Vector2(drawPlayer.direction == 1 ? -2 : 2, 6 - neuroFumoTexture.Height) : Vector2.Zero;
-                DrawFumo(drawInfo, drawPlayer, dyeShader, headPosition + doubleFumoOffset, evilFumoTexture);
+                if (modPlayer.neuroFumoEquipped || modPlayer.neuroFumoVanityEquipped)
+                    DrawFumo(drawInfo, drawPlayer, dyeShader, headPosition, neuroFumoTexture);
+                else if (modPlayer.evilFumoEquipped || modPlayer.evilFumoVanityEquipped)
+                    DrawFumo(drawInfo, drawPlayer, dyeShader, headPosition, evilFumoTexture);
+            }
+            else if (totalFumos == 2)
+            {
+                if (modPlayer.neuroFumoEquipped)
+                    DrawFumo(drawInfo, drawPlayer, dyeShader, headPosition, neuroFumoTexture);
+                else if (modPlayer.evilFumoEquipped)
+                    DrawFumo(drawInfo, drawPlayer, dyeShader, headPosition, evilFumoTexture);
+
+                Vector2 doubleFumoOffset = new Vector2(drawPlayer.direction == 1 ? -2 : 2, 6 - neuroFumoTexture.Height);
+
+                if (modPlayer.neuroFumoVanityEquipped)
+                    DrawFumo(drawInfo, drawPlayer, dyeShader, headPosition + doubleFumoOffset, neuroFumoTexture);
+                else if (modPlayer.evilFumoVanityEquipped)
+                    DrawFumo(drawInfo, drawPlayer, dyeShader, headPosition + doubleFumoOffset, evilFumoTexture);
             }
         }
 

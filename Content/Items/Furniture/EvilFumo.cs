@@ -26,10 +26,5 @@ namespace Neurosama.Content.Items.Furniture
         {
             player.GetModPlayer<NeurosamaPlayer>().evilFumoEquipped = true;
         }
-
-        public override void UpdateVanity(Player player)
-        {
-            player.GetModPlayer<NeurosamaPlayer>().evilFumoEquipped = true;
-        }
     }
 }
