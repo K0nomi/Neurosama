@@ -120,7 +120,7 @@ namespace Neurosama.Content.NPCs.Town
                 for (int k = 0; k < 4; k++)
                 {
                     int randomGore = gores[Main.rand.Next(gores.Count)];
-                    Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, randomGore, 1f); // TODO: Velocity is wrong
+                    Gore.NewGore(NPC.GetSource_Death(), NPC.position, Vector2.Zero, randomGore, 1f);
                 }
 
                 // This is so sad neuro has died
