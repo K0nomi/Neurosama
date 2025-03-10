@@ -10,7 +10,8 @@ namespace Neurosama.Content.Tiles
 	{
 		public override void SetStaticDefaults() {
 			Main.tileSolid[Type] = true;
-			Main.tileMergeDirt[Type] = true;
+			Main.tileMergeDirt[Type] = true; // tile has special behavior when merging with dirt
+			Main.tileBlendAll[Type] = true; // adjascent tiles will connect (blend) with this tile
 			Main.tileBlockLight[Type] = true;
 
 			DustType = DustID.Stone;
