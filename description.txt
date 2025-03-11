@@ -1,1 +1,8 @@
-Hiiiiiii~~! x3
+Neuro-sama mod for Terraria
+
+CREDITS
+Konomi - Code, Sprites
+MongusaEye - Sprites
+Pachekin - Code, Sprites
+owobred - Code (Drone AI)
+Kaseio - Code
