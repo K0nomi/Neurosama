@@ -7,17 +7,17 @@ namespace Neurosama.Content.Tiles
 {
 	public class Donobrick : ModTile
 	{
-		public override void SetStaticDefaults() {
+		public override void SetStaticDefaults()
+		{
 			Main.tileSolid[Type] = true;
-            //TODO: tileBlendAll causes tileMergeDirt to be ignored, find a fix so it behaves like red brick (for example)
-            Main.tileMergeDirt[Type] = true; // tile has special behavior when merging with dirt
-            Main.tileBlendAll[Type] = true; // adjacent tiles will connect (blend) with this 
-            Main.tileBlockLight[Type] = true;
+			Main.tileMergeDirt[Type] = true; // tile has special behavior when merging with dirt
+			Main.tileBlockLight[Type] = true;
+			Main.tileBrick[Type] = true; // presumably a variant of tileBlendAll that works with predefined tiles rather than any tile
 
 			DustType = DustID.Stone;
 			HitSound = SoundID.Tink;
 
 			AddMapEntry(new Color(174, 92, 70));
 		}
-    }
+	}
 }
