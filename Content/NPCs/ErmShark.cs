@@ -45,11 +45,11 @@ namespace Neurosama.Content.NPCs
             NPC.damage = 20;
             NPC.defense = 4;
             NPC.lifeMax = 240;
-            NPC.value = 15f;
+            NPC.value = 500f;
             NPC.aiStyle = 16;
             NPC.noGravity = true;
             NPC.HitSound = SoundID.NPCHit1; // TODO
-            NPC.DeathSound = SoundID.NPCDeath1; // TODO
+            NPC.DeathSound = SoundID.NPCDeath1; // TODO, also maybe different sound for last ermshark?
 
             AIType = NPCID.Shark; // Moves the same as a shark. Could potentailly add ai that differs individually so splits feel better
 
@@ -105,18 +105,10 @@ namespace Neurosama.Content.NPCs
         {
             if (IsLastDescendant())
             {
-                NPCID.Sets.PositiveNPCTypesExcludedFromDeathTally[Type] = false;
-            }
-            else
-            {
-                NPCID.Sets.PositiveNPCTypesExcludedFromDeathTally[Type] = true;
+                return false;
             }
 
-            return base.SpecialOnKill();
-        }
-
-        public override void OnKill()
-        {
+            // Split into 2 ermsharks if not at max depth
             if (!MaxDepthReached())
             {
                 var entitySource = NPC.GetSource_FromAI();
@@ -130,21 +122,20 @@ namespace Neurosama.Content.NPCs
                 NPC.NewNPCDirect(entitySource, (int)NPC.Center.X + spawnOffset, (int)NPC.Center.Y, Type, NPC.whoAmI, ai2: family, ai3: newDepth);
                 NPC.NewNPCDirect(entitySource, (int)NPC.Center.X - spawnOffset, (int)NPC.Center.Y + 16, Type, NPC.whoAmI, ai2: family, ai3: newDepth);
             }
-            else if (IsLastDescendant()) // No other ermsharks in family
-            {
-                CombatText.NewText(new Rectangle((int)NPC.Center.X, (int)NPC.Center.Y, 0, 0), new Color(255, 191, 191), family.ToString());
-            }
+
+            // Don't run onkill as it's not the last ermshark in the family
+            return true;
+        }
+
+        public override void OnKill()
+        {
+            //CombatText.NewText(new Rectangle((int)NPC.Center.X, (int)NPC.Center.Y, 0, 0), new Color(255, 191, 191), family.ToString());
         }
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            ErmsharkLastDescendantDropRule ermSharkDescendantRule = new ErmsharkLastDescendantDropRule();
-            IItemDropRule isLastDescendant = new LeadingConditionRule(ermSharkDescendantRule);
-
-            IItemDropRule ermshark_drop = ItemDropRule.NormalvsExpert(ModContent.ItemType<Items.Furniture.NeuroCatErm>(), 64, 128);
-            isLastDescendant.OnSuccess(ermshark_drop);
-
-            npcLoot.Add(isLastDescendant);
+            // Drops not final
+            npcLoot.Add(ItemDropRule.NormalvsExpert(ModContent.ItemType<Items.Furniture.NeuroCatErm>(), 8, 8));
         }
 
         public override void FindFrame(int frameHeight)
@@ -159,5 +150,4 @@ namespace Neurosama.Content.NPCs
             NPC.spriteDirection = NPC.direction;
         }
     }
-
 }

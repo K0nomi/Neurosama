@@ -287,8 +287,5 @@ Buffs: {
 	}
 }
 
-DropConditions: {
-	Ermshark: ""
-}
 Projectiles.SwarmDrone.DisplayName: Activated Swarm Drone
 UI.SayItBack: Say It Back
