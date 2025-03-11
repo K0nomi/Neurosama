@@ -28,7 +28,9 @@ namespace Neurosama.Content.NPCs
 
         public bool IsLastDescendant()
         {
-            return false; // todo
+            // this considers the original parent (1 ermShark) as the end of the family (also 1 ermShark), so we need to check for depth as well
+            int familySize = Main.npc.Count(x => x.active && x.type == NPC.type && x.ai[2] == family);
+            return familySize == 1 && MaxDepthReached();
         }
 
         public override void SetStaticDefaults()
@@ -48,9 +50,9 @@ namespace Neurosama.Content.NPCs
             NPC.noGravity = true;
             NPC.HitSound = SoundID.NPCHit1; // TODO
             NPC.DeathSound = SoundID.NPCDeath1; // TODO
+
             AIType = NPCID.Shark; // Moves the same as a shark. Could potentailly add ai that differs individually so splits feel better
 
-            // TODO: only final ermshark counts towards banner
             Banner = Type;
             BannerItem = ModContent.ItemType<Items.Furniture.Banners.ErmSharkBanner>();
         }
@@ -99,6 +101,20 @@ namespace Neurosama.Content.NPCs
             Array.Fill(NPC.immune, 10);
         }
 
+        public override bool SpecialOnKill()
+        {
+            if (IsLastDescendant())
+            {
+                NPCID.Sets.PositiveNPCTypesExcludedFromDeathTally[Type] = false;
+            }
+            else
+            {
+                NPCID.Sets.PositiveNPCTypesExcludedFromDeathTally[Type] = true;
+            }
+
+            return base.SpecialOnKill();
+        }
+
         public override void OnKill()
         {
             if (!MaxDepthReached())
@@ -114,18 +130,21 @@ namespace Neurosama.Content.NPCs
                 NPC.NewNPCDirect(entitySource, (int)NPC.Center.X + spawnOffset, (int)NPC.Center.Y, Type, NPC.whoAmI, ai2: family, ai3: newDepth);
                 NPC.NewNPCDirect(entitySource, (int)NPC.Center.X - spawnOffset, (int)NPC.Center.Y + 16, Type, NPC.whoAmI, ai2: family, ai3: newDepth);
             }
-            else if (Main.npc.Where(x => x.active && x.type == NPC.type && x.ai[2] == family).Count() == 1) // No other ermsharks in family
+            else if (IsLastDescendant()) // No other ermsharks in family
             {
-                // Add code here
                 CombatText.NewText(new Rectangle((int)NPC.Center.X, (int)NPC.Center.Y, 0, 0), new Color(255, 191, 191), family.ToString());
             }
         }
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            // Drops not final
-            // TODO: ignore all drops unless it's the last in the family
-            npcLoot.Add(ItemDropRule.NormalvsExpert(ModContent.ItemType<Items.Furniture.NeuroCatErm>(), 64, 128));
+            ErmsharkLastDescendantDropRule ermSharkDescendantRule = new ErmsharkLastDescendantDropRule();
+            IItemDropRule isLastDescendant = new LeadingConditionRule(ermSharkDescendantRule);
+
+            IItemDropRule ermshark_drop = ItemDropRule.NormalvsExpert(ModContent.ItemType<Items.Furniture.NeuroCatErm>(), 64, 128);
+            isLastDescendant.OnSuccess(ermshark_drop);
+
+            npcLoot.Add(isLastDescendant);
         }
 
         public override void FindFrame(int frameHeight)
@@ -140,4 +159,5 @@ namespace Neurosama.Content.NPCs
             NPC.spriteDirection = NPC.direction;
         }
     }
+
 }
