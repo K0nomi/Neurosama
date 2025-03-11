@@ -5,6 +5,7 @@ using Terraria.ModLoader.Utilities;
 using Terraria.ModLoader;
 using Terraria;
 using Terraria.Localization;
+using Microsoft.Xna.Framework;
 
 namespace Neurosama.Content.NPCs
 {
@@ -25,12 +26,15 @@ namespace Neurosama.Content.NPCs
             NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Confused] = true;
 
             // Influences how the NPC looks in the Bestiary
-            // TODO: make it swim like goldfish
             NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new NPCID.Sets.NPCBestiaryDrawModifiers()
             {
+                Position = new Vector2(0, 4),
+                IsWet = true,
                 Velocity = 1f,
                 Direction = -1
             };
+
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, drawModifiers);
 
             // Add to the end of critter list
             NPCID.Sets.NormalGoldCritterBestiaryPriority.Append(Type);
@@ -55,10 +59,13 @@ namespace Neurosama.Content.NPCs
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+            bestiaryEntry.Info.AddRange([
+                // Sets the spawning conditions and background for the bestiary entry
+				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Ocean,
+
 				// Beastiary element from localisation key		
 				new FlavorTextBestiaryInfoElement(Language.GetTextValue("Mods.Neurosama.Bestiary.ErmFish"))
-            });
+            ]);
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)

@@ -36,6 +36,18 @@ namespace Neurosama.Content.NPCs
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[Type] = 6;
+
+            // Centre ermshark's bestiary icon
+            NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new()
+            {
+                Position = new Vector2(16, 8),
+                PortraitPositionXOverride = 0,
+                IsWet = true,
+                Velocity = 1f,
+                Direction = -1
+            };
+
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, drawModifiers);
         }
 
         public override void SetDefaults()
@@ -59,11 +71,14 @@ namespace Neurosama.Content.NPCs
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+            bestiaryEntry.Info.AddRange([
+                // Sets the spawning conditions and background for the bestiary entry
+				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Ocean,
+
 				// Beastiary element from localisation key		
 				new FlavorTextBestiaryInfoElement(Language.GetTextValue("Mods.Neurosama.Bestiary.ErmShark"))
-            });
-        }
+            ]);
+        }   
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
