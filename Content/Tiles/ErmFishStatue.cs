@@ -48,7 +48,7 @@ namespace Neurosama.Content.Tiles
             Tile tile = Main.tile[i, j];
 
             // Find the coordinates of top left tile square through math
-            int topLeftX = i - tile.TileFrameX / 18;
+            int topLeftX = i - (tile.TileFrameX % 36) / 18;
             int topLeftY = j - tile.TileFrameY / 18;
 
 			const int TileWidth = 2;
