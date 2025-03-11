@@ -61,7 +61,7 @@ namespace Neurosama.Content.NPCs
         {
             bestiaryEntry.Info.AddRange([
                 // Sets the spawning conditions and background for the bestiary entry
-				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Ocean,
+				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
 
 				// Beastiary element from localisation key		
 				new FlavorTextBestiaryInfoElement(Language.GetTextValue("Mods.Neurosama.Bestiary.ErmFish"))
