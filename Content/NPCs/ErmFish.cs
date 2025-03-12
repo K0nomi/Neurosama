@@ -22,6 +22,9 @@ namespace Neurosama.Content.NPCs
             NPCID.Sets.TakesDamageFromHostilesWithoutBeingFriendly[Type] = true;
             NPCID.Sets.TownCritter[Type] = true;
 
+            // Shimmer into faeling, like other critters
+            NPCID.Sets.ShimmerTransformToNPC[Type] = NPCID.Shimmerfly;
+
             // Immune to confused like goldfish
             NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Confused] = true;
 
