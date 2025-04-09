@@ -35,7 +35,7 @@ namespace Neurosama.Content.NPCs.Town
 
         public override void Load()
         {
-            // Adds the  Shimmer Head to the NPCHeadLoader
+            // Adds the Shimmer Head to the NPCHeadLoader
             ShimmerHeadIndex = Mod.AddNPCHeadTexture(Type, Texture + "_Shimmer_Head");
         }
 
@@ -66,12 +66,12 @@ namespace Neurosama.Content.NPCs.Town
             NPC.Happiness
                 .SetBiomeAffection<ForestBiome>(AffectionLevel.Like)
                 .SetBiomeAffection<SnowBiome>(AffectionLevel.Dislike)
-                .SetNPCAffection<Evil>(AffectionLevel.Love) // cute sisters
+                .SetNPCAffection<Neuro>(AffectionLevel.Love) // cute sisters
                 .SetNPCAffection(NPCID.Dryad, AffectionLevel.Love)
                 .SetNPCAffection(NPCID.Guide, AffectionLevel.Like)
                 .SetNPCAffection(NPCID.Merchant, AffectionLevel.Dislike)
                 .SetNPCAffection(NPCID.Demolitionist, AffectionLevel.Hate)
-            ; // ;
+            ;
 
             NPCProfile = new Profiles.StackedNPCProfile(
                 new Profiles.DefaultNPCProfile(Texture, NPCHeadLoader.GetHeadSlot(HeadTexture)),
@@ -98,13 +98,13 @@ namespace Neurosama.Content.NPCs.Town
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+            bestiaryEntry.Info.AddRange([
 				// Preferred biome
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
 
 				// Beastiary element from localisation key		
 				new FlavorTextBestiaryInfoElement(Language.GetTextValue("Mods.Neurosama.Bestiary.Evil"))
-            });
+            ]);
         }
 
         public override bool PreAI()
@@ -122,11 +122,11 @@ namespace Neurosama.Content.NPCs.Town
             if (NPC.life <= 0)
             {
                 // Create 4 random smoke coulds to mimic angler and princess gores.
-                List<int> gores = new() {
+                List<int> gores = [
                     GoreID.Smoke1,
                     GoreID.Smoke2,
                     GoreID.Smoke3,
-                };
+                ];
 
                 for (int k = 0; k < 4; k++)
                 {
@@ -201,24 +201,32 @@ namespace Neurosama.Content.NPCs.Town
             // Add dialogue for if Neuro is in world.
             int neuroNPC = NPC.FindFirstNPC(ModContent.NPCType<Neuro>());
 
-            if (neuroNPC >= 0)
+            if (neuroNPC != -1)
             {
-                chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.NeuroDialogue1", Main.npc[neuroNPC].GivenName));
-                //chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.NeuroDialogue2", Main.npc[evilNPC].GivenName));
+                string neuroNPCName = Main.npc[neuroNPC].GivenName;
+
+                // Dialogue for if Neuro is in the world
+                chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.NeuroDialogue1", neuroNPCName));
+                //chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.NeuroDialogue2", neuroNPCName));
             }
 
             if (Main.bloodMoon)
             {
+                // Dialogue for if it's a blood moon
                 chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.BloodMoonDialogue1"));
+                chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.BloodMoonDialogue2"));
             }
 
-            // Add regular dialogues.
+            // Regular dialogue
             chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.StandardDialogue1"));
             chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.StandardDialogue2"));
             chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.StandardDialogue3"));
             chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.StandardDialogue4"));
             chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.StandardDialogue5"));
             chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.StandardDialogue6"));
+            chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.StandardDialogue7"));
+            chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.StandardDialogue8"));
+            chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.StandardDialogue9"));
 
             chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.RareDialogue"), 0.25);
 
@@ -235,16 +243,14 @@ namespace Neurosama.Content.NPCs.Town
         {
             if (firstButton)
             {
-                shop = ShopName; // Name of the shop tab we want to open.
+                shop = ShopName;
             }
         }
 
-        // Not completely finished, but below is what the NPC will sell
         public override void AddShops()
         {
             var npcShop = new NPCShop(Type, ShopName)
                 .Add<Items.Furniture.EvilFumo>()
-                .Add<Items.NeuroMusicBox>()
                 .Add<Items.Furniture.AbandonedArchive>()
                 .Add<Items.Furniture.Donoplank>()
                 .Add<Items.SwarmDrone>(Condition.DownedEyeOfCthulhu)
@@ -254,26 +260,8 @@ namespace Neurosama.Content.NPCs.Town
             npcShop.Register();
         }
 
-        // Return toKingStatue for only King Statues. Return !toKingStatue for only Queen Statues. Return true for both.
+        // Queen statue only
         public override bool CanGoToStatue(bool toKingStatue) => !toKingStatue;
-
-        /*public override void TownNPCAttackStrength(ref int damage, ref float knockback)
-        {
-            damage = 20;
-            knockback = 4f;
-        }
-
-        public override void TownNPCAttackProj(ref int projType, ref int attackDelay) {
-            projType = ProjectileID.None; // spawn in TwonNPCAttackShoot
-
-            attackDelay = 1;
-		}
-
-		public override void TownNPCAttackProjSpeed(ref float multiplier, ref float gravityCorrection, ref float randomOffset) {
-			multiplier = 12f;
-			randomOffset = 2f;
-			// gravityCorrection is left alone.
-		}*/
 
         public override void TownNPCAttackCooldown(ref int cooldown, ref int randExtraCooldown)
         {
@@ -306,7 +294,7 @@ namespace Neurosama.Content.NPCs.Town
 
             if (target != null && Main.netMode != NetmodeID.MultiplayerClient)
             {
-                // Add large cooldown, is reset when harpoon is killed
+                // Add large cooldown because it is reset when the harpoon dies
                 NPC.ai[3] = 450f;
 
                 var handPosition = NPC.Center + new Vector2(NPC.direction * 10f, 0f); // TODO: find better position to shoot from and have the held harpoon line up
@@ -315,16 +303,6 @@ namespace Neurosama.Content.NPCs.Town
                 projectile.npcProj = true;
                 projectile.noDropItem = true;
             }
-        }
-
-        public override void LoadData(TagCompound tag)
-        {
-            NumberOfTimesTalkedTo = tag.GetInt("numberOfTimesTalkedTo");
-        }
-
-        public override void SaveData(TagCompound tag)
-        {
-            tag["numberOfTimesTalkedTo"] = NumberOfTimesTalkedTo;
         }
     }
 }

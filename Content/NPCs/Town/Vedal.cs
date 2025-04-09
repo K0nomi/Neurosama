@@ -78,19 +78,19 @@ namespace Neurosama.Content.NPCs.Town
             NPC.HitSound = SoundID.NPCHit1; // TODO: vedal hit sound (maybe a femboy noise)
             NPC.DeathSound = SoundID.NPCDeath27; // TODO: vedal death sound
             NPC.knockBackResist = 0.5f;
-            NPC.housingCategory = 1; // Can share a house with a normal Town NPC.
+            NPC.housingCategory = 1; // Can share a house with a normal Town NPC. Could be cool to make it only neuro or evil
             AnimationType = NPCID.TownBunny;
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+            bestiaryEntry.Info.AddRange([
 				// Preferred biome
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
 
 				// Beastiary element from localisation key		
 				new FlavorTextBestiaryInfoElement(Language.GetTextValue("Mods.Neurosama.Bestiary.Vedal"))
-            });
+            ]);
         }
 
         public override void HitEffect(NPC.HitInfo hit)
@@ -115,19 +115,20 @@ namespace Neurosama.Content.NPCs.Town
 
         public override bool CanTownNPCSpawn(int numTownNPCs)
         {
-            // If we've used the License, our Town Pet can freely respawn.
-            /*if (TownNPCGuideWorld.boughtTutorialTownPet)
+            // Check if Neuro or Evil is present in the world
+            int evilNPC = NPC.FindFirstNPC(ModContent.NPCType<Evil>());
+            int neuroNPC = NPC.FindFirstNPC(ModContent.NPCType<Neuro>());
+
+            if (evilNPC != -1 || neuroNPC != -1)
             {
                 return true;
-            }*/
+            }
+
             return false;
         }
 
         public override ITownNPCProfile TownNPCProfile()
         {
-            // Vanilla Town Pets use Profiles.VariantNPCProfile() to set the variants, but that doesn't work for us because
-            // it uses Main.Assets.Request<>() which won't find mod assets (ModContent.Request<>() is needed instead).
-            // So, we make our own NPCProfile. (See Below)
             return NPCProfile;
         }
 

@@ -71,7 +71,7 @@ namespace Neurosama.Content.NPCs.Town
                 .SetNPCAffection(NPCID.Guide, AffectionLevel.Like)
                 .SetNPCAffection(NPCID.Merchant, AffectionLevel.Dislike)
                 .SetNPCAffection(NPCID.Demolitionist, AffectionLevel.Hate)
-            ; // ;
+            ;
 
             NPCProfile = new Profiles.StackedNPCProfile(
                 new Profiles.DefaultNPCProfile(Texture, NPCHeadLoader.GetHeadSlot(HeadTexture)),
@@ -98,13 +98,13 @@ namespace Neurosama.Content.NPCs.Town
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+            bestiaryEntry.Info.AddRange([
 				// Preferred biome
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
 
 				// Beastiary element from localisation key		
 				new FlavorTextBestiaryInfoElement(Language.GetTextValue("Mods.Neurosama.Bestiary.Neuro"))
-            });
+            ]);
         }
 
         public override void HitEffect(NPC.HitInfo hit)
@@ -112,11 +112,11 @@ namespace Neurosama.Content.NPCs.Town
             if (NPC.life <= 0)
             {
                 // Create 4 random smoke coulds to mimic angler and princess gores.
-                List<int> gores = new() {
+                List<int> gores = [
                     GoreID.Smoke1,
                     GoreID.Smoke2,
                     GoreID.Smoke3,
-                };
+                ];
 
                 for (int k = 0; k < 4; k++)
                 {
@@ -188,26 +188,32 @@ namespace Neurosama.Content.NPCs.Town
         {
             WeightedRandom<string> chat = new();
 
-            // Add dialogue for if Evil is in world.
             int evilNPC = NPC.FindFirstNPC(ModContent.NPCType<Evil>());
 
-            if (evilNPC >= 0)
+            if (evilNPC != -1)
             {
-                chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Neuro.EvilDialogue1", Main.npc[evilNPC].GivenName));
-                chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Neuro.EvilDialogue2"));
+                string evilNPCName = Main.npc[evilNPC].GivenName;
+
+                // Dialogue for if Evil is in world
+                chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Neuro.EvilDialogue1", evilNPCName));
+                //chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Neuro.EvilDialogue2", evilNPCName));
             }
 
             if (Main.bloodMoon)
             {
+                // Dialogue for if it's a blood moon
                 chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Neuro.BloodMoonDialogue1"));
+                //chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Neuro.BloodMoonDialogue2"));
             }
 
             if (Main.IsItRaining)
             {
+                // Dialogue for if it's raining
                 chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Neuro.RainDialogue1"));
+                chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Neuro.RainDialogue2"));
             }
 
-            // Add regular dialogues.
+            // Regular dialogue
             chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Neuro.StandardDialogue1"));
             chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Neuro.StandardDialogue2"));
             chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Neuro.StandardDialogue3"));
@@ -216,12 +222,11 @@ namespace Neurosama.Content.NPCs.Town
             chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Neuro.StandardDialogue6"));
             chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Neuro.StandardDialogue7"));
             chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Neuro.StandardDialogue8"));
+            chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Neuro.StandardDialogue9"));
 
             chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Neuro.RareDialogue"), 0.25);
 
-            // Todo blood moon dialogue
-
-            return chat; // chat is implicitly cast to a string.
+            return chat;
         }
 
         public override void SetChatButtons(ref string button, ref string button2)
@@ -234,11 +239,10 @@ namespace Neurosama.Content.NPCs.Town
         {
             if (firstButton)
             {
-                shop = ShopName; // Name of the shop tab we want to open.
+                shop = ShopName;
             }
         }
 
-        // Not completely finished, but below is what the NPC will sell
         public override void AddShops()
         {
             var npcShop = new NPCShop(Type, ShopName)
@@ -254,7 +258,7 @@ namespace Neurosama.Content.NPCs.Town
             npcShop.Register();
         }
 
-        // Return toKingStatue for only King Statues. Return !toKingStatue for only Queen Statues. Return true for both.
+        // Queen statue only
         public override bool CanGoToStatue(bool toKingStatue) => !toKingStatue;
 
         public override void TownNPCAttackStrength(ref int damage, ref float knockback)
@@ -279,15 +283,5 @@ namespace Neurosama.Content.NPCs.Town
 			randomOffset = 2f;
 			// gravityCorrection is left alone.
 		} */
-
-        public override void LoadData(TagCompound tag)
-        {
-            NumberOfTimesTalkedTo = tag.GetInt("numberOfTimesTalkedTo");
-        }
-
-        public override void SaveData(TagCompound tag)
-        {
-            tag["numberOfTimesTalkedTo"] = NumberOfTimesTalkedTo;
-        }
     }
 }
