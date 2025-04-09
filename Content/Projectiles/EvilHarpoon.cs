@@ -137,9 +137,15 @@ namespace Neurosama.Content.Projectiles
             Projectile.netUpdate = true;
         }
 
+        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
+        {
+            // Always knock the enemy away, even if the harpoon is returning
+            modifiers.HitDirectionOverride = (Attacker.Center.X < target.Center.X).ToDirectionInt();
+        }
+
         public override bool PreDraw(ref Color lightColor)
         {
-            //TODO chain is offset and starts past the projectile when shooting travelling clockwise around the npc.
+            //TODO chain is offset and starts past the projectile when travelling clockwise around the npc.
 
             NPC attacker = Attacker;
 
