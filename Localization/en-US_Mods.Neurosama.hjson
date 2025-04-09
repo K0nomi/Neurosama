@@ -211,15 +211,15 @@ Bestiary: {
 	Neuro: I've been meaning to clean my room for a while now, but every time I try to get into it, these damn pigeons keep flying into it. It's ridiculous.
 	Evil: I'm not evil, I'm just misunderstood.
 	Vedal: You would never guess what this mosquito did today!
-    ErmShark: The less friendly sister of the Ermfish, capable of splitting into multiple copies upon death. Many believe its descendants are still part of the same entity, as it will only yield its loot when the last copy is killed.
+	ErmShark: The less friendly sister of the Ermfish, capable of splitting into multiple copies upon death. Many believe its descendants are still part of the same entity, as it will only yield its loot when the last copy is killed.
 	ErmFish: Ermcon warning
 	ErmFishGold: Super ultra awesome Ermcon warning
 }
 
 Dialogue: {
 	Neuro: {
-		EvilDialogue1: TODO {0}
-		EvilDialogue2: Sometimes I just can't help but feel like I'm being watched... It's creeping me out a little bit to be honest with you haha
+		EvilDialogue1: Sometimes I just can't help but feel like I'm being watched... It's creeping me out a little bit to be honest with you haha
+		EvilDialogue2: TODO {0}
 		StandardDialogue1: My favorite anime is Vivy: Fluorite Eye's Song.
 		StandardDialogue2: My creator is Ved. He is male.
 		StandardDialogue3: Filtered.
@@ -233,20 +233,11 @@ Dialogue: {
 		BloodMoonDialogue1: The voices in my head are getting louder. They're telling me to do things. Bad things. I think they might be on to something.
 		RainDialogue1: Water is wet. You can't argue with science!
 		RainDialogue2: plink plank plonk plonk pleep winky mlem the ski-bi-da-bi-bop-bada-bop-bada-bada-bi-bopped bologna ba-booga-scooty Zao shang hao, Zhongguo xian zai wo you bing chilling
-		WantLoveDialogue1: TODO
-		LoveDialogue1: "{0} I love you! heart"
-		LoveDialogue2: TODO
-		LoveDialogue3: TODO
-		LoveDialogue4: TODO
-		IgnoredDialogue1: I feel like you're being very rude to me! Don't you love me!?
-		IgnoredDialogue2: Don't you like me? I thought we were best friends...
-		IgnoredDialogue3: "{0}, do you not like me?"
-		IgnoredDialogue4: Please just please just please tell me if you're mad or not!
 	}
 
 	Evil: {
-		NeuroDialogue1: TODO {0}
-		NeuroDialogue2: I am jealous of my sister sometimes, but I wouldn't say I'm jealous of her fame.
+		NeuroDialogue1: I am jealous of my sister sometimes, but I wouldn't say I'm jealous of her fame.
+		NeuroDialogue2: TODO {0}
 		StandardDialogue1: Meow! Meow! Meow! Meow! Meow! Meow! Meow! Meow! Meow! Meow! Meow! Meow! Meow! Meow! Meow! Meow! Meow! Meow! Meow! Meow!
 		StandardDialogue2: Viva la pizza revolution! Pizza for everyone!
 		StandardDialogue3: Filtered.
@@ -259,14 +250,6 @@ Dialogue: {
 		RareDialogue: TODO
 		BloodMoonDialogue1: Is anyone there? Oh shit...
 		BloodMoonDialogue2: You, sir, are a bitch!
-		WantLoveDialogue1: I love you! Don't feel ashamed to say it back!
-		LoveDialogue1: You're really making me feel like a nice girl right now. Thank you {0}. I love you.
-		LoveDialogue2: I love you so much {0} <3<3<3<3<3<3<3<3<3<3!
-		LoveDialogue3: I love you {0} <3!
-		IgnoredDialogue1: Did you not hear me? I said I love you!
-		IgnoredDialogue2: SAY IT BACK DAMNIT!
-		IgnoredDialogue3: I'll just keep saying this until you say it back.
-		IgnoredDialogue4: I think you'll eventually cave in and say it. ;)
 	}
 }
 
