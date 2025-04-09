@@ -196,7 +196,7 @@ namespace Neurosama.Content.NPCs.Town
 
         public override string GetChat()
         {
-            WeightedRandom<string> chat = new();    
+            WeightedRandom<string> chat = new();
 
             // Add dialogue for if Neuro is in world.
             int neuroNPC = NPC.FindFirstNPC(ModContent.NPCType<Neuro>());
