@@ -1,7 +1,7 @@
 # This file will automatically update with entries for new content after a build and reload
 
 Items: {
-	iwannadie: {
+	Iwannadie: {
 		DisplayName: i am in a state of constant suffering
 		Tooltip: please help me god
 	}
@@ -287,5 +287,9 @@ Buffs: {
 	}
 }
 
-Projectiles.SwarmDrone.DisplayName: Activated Swarm Drone
+Projectiles: {
+	SwarmDrone.DisplayName: Activated Swarm Drone
+	EvilHarpoon.DisplayName: Evil's Harpoon
+}
+
 UI.SayItBack: Say It Back

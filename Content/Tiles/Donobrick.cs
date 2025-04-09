@@ -14,7 +14,8 @@ namespace Neurosama.Content.Tiles
 			Main.tileBlockLight[Type] = true;
 			Main.tileBrick[Type] = true; // presumably a variant of tileBlendAll that works with predefined tiles rather than any tile
 
-			DustType = DustID.Stone;
+            // TODO: doesn't create dust when hit by harpoon projectiles (probably others too) (Collision.HitTiles)
+            DustType = DustID.Stone;
 			HitSound = SoundID.Tink;
 
 			AddMapEntry(new Color(174, 92, 70));

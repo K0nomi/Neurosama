@@ -248,7 +248,7 @@ namespace Neurosama.Content.NPCs.Town
                 .Add<Items.Donowall>()
                 .Add<Items.NeuroMusicBox>()
                 //.Add<Items.SwarmPet>()
-                .Add<Items.iwannadie>(Condition.IsNpcShimmered) // shimmer test
+                .Add<Items.Iwannadie>(Condition.IsNpcShimmered) // shimmer test
             ;
 
             npcShop.Register();

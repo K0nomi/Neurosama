@@ -117,8 +117,8 @@ namespace Neurosama.Content.NPCs
         }
 
         public override bool SpecialOnKill()
-        {
-            if (IsLastDescendant())
+        {   
+            if (IsLastDescendant()) // TODO: Maybe check if no new ermsharks exist after split rather than depth for the case where entity cap is full
             {
                 return false;
             }

@@ -15,6 +15,7 @@ using Terraria.GameContent.Personalities;
 using System.Collections.Generic;
 using Terraria.ModLoader.IO;
 using Terraria.Chat;
+using Humanizer;
 
 namespace Neurosama.Content.NPCs.Town
 {
@@ -45,8 +46,8 @@ namespace Neurosama.Content.NPCs.Town
             NPCID.Sets.ExtraFramesCount[Type] = 9;
             NPCID.Sets.AttackFrameCount[Type] = 4;
             NPCID.Sets.DangerDetectRange[Type] = 700; // The amount of pixels away from the center of the NPC that it tries to attack enemies
-            NPCID.Sets.AttackType[Type] = 0; // 0 = throwing, 1 = shooting, 2 = magic, 3 = melee
-            NPCID.Sets.AttackTime[Type] = 90;
+            NPCID.Sets.AttackType[Type] = 1; // 0 = throwing, 1 = shooting, 2 = magic, 3 = melee
+            NPCID.Sets.AttackTime[Type] = 60;
             NPCID.Sets.AttackAverageChance[Type] = 30; // The denominator for the chance for a Town NPC to attack
 
             NPCID.Sets.ShimmerTownTransform[NPC.type] = true; // NPC has a shimmered form
@@ -104,6 +105,16 @@ namespace Neurosama.Content.NPCs.Town
 				// Beastiary element from localisation key		
 				new FlavorTextBestiaryInfoElement(Language.GetTextValue("Mods.Neurosama.Bestiary.Evil"))
             });
+        }
+
+        public override bool PreAI()
+        {
+            if (NPC.ai[3] > 0)
+            {
+                NPC.ai[3]--;
+            }
+
+            return true;
         }
 
         public override void HitEffect(NPC.HitInfo hit)
@@ -185,7 +196,7 @@ namespace Neurosama.Content.NPCs.Town
 
         public override string GetChat()
         {
-            WeightedRandom<string> chat = new();
+            WeightedRandom<string> chat = new();    
 
             // Add dialogue for if Neuro is in world.
             int neuroNPC = NPC.FindFirstNPC(ModContent.NPCType<Neuro>());
@@ -237,7 +248,7 @@ namespace Neurosama.Content.NPCs.Town
                 .Add<Items.Furniture.AbandonedArchive>()
                 .Add<Items.Furniture.Donoplank>()
                 .Add<Items.SwarmDrone>(Condition.DownedEyeOfCthulhu)
-                .Add<Items.iwannadie>(Condition.IsNpcShimmered) // shimmer test
+                .Add<Items.Iwannadie>(Condition.IsNpcShimmered) // shimmer test
             ;
 
             npcShop.Register();
@@ -246,11 +257,23 @@ namespace Neurosama.Content.NPCs.Town
         // Return toKingStatue for only King Statues. Return !toKingStatue for only Queen Statues. Return true for both.
         public override bool CanGoToStatue(bool toKingStatue) => !toKingStatue;
 
-        public override void TownNPCAttackStrength(ref int damage, ref float knockback)
+        /*public override void TownNPCAttackStrength(ref int damage, ref float knockback)
         {
             damage = 20;
             knockback = 4f;
         }
+
+        public override void TownNPCAttackProj(ref int projType, ref int attackDelay) {
+            projType = ProjectileID.None; // spawn in TwonNPCAttackShoot
+
+            attackDelay = 1;
+		}
+
+		public override void TownNPCAttackProjSpeed(ref float multiplier, ref float gravityCorrection, ref float randomOffset) {
+			multiplier = 12f;
+			randomOffset = 2f;
+			// gravityCorrection is left alone.
+		}*/
 
         public override void TownNPCAttackCooldown(ref int cooldown, ref int randExtraCooldown)
         {
@@ -258,16 +281,41 @@ namespace Neurosama.Content.NPCs.Town
             randExtraCooldown = 30;
         }
 
-        /* public override void TownNPCAttackProj(ref int projType, ref int attackDelay) {
-			projType = ModContent.ProjectileType<SwarmDrone>();
-			attackDelay = 1;
-		}
+        public override void DrawTownAttackGun(ref Texture2D item, ref Rectangle itemFrame, ref float scale, ref int horizontalHoldoutOffset)
+        {
+            // TODO: harpoon is positioned wrong
+            int itemType = ItemID.Harpoon;
+            Main.GetItemDrawFrame(itemType, out item, out itemFrame);
+            horizontalHoldoutOffset = (int)Main.DrawPlayerItemPos(1f, itemType).X - 12;
+        }
 
-		public override void TownNPCAttackProjSpeed(ref float multiplier, ref float gravityCorrection, ref float randomOffset) {
-			multiplier = 12f;
-			randomOffset = 2f;
-			// gravityCorrection is left alone.
-		} */
+        public override void TownNPCAttackShoot(ref bool inBetweenShots)
+        {
+            NPC target = null;
+            float lowestDistance = float.MaxValue;
+            for (int i = 0; i < Main.maxNPCs; i++)
+            {
+                NPC potentialTarget = Main.npc[i];
+                float distance = NPC.Distance(potentialTarget.Center);
+                if (potentialTarget.active && potentialTarget.CanBeChasedBy() && distance < NPCID.Sets.DangerDetectRange[NPC.type] && distance < lowestDistance && Collision.CanHitLine(NPC.Center, 0, 0, potentialTarget.Center, 0, 0) && NPC.localAI[3] % NPCID.Sets.AttackTime[NPC.type] == 0)
+                {
+                    target = potentialTarget;
+                    lowestDistance = distance;
+                }
+            }
+
+            if (target != null && Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                // Add large cooldown, is reset when harpoon is killed
+                NPC.ai[3] = 450f;
+
+                var handPosition = NPC.Center + new Vector2(NPC.direction * 10f, 0f); // TODO: find better position to shoot from and have the held harpoon line up
+                var unitVectorToTarget = (target.Top - handPosition).SafeNormalize(Vector2.Zero); // Maybe add height to target based on distance for better aiming?
+                var projectile = Projectile.NewProjectileDirect(NPC.GetSource_FromAI(), handPosition, unitVectorToTarget * 11f, ModContent.ProjectileType<Projectiles.EvilHarpoon>(), 20, 4f, ai2: NPC.whoAmI);
+                projectile.npcProj = true;
+                projectile.noDropItem = true;
+            }
+        }
 
         public override void LoadData(TagCompound tag)
         {
