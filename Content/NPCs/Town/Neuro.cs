@@ -230,9 +230,9 @@ namespace Neurosama.Content.NPCs.Town
         }
 
         public override void SetChatButtons(ref string button, ref string button2)
-        { // What the chat buttons are when you open up the chat UI
+        {
             button = Language.GetTextValue("LegacyInterface.28");
-            button2 = Language.GetTextValue("Mods.Neurosama.UI.SayItBack");
+            //button2 = Language.GetTextValue("Mods.Neurosama.UI.SayItBack");
         }
 
         public override void OnChatButtonClicked(bool firstButton, ref string shop)
