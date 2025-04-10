@@ -121,22 +121,10 @@ namespace Neurosama.Content.NPCs.Town
         }
 
         public override bool CanTownNPCSpawn(int numTownNPCs)
-        { // Requirements for the town NPC to spawn.
-
-            for (int k = 0; k < Main.maxPlayers; k++)
+        {
+            if (numTownNPCs >= 3)
             {
-                Player player = Main.player[k];
-                if (!player.active)
-                {
-                    continue;
-                }
-
-                // Player has to have a Turtle in order for Neuro to spawn
-                // TODO: better requirements
-                if (player.inventory.Any(item => item.type == ItemID.Turtle || item.type == ItemID.TurtleJungle))
-                {
-                    return true;
-                }
+                return true;
             }
 
             return false;
