@@ -64,13 +64,7 @@ namespace Neurosama.Content.NPCs.Town
 
             // TODO: better happiness thingies
             NPC.Happiness
-                .SetBiomeAffection<ForestBiome>(AffectionLevel.Like)
-                .SetBiomeAffection<SnowBiome>(AffectionLevel.Dislike)
                 .SetNPCAffection<Neuro>(AffectionLevel.Love) // cute sisters
-                .SetNPCAffection(NPCID.Dryad, AffectionLevel.Love)
-                .SetNPCAffection(NPCID.Guide, AffectionLevel.Like)
-                .SetNPCAffection(NPCID.Merchant, AffectionLevel.Dislike)
-                .SetNPCAffection(NPCID.Demolitionist, AffectionLevel.Hate)
             ;
 
             NPCProfile = new Profiles.StackedNPCProfile(
