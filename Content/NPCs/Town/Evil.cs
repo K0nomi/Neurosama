@@ -228,7 +228,7 @@ namespace Neurosama.Content.NPCs.Town
             chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.StandardDialogue8"));
             chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.StandardDialogue9"));
 
-            chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.RareDialogue"), 0.25);
+            //chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.RareDialogue"), 0.25);
 
             return chat;
         }
