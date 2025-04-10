@@ -152,20 +152,20 @@ NPCs: {
 
 		// TODO
 		TownNPCMood: {
-			Content: These dialogues are incomplete.
-			Princess_LovesNPC: I like {NPCName}.
+			Princess_LovesNPC: "{NPCName} is such an adorable and fun girl!"
 			LikeNPC_Princess: I like {NPCName}.
-			HateNPC: I hate {NPCName}.
-			DislikeNPC: I dislike {NPCName}.
-			LikeNPC: I like {NPCName}.
 			LoveNPC: I love {NPCName}.
-			DislikeBiome: I dislike {BiomeName}.
+			LikeNPC: I like {NPCName}.
+			DislikeNPC: I dislike {NPCName}.
+			HateNPC: I hate {NPCName}.
 			LikeBiome: I like {BiomeName}.
-			HateCrowded: I hate how crowded I am.
-			DislikeCrowded: I dislike how crowded I am.
+			DislikeBiome: I dislike {BiomeName}.
 			LoveSpace: I love having so much space.
+			DislikeCrowded: I dislike how crowded I am.
+			HateCrowded: I hate how crowded I am.
 			FarFromHome: I am too far from home.
 			NoHome: I hate not having a home.
+			Content: I am content.
 		}
 
 		Census.SpawnCondition: Catch a turtle or jungle turtle
@@ -177,20 +177,20 @@ NPCs: {
 
 		// TODO
 		TownNPCMood: {
-			Content: These dialogues are incomplete.
-			Princess_LovesNPC: I like {NPCName}.
+			Princess_LovesNPC: "{NPCName} may act tough, but she's really nice at heart!"
 			LikeNPC_Princess: I like {NPCName}.
-			HateNPC: I hate {NPCName}.
-			DislikeNPC: I dislike {NPCName}.
-			LikeNPC: I like {NPCName}.
 			LoveNPC: I love {NPCName}.
-			DislikeBiome: I dislike {BiomeName}.
+			LikeNPC: I like {NPCName}.
+			DislikeNPC: I dislike {NPCName}.
+			HateNPC: I hate {NPCName}.
 			LikeBiome: I like {BiomeName}.
-			HateCrowded: I hate how crowded I am.
-			DislikeCrowded: I dislike how crowded I am.
+			DislikeBiome: I dislike {BiomeName}.
 			LoveSpace: I love having so much space.
+			DislikeCrowded: I dislike how crowded I am.
+			HateCrowded: I hate how crowded I am.
 			FarFromHome: I am too far from home.
 			NoHome: I hate not having a home.
+			Content: I am content.
 		}
 
 		Census.SpawnCondition: Kill a turtle or jungle turtle (actually catch sincei havent implemented it lol)
