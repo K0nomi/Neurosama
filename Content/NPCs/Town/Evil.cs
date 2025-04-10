@@ -269,13 +269,13 @@ namespace Neurosama.Content.NPCs.Town
             randExtraCooldown = 30;
         }
 
-        public override void DrawTownAttackGun(ref Texture2D item, ref Rectangle itemFrame, ref float scale, ref int horizontalHoldoutOffset)
+        /*public override void DrawTownAttackGun(ref Texture2D item, ref Rectangle itemFrame, ref float scale, ref int horizontalHoldoutOffset)
         {
             // TODO: harpoon is positioned wrong
             int itemType = ItemID.Harpoon;
             Main.GetItemDrawFrame(itemType, out item, out itemFrame);
             horizontalHoldoutOffset = (int)Main.DrawPlayerItemPos(1f, itemType).X - 12;
-        }
+        }*/
 
         public override void TownNPCAttackShoot(ref bool inBetweenShots)
         {
@@ -297,7 +297,7 @@ namespace Neurosama.Content.NPCs.Town
                 // Add large cooldown because it is reset when the harpoon dies
                 NPC.ai[3] = 450f;
 
-                var handPosition = NPC.Center + new Vector2(NPC.direction * 10f, 0f); // TODO: find better position to shoot from and have the held harpoon line up
+                var handPosition = NPC.Center + new Vector2(NPC.direction * 12f, 0f);
                 var unitVectorToTarget = (target.Top - handPosition).SafeNormalize(Vector2.Zero); // Maybe add height to target based on distance for better aiming?
                 var projectile = Projectile.NewProjectileDirect(NPC.GetSource_FromAI(), handPosition, unitVectorToTarget * 11f, ModContent.ProjectileType<Projectiles.EvilHarpoon>(), 20, 4f, ai2: NPC.whoAmI);
                 projectile.npcProj = true;

@@ -149,7 +149,7 @@ namespace Neurosama.Content.Projectiles
 
             NPC attacker = Attacker;
 
-            Vector2 attackerArmPosition = attacker.Center + new Vector2(attacker.direction * 10f, 0f); //Main.GetPlayerArmPosition(Projectile)
+            Vector2 attackerArmPosition = attacker.Center + new Vector2(attacker.direction * 12f, 0f); //Main.GetPlayerArmPosition(Projectile)
             //attackerArmPosition.Y -= attacker.gfxOffY;
 
             //Asset<Texture2D> chainTexture = TextureAssets.Chain;
