@@ -149,7 +149,7 @@ NPCs: {
 	Neuro: {
 		DisplayName: Neuro
 		RareName: Nuero
-
+		
 		// TODO
 		TownNPCMood: {
 			Princess_LovesNPC: "{NPCName} is such an adorable and fun girl!"
@@ -168,13 +168,13 @@ NPCs: {
 			Content: I am content.
 		}
 
-		Census.SpawnCondition: Catch a turtle or jungle turtle
+		Census.SpawnCondition: Have at least 3 other town NPCs in your world
 	}
 
 	Evil: {
 		DisplayName: Evil
 		RareName: Eliv
-
+		
 		// TODO
 		TownNPCMood: {
 			Princess_LovesNPC: "{NPCName} may act tough, but she's really nice at heart!"
@@ -193,13 +193,14 @@ NPCs: {
 			Content: I am content.
 		}
 
-		Census.SpawnCondition: Kill a turtle or jungle turtle (actually catch sincei havent implemented it lol)
+		Census.SpawnCondition: Have at least 3 other town NPCs in your world
 	}
 
 	Vedal: {
-		DisplayName: Tutel
-		GivenName: Vedal
+		DisplayName: Vedal
 		RareName: Ved
+
+		Census.SpawnCondition: Have Neuro or Evil in your world
 	}
 
 	ErmShark.DisplayName: Ermshark
@@ -251,6 +252,10 @@ Dialogue: {
 		RareDialogue: TODO
 		BloodMoonDialogue1: Is anyone there? Oh shit...
 		BloodMoonDialogue2: You, sir, are a bitch!
+	}
+
+	Vedal: {
+		StandardDialogue1: I am a femboy and I'm graduating
 	}
 }
 

@@ -43,8 +43,8 @@ namespace Neurosama.Content.NPCs.Town
             NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Confused] = true; // And confused
 
             NPCID.Sets.NPCFramingGroup[Type] = 4; // Party hat walking animation, Town Cat = 4, Town Dog = 5, Town Bunny = 6, Town Slimes = 7. Vedal is the same as the cat.
-            NPCID.Sets.HatOffsetY[Type] = -4; // But his head is lower down
-
+            NPCID.Sets.HatOffsetY[Type] = -4; // But his head is lower down 
+            
             NPCID.Sets.IsTownPet[Type] = true; // NPC is a Town Pet
             NPCID.Sets.CannotSitOnFurniture[Type] = true; // TODO: vedal becomes an extreme alcoholic when sitting on furniture
 
@@ -112,36 +112,19 @@ namespace Neurosama.Content.NPCs.Town
             return NPCProfile;
         }
 
-        public override List<string> SetNPCNameList()
-        {
-            List<string> list = new();
-
-            string conmmonGivenName = Language.GetTextValue("Mods.Neurosama.NPCs.Vedal.GivenName");
-            string rareGivenName = Language.GetTextValue("Mods.Neurosama.NPCs.Vedal.RareName");
-
-            for (int i = 0; i < 15; i++)
-            {
-                list.Add(conmmonGivenName);
-            }
-
-            // 1/16 chance for rare name
-            list.Add(rareGivenName);
-
-            return list;
-        }
-
         public override string GetChat()
         {
             WeightedRandom<string> chat = new();
 
-            chat.Add("TODO");
+            // Vedal dialogue is TODO
+            chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Vedal.StandardDialogue1"));
 
             return chat;
         }
 
         public override void SetChatButtons(ref string button, ref string button2)
         {
-            button = Language.GetTextValue("UI.PetTheAnimal"); // Pet
+            button = Language.GetTextValue("UI.PetTheAnimal"); // Probably a good idea to replace this for ved lol
         }
     }
 }

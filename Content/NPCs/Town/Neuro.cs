@@ -1,5 +1,4 @@
 using Microsoft.Xna.Framework;
-using System;
 using System.Linq;
 using Terraria;
 using Terraria.Audio;
@@ -8,14 +7,10 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 using Terraria.GameContent.Bestiary;
-using Terraria.GameContent.ItemDropRules;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
 using Terraria.GameContent.Personalities;
 using System.Collections.Generic;
-using Terraria.ModLoader.IO;
 using Terraria.Chat;
-using Neurosama.Content.Projectiles.Minions;
 
 namespace Neurosama.Content.NPCs.Town
 {
@@ -118,18 +113,10 @@ namespace Neurosama.Content.NPCs.Town
                     Gore.NewGore(NPC.GetSource_Death(), NPC.position, Vector2.Zero, randomGore, 1f);
                 }
 
-                // This is so sad neuro has died
-                SoundEngine.PlaySound(NPC.DeathSound, NPC.position);
-
+                // TODO: this causes duplicate death messages, find a way to replace the default one
                 // LegacyMisc.36 is "{0} has left!"
-                if (Main.netMode == NetmodeID.SinglePlayer) Main.NewText(Language.GetTextValue("LegacyMisc.36", NPC.GivenName), 255, 25, 25);
-                else if (Main.netMode == NetmodeID.Server) ChatHelper.BroadcastChatMessage(NetworkText.FromKey("LegacyMisc.36", NPC.GetGivenNetName()), new Color(255, 25, 25));
-
-                // Deactivate npc
-                NPC.active = false;
-                NPC.netSkip = -1;
-
-                // TODO: increase kill count porperly
+                //if (Main.netMode == NetmodeID.SinglePlayer) Main.NewText(Language.GetTextValue("LegacyMisc.36", NPC.FullName), 255, 25, 25);
+                //else if (Main.netMode == NetmodeID.Server) ChatHelper.BroadcastChatMessage(NetworkText.FromKey("LegacyMisc.36", NPC.GetFullNetName()), new Color(255, 25, 25));
             }
         }
 
@@ -158,24 +145,6 @@ namespace Neurosama.Content.NPCs.Town
         public override ITownNPCProfile TownNPCProfile()
         {
             return NPCProfile;
-        }
-
-        public override List<string> SetNPCNameList()
-        {
-            List<string> list = new();
-
-            string conmmonGivenName = Language.GetTextValue("Mods.Neurosama.NPCs.Neuro.DisplayName");
-            string rareGivenName = Language.GetTextValue("Mods.Neurosama.NPCs.Neuro.RareName");
-
-            for (int i = 0; i < 15; i++)
-            {
-                list.Add(conmmonGivenName);
-            }
-
-            // 1/16 chance for rare name
-            list.Add(rareGivenName);
-
-            return list;
         }
 
         public override string GetChat()
