@@ -149,7 +149,7 @@ NPCs: {
 	Neuro: {
 		DisplayName: Neuro
 		RareName: Nuero
-		
+
 		// TODO
 		TownNPCMood: {
 			Princess_LovesNPC: "{NPCName} is such an adorable and fun girl!"
@@ -174,7 +174,7 @@ NPCs: {
 	Evil: {
 		DisplayName: Evil
 		RareName: Eliv
-		
+
 		// TODO
 		TownNPCMood: {
 			Princess_LovesNPC: "{NPCName} may act tough, but she's really nice at heart!"
@@ -199,7 +199,6 @@ NPCs: {
 	Vedal: {
 		DisplayName: Vedal
 		RareName: Ved
-
 		Census.SpawnCondition: Have Neuro or Evil in your world
 	}
 
@@ -254,9 +253,7 @@ Dialogue: {
 		BloodMoonDialogue2: You, sir, are a bitch!
 	}
 
-	Vedal: {
-		StandardDialogue1: I am a femboy and I'm graduating
-	}
+	Vedal.StandardDialogue1: I am a femboy and I'm graduating
 }
 
 Tiles: {
