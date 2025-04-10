@@ -197,7 +197,8 @@ NPCs: {
 	}
 
 	Vedal: {
-		DisplayName: Vedal
+		DisplayName: Tutel
+		GivenName: Vedal
 		RareName: Ved
 	}
 
