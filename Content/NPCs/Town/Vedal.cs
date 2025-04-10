@@ -93,26 +93,6 @@ namespace Neurosama.Content.NPCs.Town
             ]);
         }
 
-        public override void HitEffect(NPC.HitInfo hit)
-        {
-            if (NPC.life <= 0)
-            {
-                // The game seems to already create the smoke gore on it's own, so code for that isn't needed
-
-                SoundEngine.PlaySound(NPC.DeathSound, NPC.position);
-
-                // LegacyMisc.36 is "{0} has left!"
-                if (Main.netMode == NetmodeID.SinglePlayer) Main.NewText(Language.GetTextValue("LegacyMisc.36", NPC.GivenName), 255, 25, 25);
-                else if (Main.netMode == NetmodeID.Server) ChatHelper.BroadcastChatMessage(NetworkText.FromKey("LegacyMisc.36", NPC.GetGivenNetName()), new Color(255, 25, 25));
-
-                // Deactivate npc
-                NPC.active = false;
-                NPC.netSkip = -1;
-
-                // TODO: increase kill count porperly
-            }
-        }
-
         public override bool CanTownNPCSpawn(int numTownNPCs)
         {
             // Check if Neuro or Evil is present in the world
@@ -136,7 +116,7 @@ namespace Neurosama.Content.NPCs.Town
         {
             List<string> list = new();
 
-            string conmmonGivenName = Language.GetTextValue("Mods.Neurosama.NPCs.Vedal.DisplayName");
+            string conmmonGivenName = Language.GetTextValue("Mods.Neurosama.NPCs.Vedal.GivenName");
             string rareGivenName = Language.GetTextValue("Mods.Neurosama.NPCs.Vedal.RareName");
 
             for (int i = 0; i < 15; i++)
