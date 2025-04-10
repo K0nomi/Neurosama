@@ -14,7 +14,7 @@ namespace Neurosama.Common
         public override void ResetEffects() => ResetEquips();
         public override void UpdateDead() => ResetEquips();
 
-        public override void UpdateEquips()
+        public override void UpdateVisibleAccessories() // UpdateEquips()
         {
             if (Player.armor[10].type == ModContent.ItemType<NeuroFumo>())
             {
@@ -23,6 +23,15 @@ namespace Neurosama.Common
             else if (Player.armor[10].type == ModContent.ItemType<EvilFumo>())
             {
                 evilFumoVanityEquipped = true;
+            }
+            // This is only here because it doesn't show in player select when done the recommended way for some reason
+            if (Player.armor[0].type == ModContent.ItemType<NeuroFumo>())
+            {
+                neuroFumoEquipped = true;
+            }
+            else if (Player.armor[0].type == ModContent.ItemType<EvilFumo>())
+            {
+                evilFumoEquipped = true;
             }
         }
 
