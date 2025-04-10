@@ -29,7 +29,7 @@ namespace Neurosama.Content.NPCs
             NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Confused] = true;
 
             // Influences how the NPC looks in the Bestiary
-            NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new NPCID.Sets.NPCBestiaryDrawModifiers()
+            NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new()
             {
                 Position = new Vector2(0, 4),
                 IsWet = true,
@@ -63,7 +63,7 @@ namespace Neurosama.Content.NPCs
         {
             bestiaryEntry.Info.AddRange([
                 // Sets the spawning conditions and background for the bestiary entry
-				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
+				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Ocean,
 
 				// Beastiary element from localisation key		
 				new FlavorTextBestiaryInfoElement(Language.GetTextValue("Mods.Neurosama.Bestiary.ErmFishGold"))
@@ -96,7 +96,6 @@ namespace Neurosama.Content.NPCs
         }
 
         // TODO: gold critter passive particle effect
-        // TODO: proper gold critter death particle effect
         // TODO: gold text for lifeform analyser rare creatures
     }
 }
