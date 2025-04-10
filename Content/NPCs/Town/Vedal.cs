@@ -93,7 +93,7 @@ namespace Neurosama.Content.NPCs.Town
             ]);
         }
 
-        public override void HitEffect(NPC.HitInfo hit)
+        /*public override void HitEffect(NPC.HitInfo hit)
         {
             if (NPC.life <= 0)
             {
@@ -111,7 +111,7 @@ namespace Neurosama.Content.NPCs.Town
 
                 // TODO: increase kill count porperly
             }
-        }
+        }*/
 
         public override bool CanTownNPCSpawn(int numTownNPCs)
         {
@@ -136,7 +136,7 @@ namespace Neurosama.Content.NPCs.Town
         {
             List<string> list = new();
 
-            string conmmonGivenName = Language.GetTextValue("Mods.Neurosama.NPCs.Vedal.DisplayName");
+            string conmmonGivenName = Language.GetTextValue("Mods.Neurosama.NPCs.Vedal.GivenName");
             string rareGivenName = Language.GetTextValue("Mods.Neurosama.NPCs.Vedal.RareName");
 
             for (int i = 0; i < 15; i++)
