@@ -30,7 +30,7 @@ namespace Neurosama.Content.Tiles.Furniture
 			TileID.Sets.IsAContainer[Type] = true;
 			TileID.Sets.FriendlyFairyCanLureTo[Type] = true;
 
-			AdjTiles = new int[] { TileID.Containers };
+			AdjTiles = [TileID.Containers];
 
 			LocalizedText name = CreateMapEntryName();
             AddMapEntry(new Color(186, 105, 106), name);
@@ -41,16 +41,16 @@ namespace Neurosama.Content.Tiles.Furniture
 			// Placement
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
 			TileObjectData.newTile.Origin = new Point16(0, 1);
-			TileObjectData.newTile.CoordinateHeights = new int[] { 16, 18 };
+			TileObjectData.newTile.CoordinateHeights = [16, 18];
 			TileObjectData.newTile.HookCheckIfCanPlace = new PlacementHook(Chest.FindEmptyChest, -1, 0, true);
 			TileObjectData.newTile.HookPostPlaceMyPlayer = new PlacementHook(Chest.AfterPlacement_Hook, -1, 0, false);
-			TileObjectData.newTile.AnchorInvalidTiles = new int[] {
+			TileObjectData.newTile.AnchorInvalidTiles = [
 				TileID.MagicalIceBlock,
 				TileID.Boulder,
 				TileID.BouncyBoulder,
 				TileID.LifeCrystalBoulder,
 				TileID.RollingCactus
-			};
+			];
 			TileObjectData.newTile.StyleHorizontal = true;
 			TileObjectData.newTile.LavaDeath = false;
 			TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidWithTop | AnchorType.SolidSide, TileObjectData.newTile.Width, 0);

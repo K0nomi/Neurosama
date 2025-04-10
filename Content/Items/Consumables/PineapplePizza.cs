@@ -14,11 +14,11 @@ namespace Neurosama.Content.Items.Consumables
 
             Main.RegisterItemAnimation(Type, new DrawAnimationVertical(int.MaxValue, 3));
 
-            ItemID.Sets.FoodParticleColors[Item.type] = new Color[] {
-                new Color(162, 119, 88),
-                new Color(255, 217, 12),
-                new Color(226, 191, 191)
-            };
+            ItemID.Sets.FoodParticleColors[Item.type] = [
+                new(162, 119, 88),
+                new(255, 217, 12),
+                new(226, 191, 191)
+            ];
 
             ItemID.Sets.IsFood[Type] = true;
         }

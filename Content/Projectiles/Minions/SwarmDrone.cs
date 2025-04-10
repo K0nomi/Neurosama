@@ -210,7 +210,7 @@ namespace Neurosama.Content.Projectiles.Minions
 
                     float droneRelativeId = (float)minionPosition / (float)minionCount;
                     var ticks = Main.GameUpdateCount;
-                    Vector2 circleOffset = new Vector2((float)Math.Sin((double)(droneRelativeId * (float)Math.PI * 2f + (float)ticks / 60f)), 0.3f * (float)Math.Cos((double)(droneRelativeId * (float)Math.PI * 2f + (float)ticks / 60f)));
+                    Vector2 circleOffset = new((float)Math.Sin((double)(droneRelativeId * (float)Math.PI * 2f + (float)ticks / 60f)), 0.3f * (float)Math.Cos((double)(droneRelativeId * (float)Math.PI * 2f + (float)ticks / 60f)));
                     direction += circleOffset * 100f;
                     direction.Normalize();
                     direction *= speed;

@@ -24,10 +24,10 @@ namespace Neurosama.Content.Tiles.Furniture
             AddMapEntry(new Color(243, 203, 152));
 
             //DustType = ModContent.DustType<T>(); // TODO
-            AdjTiles = new int[] { TileID.Platforms };
+            AdjTiles = [TileID.Platforms];
 
 			// Placement
-			TileObjectData.newTile.CoordinateHeights = new int[] { 16 };
+			TileObjectData.newTile.CoordinateHeights = [16];
 			TileObjectData.newTile.CoordinateWidth = 16;
 			TileObjectData.newTile.CoordinatePadding = 2;
 			TileObjectData.newTile.StyleHorizontal = true;

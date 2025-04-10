@@ -85,7 +85,7 @@ namespace Neurosama.Common
                 else if (modPlayer.evilFumoEquipped)
                     DrawFumo(drawInfo, drawPlayer, dyeShader, headPosition, evilFumoTexture);
 
-                Vector2 doubleFumoOffset = new Vector2(drawPlayer.direction == 1 ? -2 : 2, 6 - neuroFumoTexture.Height);
+                Vector2 doubleFumoOffset = new(drawPlayer.direction == 1 ? -2 : 2, 6 - neuroFumoTexture.Height);
 
                 if (modPlayer.neuroFumoVanityEquipped)
                     DrawFumo(drawInfo, drawPlayer, dyeShader, headPosition + doubleFumoOffset, neuroFumoTexture);
@@ -96,12 +96,12 @@ namespace Neurosama.Common
 
         private static void DrawFumo(PlayerDrawSet drawInfo, Player drawPlayer, int dyeShader, Vector2 headPosition, Texture2D texture)
         {
-            Vector2 position = new Vector2(headPosition.X, headPosition.Y - 2);
-            Vector2 origin = new Vector2(texture.Width / 2f, texture.Height);
+            Vector2 position = new(headPosition.X, headPosition.Y - 2);
+            Vector2 origin = new(texture.Width / 2f, texture.Height);
 
             SpriteEffects spriteEffect = drawPlayer.direction == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
-            DrawData drawData = new DrawData(texture, position, null, drawInfo.colorArmorHead, 0f, origin, 1f, spriteEffect, 0);
+            DrawData drawData = new(texture, position, null, drawInfo.colorArmorHead, 0f, origin, 1f, spriteEffect, 0);
             drawData.shader = dyeShader;
 
             drawInfo.DrawDataCache.Add(drawData);

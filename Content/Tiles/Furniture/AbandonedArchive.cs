@@ -19,7 +19,7 @@ namespace Neurosama.Content.Tiles.Furniture
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3Wall);
             TileObjectData.newTile.Width = 12;
             TileObjectData.newTile.Height = 6;
-            TileObjectData.newTile.CoordinateHeights = new[] { 16, 16, 16, 16, 16, 16 };
+            TileObjectData.newTile.CoordinateHeights = [16, 16, 16, 16, 16, 16];
 
             TileObjectData.addTile(Type);
 
