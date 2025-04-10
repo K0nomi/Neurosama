@@ -21,6 +21,7 @@ namespace Neurosama.Content.NPCs
             NPCID.Sets.CountsAsCritter[Type] = true;
             NPCID.Sets.TakesDamageFromHostilesWithoutBeingFriendly[Type] = true;
             NPCID.Sets.TownCritter[Type] = true;
+            NPCID.Sets.GoldCrittersCollection.Add(Type);
 
             // Shimmer into faeling, like other critters
             NPCID.Sets.ShimmerTransformToNPC[Type] = NPCID.Shimmerfly;
@@ -96,6 +97,5 @@ namespace Neurosama.Content.NPCs
         }
 
         // TODO: gold critter passive particle effect
-        // TODO: gold text for lifeform analyser rare creatures
     }
 }
