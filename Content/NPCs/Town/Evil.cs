@@ -37,6 +37,7 @@ namespace Neurosama.Content.NPCs.Town
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[Type] = 23; // The total amount of frames the NPC has
+            NPCID.Sets.NPCFramingGroup[Type] = 1; // Uses same party hat offset as party girl
 
             NPCID.Sets.ExtraFramesCount[Type] = 9;
             NPCID.Sets.AttackFrameCount[Type] = 4;
@@ -82,6 +83,7 @@ namespace Neurosama.Content.NPCs.Town
             NPC.DeathSound = deathSound;
             NPC.knockBackResist = 0.5f;
 
+            // Uses same animation frames as party girl
             AnimationType = NPCID.PartyGirl;
         }
 
