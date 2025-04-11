@@ -8,7 +8,7 @@ namespace Neurosama.Content.Items.Furniture.Banners
     {
         public override void SetDefaults()
         {
-            Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.Furniture.Banners.ErmFishBanner>());
+            Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.Furniture.ErmFishBanner>());
 
             Item.width = 8;
             Item.height = 24;

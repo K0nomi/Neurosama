@@ -6,10 +6,16 @@ using Terraria;
 using Terraria.ModLoader;
 using Neurosama.Content.NPCs;
 
-namespace Neurosama.Content.Tiles.Furniture.Banners
+namespace Neurosama.Content.Tiles.Furniture
 {
-    public class ErmFishBanner : ModTile
+    public abstract class ModBanner : ModTile
     {
+        public virtual int NPCType => 0;
+
+        //public virtual int Style => 0;
+
+        //public override string Texture => (GetType().Namespace + ".Banners").Replace('.', '/');
+
         public override void SetStaticDefaults()
         {
             Main.tileFrameImportant[Type] = true;
@@ -17,6 +23,10 @@ namespace Neurosama.Content.Tiles.Furniture.Banners
 
             TileObjectData.newTile.CopyFrom(TileObjectData.GetTileData(TileID.Banners, 0));
             TileObjectData.newTile.StyleLineSkip = 2;
+            TileObjectData.newTile.StyleHorizontal = true;
+            
+            //TileObjectData.newTile.Style = Style;
+
             TileObjectData.addTile(Type);
 
             DustType = -1;
@@ -40,9 +50,19 @@ namespace Neurosama.Content.Tiles.Furniture.Banners
         {
             if (!closer)
             {
-                Main.SceneMetrics.NPCBannerBuff[ModContent.NPCType<ErmFish>()] = true;
+                Main.SceneMetrics.NPCBannerBuff[NPCType] = true;
                 Main.SceneMetrics.hasBanner = true;
             }
         }
+    }
+    public class ErmFishBanner : ModBanner
+    {
+        public override int NPCType => ModContent.NPCType<ErmFish>();
+        //public override int Style => 0;
+    }
+    public class ErmSharkBanner : ModBanner
+    {
+        public override int NPCType => ModContent.NPCType<ErmShark>();
+        //public override int Style => 1;
     }
 }
