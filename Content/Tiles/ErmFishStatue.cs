@@ -47,12 +47,12 @@ namespace Neurosama.Content.Tiles
 		{
             Tile tile = Main.tile[i, j];
 
-            // Find the coordinates of top left tile square through math
-            int topLeftX = i - (tile.TileFrameX % 36) / 18;
-            int topLeftY = j - tile.TileFrameY / 18;
+            const int TileWidth = 2;
+            const int TileHeight = 3;
 
-			const int TileWidth = 2;
-			const int TileHeight = 3;
+            // Find the coordinates of top left tile square through math
+            int topLeftX = i - tile.TileFrameX / 18 % TileWidth;
+            int topLeftY = j - tile.TileFrameY / 18;
 
 			// SkipWire all tile coordinates covered by this tile to make sure it doesnt activate multiple times
 			for (int y = topLeftY; y < topLeftY + TileHeight; y++) {
