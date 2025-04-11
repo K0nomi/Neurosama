@@ -124,7 +124,7 @@ namespace Neurosama.Content.Projectiles.Minions
             Vector2 ownerCentre = owner.Center;
 
             float frequency = 0.005f + (minionPosition/3 * 0.0017f % 0.003f); // Vary the frequency
-            float phaseShift = (float)((minionPosition/3 * -1.4f) % Math.PI + (minionPosition * 0.45f) % (Math.PI / 2f)); // Vary the phase shift
+            float phaseShift = (float)(minionPosition/3 * -1.4f % Math.PI + minionPosition * 0.45f % (Math.PI / 2f)); // Vary the phase shift
             float amplitudeScale = 8f + (minionPosition * 1.7f % 3f); // Vary the amplitude scale
 
             float hoverOffset =  (float)Math.Sin(frequency * ticks + phaseShift) * amplitudeScale;
@@ -186,7 +186,7 @@ namespace Neurosama.Content.Projectiles.Minions
                 bool hasLineOfSight = Collision.CanHitLine(Projectile.position, Projectile.width, Projectile.height, npc.position, npc.width, npc.height);
                 bool closeEnoughToTargetRegardless = distance < 100f;
 
-                if ((isClosest && isInRange) && (hasLineOfSight || closeEnoughToTargetRegardless))
+                if (isClosest && isInRange && (hasLineOfSight || closeEnoughToTargetRegardless))
                 {
                     distanceFromTarget = distance;
                     targetCenter = npc.Center;

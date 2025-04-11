@@ -56,7 +56,7 @@ namespace Neurosama.Content.Tiles.Furniture
             Tile tile = Main.tile[i, j];
 
             // Find the coordinates of top left tile square through math
-            int topLeftY = j - (tile.TileFrameY / 18) % TileHeight;
+            int topLeftY = j - tile.TileFrameY / 18 % TileHeight;
             int topLeftX = i - tile.TileFrameX / 18;
 
             short frameAdjustmentY = (short)(TileHeight * (tile.TileFrameY >= TileHeight * 18 ? -18 : 18));
