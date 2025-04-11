@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System.Linq;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -7,9 +8,12 @@ using Terraria.ObjectData;
 
 namespace Neurosama.Content.Tiles.Furniture
 {
-    // 6x12 tile that can be placed on a wall, and changes on right click or hitwire
+    // 12x6 tile that can be placed on a wall, and changes on right click or hitwire
     public class AbandonedArchive : ModTile
     {
+        private const int TileWidth = 12;
+        private const int TileHeight = 6;
+
         public override void SetStaticDefaults()
         {
             Main.tileFrameImportant[Type] = true;
@@ -17,9 +21,9 @@ namespace Neurosama.Content.Tiles.Furniture
             TileID.Sets.FramesOnKillWall[Type] = true;
 
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3Wall);
-            TileObjectData.newTile.Width = 12;
-            TileObjectData.newTile.Height = 6;
-            TileObjectData.newTile.CoordinateHeights = [16, 16, 16, 16, 16, 16];
+            TileObjectData.newTile.Width = TileWidth;
+            TileObjectData.newTile.Height = TileHeight;
+            TileObjectData.newTile.CoordinateHeights = Enumerable.Repeat(16, TileWidth).ToArray();
 
             TileObjectData.addTile(Type);
 
@@ -52,14 +56,10 @@ namespace Neurosama.Content.Tiles.Furniture
             Tile tile = Main.tile[i, j];
 
             // Find the coordinates of top left tile square through math
-            int topLeftY = j - tile.TileFrameY / 18;
+            int topLeftY = j - (tile.TileFrameY / 18) % TileHeight;
             int topLeftX = i - tile.TileFrameX / 18;
 
-            const int TileWidth = 12;
-            const int TileHeight = 6;
-
-            // I think this line has an error
-            short frameAdjustmentY = (short)( TileHeight * (tile.TileFrameY >= TileHeight * 18 ? -18 : 18) );
+            short frameAdjustmentY = (short)(TileHeight * (tile.TileFrameY >= TileHeight * 18 ? -18 : 18));
 
             for (int y = topLeftY; y < topLeftY + TileHeight; y++)
             {
