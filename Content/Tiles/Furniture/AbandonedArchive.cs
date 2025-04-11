@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Linq;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -24,6 +25,8 @@ namespace Neurosama.Content.Tiles.Furniture
             TileObjectData.newTile.Width = TileWidth;
             TileObjectData.newTile.Height = TileHeight;
             TileObjectData.newTile.CoordinateHeights = Enumerable.Repeat(16, TileWidth).ToArray();
+
+            TileObjectData.newTile.Origin = new Point16(5, 3); // Centred with bottom left bias like paintings  
 
             TileObjectData.addTile(Type);
 
