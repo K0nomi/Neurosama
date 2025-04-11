@@ -279,3 +279,8 @@ Projectiles: {
 }
 
 UI.SayItBack: Say It Back
+
+Emotes: {
+	NeuroEmote.Command: neuro
+	EvilEmote.Command: evil
+}
