@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
-using System.Collections.Generic;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent;
 using Terraria.ID;
@@ -7,9 +6,6 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 using Terraria;
-using ReLogic.Content;
-using Terraria.Audio;
-using Terraria.Chat;
 using Microsoft.Xna.Framework;
 
 namespace Neurosama.Content.NPCs.Town
@@ -28,25 +24,24 @@ namespace Neurosama.Content.NPCs.Town
 
         public override void SetStaticDefaults()
         {
-            Main.npcFrameCount[Type] = 27;
-            NPCID.Sets.ExtraFramesCount[Type] = 20; // The number of frames after the walking frames.
+            Main.npcFrameCount[Type] = 28;
+            NPCID.Sets.ExtraFramesCount[Type] = 21; // The number of frames after the walking frames.
             NPCID.Sets.AttackFrameCount[Type] = 0; // Town Pets don't have any attacking frames.
             NPCID.Sets.ExtraTextureCount[Type] = 0;
 
-            NPCID.Sets.DangerDetectRange[Type] = 250; // How far away the NPC will detect danger. Measured in pixels.
+            NPCID.Sets.DangerDetectRange[Type] = 250;
             NPCID.Sets.AttackType[Type] = -1;
             NPCID.Sets.AttackTime[Type] = -1;
             NPCID.Sets.AttackAverageChance[Type] = 1;
 
             NPCID.Sets.ShimmerTownTransform[Type] = false; // No shimmer variant atm
-            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Shimmer] = true; // Immune to shimmer
-            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Confused] = true; // And confused
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Shimmer] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Confused] = true;
 
-            NPCID.Sets.NPCFramingGroup[Type] = 4; // Party hat walking animation, Town Cat = 4, Town Dog = 5, Town Bunny = 6, Town Slimes = 7. Vedal is the same as the cat.
-            NPCID.Sets.HatOffsetY[Type] = -4; // But his head is lower down 
+            NPCID.Sets.NPCFramingGroup[Type] = 4; // Base party hat walking animation is taken from Town Cat
             
-            NPCID.Sets.IsTownPet[Type] = true; // NPC is a Town Pet
-            NPCID.Sets.CannotSitOnFurniture[Type] = true; // TODO: vedal becomes an extreme alcoholic when sitting on furniture
+            NPCID.Sets.IsTownPet[Type] = true;
+            NPCID.Sets.CannotSitOnFurniture[Type] = true;
 
             NPCID.Sets.TownNPCBestiaryPriority.Add(Type);
 
@@ -70,7 +65,7 @@ namespace Neurosama.Content.NPCs.Town
             NPC.townNPC = true;
             NPC.friendly = true;
             NPC.width = 18;
-            NPC.height = 10;
+            NPC.height = 20;
             NPC.aiStyle = NPCAIStyleID.Passive;
             NPC.damage = 10;
             NPC.defense = 15;
@@ -125,6 +120,123 @@ namespace Neurosama.Content.NPCs.Town
         public override void SetChatButtons(ref string button, ref string button2)
         {
             button = Language.GetTextValue("UI.PetTheAnimal"); // Probably a good idea to replace this for ved lol
+        }
+
+        public override void PartyHatPosition(ref Vector2 position, ref SpriteEffects spriteEffects)
+        {
+            int frameOffsetX;
+            int frameOffsetY;
+
+            // Calculate offset for specfic animation frames
+            // A case for sitting on a chair is not needed as it is handled in PreDraw()
+            var frame = NPC.frame;
+            switch (frame.Y / frame.Height)
+            {
+                case 11: // Hiding frame 2
+                case 15: // Hiding frame 6
+                    frameOffsetX = 4;
+                    frameOffsetY = 8;
+                    break;
+
+                case 12: // Hiding frame 3
+                case 13: // Hiding frame 4
+                case 14: // Hiding frame 5
+                    frameOffsetX = 6;
+                    frameOffsetY = 8;
+                    break;
+
+                case 17: // Drinking frame 1
+                case 25: // Drinking frame 9
+                    frameOffsetX = 4;
+                    frameOffsetY = -4;
+                    break;
+                case 18: // Drinking frame 2
+                    frameOffsetX = 4;
+                    frameOffsetY = -6;
+                    break;
+                case 19: // Drinking frame 3
+                case 24: // Drinking frame 8
+                    frameOffsetX = 0;
+                    frameOffsetY = -8;
+                    break;
+                case 20: // Drinking frame 4
+                case 22: // Drinking frame 6
+                case 23: // Drinking frame 7
+                    frameOffsetX = 0;
+                    frameOffsetY = -10;
+                    break;
+                case 21: // Drinking frame 5
+                    frameOffsetX = 0;
+                    frameOffsetY = -12;
+                    break;
+                case 26: // Drinking frame 10
+                    frameOffsetX = 4;
+                    frameOffsetY = 0;
+                    break;
+
+                // Default position
+                default:
+                    frameOffsetX = 4;
+                    frameOffsetY = 6;
+                    break;
+            }
+
+            position.X += frameOffsetX * NPC.direction;
+            position.Y += frameOffsetY;
+        }
+
+        public override void FindFrame(int frameHeight)
+        {
+            // Use extra frame when sitting on a chair
+            if (NPC.ai[0] == 5f)
+            {
+                NPC.frame.Y = 27 * frameHeight;
+            }
+        }
+
+        public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+        {
+            if (NPC.ai[0] == 5f)
+            {
+                // Draw vedal manually for custom sit position
+                Texture2D vedalTexture = TextureAssets.Npc[Type].Value;
+
+                SpriteEffects spriteEffect = NPC.direction == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+                Vector2 vedalDrawPosition = NPC.Center - screenPos + new Vector2(7f * NPC.direction, -22f);
+
+                spriteBatch.Draw(vedalTexture, vedalDrawPosition, NPC.frame, drawColor, NPC.rotation, NPC.frame.Size() / 2, NPC.scale, spriteEffect, 0f);
+
+                // Draw the party hat if applicable
+                var partyHatColor = (int)NPC.GetPartyHatColor();
+                if (partyHatColor != 0)
+                {
+                    var hatIndex = partyHatColor == 1 ? 0 : partyHatColor + 14; // Convert to correct index of the hats texture
+
+                    var hatTexture = TextureAssets.Extra[ExtrasID.TownNPCHats].Value;
+                    var hatframe = hatTexture.Frame(20, 1, hatIndex); // Get the correct frame for the party hat color
+
+                    Vector2 hatDrawPosition = vedalDrawPosition + new Vector2(-1f, -20f);
+
+                    spriteBatch.Draw(hatTexture, hatDrawPosition, hatframe, drawColor, NPC.rotation, hatframe.Size() / 2, NPC.scale, spriteEffect, 0f);
+                }
+
+                return false;
+            }
+
+            return true;
+        }
+
+        public override void ChatBubblePosition(ref Vector2 position, ref SpriteEffects spriteEffects)
+        {
+            if (NPC.ai[0] == 5f)
+            {
+                position.X += 7 * NPC.direction;
+                position.Y += -30;
+            }
+            else {
+                position.X += 4 * NPC.direction;
+                position.Y += 4;
+            }
         }
     }
 }
