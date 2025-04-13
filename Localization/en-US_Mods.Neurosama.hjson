@@ -28,12 +28,12 @@ Items: {
 	}
 
 	NeuroFumo: {
-		DisplayName: Neuro Fumo
+		DisplayName: Neuro-sama Plush
 		Tooltip: "'Looking at it from behind reminds you of a chicken'"
 	}
 
 	EvilFumo: {
-		DisplayName: Evil Fumo
+		DisplayName: Evil Neuro Plush
 		Tooltip: "'Over 5 million sold!'"
 	}
 
@@ -264,8 +264,8 @@ Tiles: {
 	NeuroMusicBox.MapEntry: Music Box
 	AbandonedArchive.MapEntry: Abandoned Archive Poster
 	NeuroCatErm.MapEntry: neuroErm
-	NeuroFumo.MapEntry: Neuro Fumo
-	EvilFumo.MapEntry: Evil Fumo
+	NeuroFumo.MapEntry: Neuro-sama Plush
+	EvilFumo.MapEntry: Evil Neuro Plush
 	GymBagChest.MapEntry: Gymbag
 }
 
