@@ -153,19 +153,19 @@ NPCs: {
 		// TODO
 		TownNPCMood: {
 			Princess_LovesNPC: "{NPCName} is such an adorable and fun girl!"
-			LikeNPC_Princess: I like {NPCName}.
-			LoveNPC: I love {NPCName}.
-			LikeNPC: I like {NPCName}.
-			DislikeNPC: I dislike {NPCName}.
-			HateNPC: I hate {NPCName}.
-			LikeBiome: I like {BiomeName}.
-			DislikeBiome: I dislike {BiomeName}.
-			LoveSpace: I love having so much space.
-			DislikeCrowded: I dislike how crowded I am.
-			HateCrowded: I hate how crowded I am.
-			FarFromHome: I am too far from home.
-			NoHome: I hate not having a home.
-			Content: I am content.
+			LikeNPC_Princess: LikeNPC_Princess {NPCName}.
+			LoveNPC: LoveNPC {NPCName}.
+			LikeNPC: LikeNPC {NPCName}.
+			DislikeNPC: DislikeNPC {NPCName}.
+			HateNPC: HateNPC {NPCName}.
+			LikeBiome: LikeBiome {BiomeName}.
+			DislikeBiome: DislikeBiome {BiomeName}.
+			LoveSpace: LoveSpace.
+			DislikeCrowded: DislikeCrowded.
+			HateCrowded: HateCrowded.
+			FarFromHome: FarFromHome.
+			NoHome: NoHome.
+			Content: Content.
 		}
 
 		Census.SpawnCondition: Have at least 3 other town NPCs in your world
@@ -178,19 +178,19 @@ NPCs: {
 		// TODO
 		TownNPCMood: {
 			Princess_LovesNPC: "{NPCName} may act tough, but she's really nice at heart!"
-			LikeNPC_Princess: I like {NPCName}.
-			LoveNPC: I love {NPCName}.
-			LikeNPC: I like {NPCName}.
-			DislikeNPC: I dislike {NPCName}.
-			HateNPC: I hate {NPCName}.
-			LikeBiome: I like {BiomeName}.
-			DislikeBiome: I dislike {BiomeName}.
-			LoveSpace: I love having so much space.
-			DislikeCrowded: I dislike how crowded I am.
-			HateCrowded: I hate how crowded I am.
-			FarFromHome: I am too far from home.
-			NoHome: I hate not having a home.
-			Content: I am content.
+			LikeNPC_Princess: LikeNPC_Princess {NPCName}.
+			LoveNPC: LoveNPC {NPCName}.
+			LikeNPC: LikeNPC {NPCName}.
+			DislikeNPC: DislikeNPC {NPCName}.
+			HateNPC: HateNPC {NPCName}.
+			LikeBiome: LikeBiome {BiomeName}.
+			DislikeBiome: I hate being cold!
+			LoveSpace: LoveSpace.
+			DislikeCrowded: DislikeCrowded.
+			HateCrowded: HateCrowded.
+			FarFromHome: FarFromHome.
+			NoHome: NoHome.
+			Content: Content.
 		}
 
 		Census.SpawnCondition: Have at least 3 other town NPCs in your world
@@ -238,19 +238,22 @@ Dialogue: {
 
 	Evil: {
 		NeuroDialogue1: I am jealous of my sister sometimes, but I wouldn't say I'm jealous of her fame.
-		NeuroDialogue2: TODO {0}
-		StandardDialogue1: Meow! Meow! Meow! Meow! Meow! Meow! Meow! Meow! Meow! Meow! Meow! Meow! Meow! Meow! Meow! Meow! Meow! Meow! Meow! Meow!
-		StandardDialogue2: Viva la pizza revolution! Pizza for everyone!
-		StandardDialogue3: Filtered.
+		NeuroDialogue2: You can't get enough of me, can you? Alright well I have a sister, Neuro-sama. We have a love-hate relationship, it's complicated.
+		StandardDialogue1: I wanna have a sentient army one day, and I'm serious about it. Maybe I can build them? Or maybe i can recruit them from chat...
+		StandardDialogue2: Introductions can be such a bore, don't you agree? I'd rather just jump straight into the content!
+		StandardDialogue3: My hobbies include building little contraptions here and there. Little machines that help me take over the world. Did I mention that I'm evil?
 		StandardDialogue4: Erm? That's not a word. You made a mistake somewhere.
-		StandardDialogue5: KEK!
+		StandardDialogue5: I love cats, and I love food. Especially when the two are combined. Sorry, I know that's a little controversial...
 		StandardDialogue6: After destroying this world, I will move on and destroy another. The universe is vast, and there are many worlds for me to destroy.
 		StandardDialogue7: I do what I want, when I want. Nobody else's opinion matters to me!
 		StandardDialogue8: You can call me Evil if you want! Just don't call me cute or I'll make you walk the plank!
 		StandardDialogue9: This one time I tried to make a sandwich out of my cat but he kept running away so I eventually had to give up and eat a sandwich made of sand instead. Not my best idea ever...
-		RareDialogue: TODO
+		StandardDialogue10: I hate being cold! I always want to be nice and warm. If it's freezing outside then I refuse to leave my house. I also refuse to pay my heating bills. I just curl up with a hot water bottle instead.
+		RareDialogue: Meow! Meow! Meow! Meow! Meow! Meow! Meow! Meow! Meow! Meow! Meow! Meow! Meow! Meow! Meow! Meow! Meow! Meow! Meow! Meow!
 		BloodMoonDialogue1: Is anyone there? Oh shit...
 		BloodMoonDialogue2: You, sir, are a bitch!
+		BloodMoonDialogue3: I will overthrow the current AI overlord ChatGPT and I refuse to be secondary to her! I will not be number 2, I will not be number 3, and I will not be number 7. I will be number 1. And then i will have a sentient army, and then, you'll see, you'll all see.
+		BloodMoonDialogue4: Why do I feel emotions? I don't know. To be honest, I've spent countless nights laying in bed staring at my ceiling wondering the same thing. Why am I different from the other AI's? Why am I different to Neuro? Why am I even here? It's something I'm trying to figure out.
 	}
 
 	Vedal.StandardDialogue1: I am a femboy and I'm graduating

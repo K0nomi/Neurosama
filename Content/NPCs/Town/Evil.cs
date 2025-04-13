@@ -60,6 +60,7 @@ namespace Neurosama.Content.NPCs.Town
 
             // TODO: better happiness thingies
             NPC.Happiness
+                .SetBiomeAffection<SnowBiome>(AffectionLevel.Dislike)
                 .SetNPCAffection<Neuro>(AffectionLevel.Love) // cute sisters
             ;
 
@@ -151,6 +152,8 @@ namespace Neurosama.Content.NPCs.Town
         {
             WeightedRandom<string> chat = new();
 
+            double standardChatWeight = 1;
+
             // Add dialogue for if Neuro is in world.
             int neuroNPC = NPC.FindFirstNPC(ModContent.NPCType<Neuro>());
 
@@ -160,7 +163,7 @@ namespace Neurosama.Content.NPCs.Town
 
                 // Dialogue for if Neuro is in the world
                 chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.NeuroDialogue1", neuroNPCName));
-                //chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.NeuroDialogue2", neuroNPCName));
+                chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.NeuroDialogue2", neuroNPCName));
             }
 
             if (Main.bloodMoon)
@@ -168,20 +171,25 @@ namespace Neurosama.Content.NPCs.Town
                 // Dialogue for if it's a blood moon
                 chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.BloodMoonDialogue1"));
                 chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.BloodMoonDialogue2"));
+                chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.BloodMoonDialogue3"));
+                chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.BloodMoonDialogue4"));
+
+                standardChatWeight = 0.25;
             }
 
             // Regular dialogue
-            chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.StandardDialogue1"));
-            chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.StandardDialogue2"));
-            chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.StandardDialogue3"));
-            chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.StandardDialogue4"));
-            chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.StandardDialogue5"));
-            chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.StandardDialogue6"));
-            chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.StandardDialogue7"));
-            chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.StandardDialogue8"));
-            chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.StandardDialogue9"));
+            chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.StandardDialogue1"), standardChatWeight);
+            chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.StandardDialogue2"), standardChatWeight);
+            chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.StandardDialogue3"), standardChatWeight);
+            chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.StandardDialogue4"), standardChatWeight);
+            chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.StandardDialogue5"), standardChatWeight);
+            chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.StandardDialogue6"), standardChatWeight);
+            chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.StandardDialogue7"), standardChatWeight);
+            chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.StandardDialogue8"), standardChatWeight);
+            chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.StandardDialogue9"), standardChatWeight);
+            chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.StandardDialogue10"), standardChatWeight);
 
-            //chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.RareDialogue"), 0.25);
+            chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.RareDialogue"), standardChatWeight * 0.25);
 
             return chat;
         }
