@@ -1,5 +1,4 @@
 using Microsoft.Xna.Framework;
-using System.Linq;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -10,7 +9,6 @@ using Terraria.GameContent.Bestiary;
 using Terraria.GameContent;
 using Terraria.GameContent.Personalities;
 using System.Collections.Generic;
-using Terraria.Chat;
 
 namespace Neurosama.Content.NPCs.Town
 {
@@ -19,14 +17,13 @@ namespace Neurosama.Content.NPCs.Town
     public class Evil : ModNPC
     {
         public const string ShopName = "Shop";
-        public int NumberOfTimesTalkedTo = 0;
 
         private static int ShimmerHeadIndex;
         private static Profiles.StackedNPCProfile NPCProfile;
 
         // TODO: unique evil sounds
         private static SoundStyle deathSound = new($"{nameof(Neurosama)}/Assets/Sounds/evil_aaaa");
-        private static SoundStyle hitSound = new($"{nameof(Neurosama)}/Assets/Sounds/neuro_erf");
+        private static SoundStyle hitSound = new($"{nameof(Neurosama)}/Assets/Sounds/evil_oh");
 
         public override void Load()
         {
