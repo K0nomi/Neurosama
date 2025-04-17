@@ -1,12 +1,12 @@
-﻿using Microsoft.Xna.Framework.Graphics;
-using Terraria.GameContent.Bestiary;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria;
 using Terraria.GameContent;
+using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.Utilities;
-using Terraria;
-using Microsoft.Xna.Framework;
 
 namespace Neurosama.Content.NPCs.Town
 {
@@ -39,7 +39,7 @@ namespace Neurosama.Content.NPCs.Town
             NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Confused] = true;
 
             NPCID.Sets.NPCFramingGroup[Type] = 4; // Base party hat walking animation is taken from Town Cat
-            
+
             NPCID.Sets.IsTownPet[Type] = true;
             NPCID.Sets.CannotSitOnFurniture[Type] = true;
 
@@ -233,7 +233,8 @@ namespace Neurosama.Content.NPCs.Town
                 position.X += 7 * NPC.direction;
                 position.Y += -30;
             }
-            else {
+            else
+            {
                 position.X += 4 * NPC.direction;
                 position.Y += 4;
             }

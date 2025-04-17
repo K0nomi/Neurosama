@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Neurosama.Content.Items;
 using Terraria;
 using Terraria.GameContent.Drawing;
 using Terraria.ID;

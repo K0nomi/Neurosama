@@ -1,16 +1,14 @@
-using Terraria.ModLoader;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader.Utilities;
-using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
 using System;
-using Terraria.Chat;
-using Terraria.Localization;
-using Terraria.GameContent.ItemDropRules;
-using System.Collections.Generic;
 using System.Linq;
+using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
+using Terraria.ModLoader.Utilities;
 
 namespace Neurosama.Content.NPCs
 {
@@ -78,7 +76,7 @@ namespace Neurosama.Content.NPCs
 				// Beastiary element from localisation key		
 				new FlavorTextBestiaryInfoElement(Language.GetTextValue("Mods.Neurosama.Bestiary.ErmShark"))
             ]);
-        }   
+        }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
@@ -117,7 +115,7 @@ namespace Neurosama.Content.NPCs
         }
 
         public override bool SpecialOnKill()
-        {   
+        {
             if (IsLastDescendant()) // TODO: Maybe check if no new ermsharks exist after split rather than depth for the case where entity cap is full
             {
                 return false;

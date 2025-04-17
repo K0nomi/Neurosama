@@ -1,10 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
+using Neurosama.Content.NPCs;
+using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
-using Terraria.ObjectData;
-using Terraria;
 using Terraria.ModLoader;
-using Neurosama.Content.NPCs;
+using Terraria.ObjectData;
 
 namespace Neurosama.Content.Tiles.Furniture
 {
@@ -24,7 +24,7 @@ namespace Neurosama.Content.Tiles.Furniture
             TileObjectData.newTile.CopyFrom(TileObjectData.GetTileData(TileID.Banners, 0));
             TileObjectData.newTile.StyleLineSkip = 2;
             TileObjectData.newTile.StyleHorizontal = true;
-            
+
             //TileObjectData.newTile.Style = Style;
 
             TileObjectData.addTile(Type);

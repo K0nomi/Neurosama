@@ -5,14 +5,15 @@ using Terraria.ModLoader;
 
 namespace Neurosama.Content.Walls
 {
-	public class Donowall : ModWall
-	{
-		public override void SetStaticDefaults() {
-			Main.wallHouse[Type] = true;
+    public class Donowall : ModWall
+    {
+        public override void SetStaticDefaults()
+        {
+            Main.wallHouse[Type] = true;
 
-			DustType = DustID.Stone;
+            DustType = DustID.Stone;
 
             AddMapEntry(new Color(82, 40, 29));
-		}
-	}
+        }
+    }
 }

@@ -123,14 +123,14 @@ namespace Neurosama.Content.Projectiles.Minions
             var ticks = Main.GameUpdateCount;
             Vector2 ownerCentre = owner.Center;
 
-            float frequency = 0.005f + (minionPosition/3 * 0.0017f % 0.003f); // Vary the frequency
-            float phaseShift = (float)(minionPosition/3 * -1.4f % Math.PI + minionPosition * 0.45f % (Math.PI / 2f)); // Vary the phase shift
+            float frequency = 0.005f + (minionPosition / 3 * 0.0017f % 0.003f); // Vary the frequency
+            float phaseShift = (float)(minionPosition / 3 * -1.4f % Math.PI + minionPosition * 0.45f % (Math.PI / 2f)); // Vary the phase shift
             float amplitudeScale = 8f + (minionPosition * 1.7f % 3f); // Vary the amplitude scale
 
-            float hoverOffset =  (float)Math.Sin(frequency * ticks + phaseShift) * amplitudeScale;
+            float hoverOffset = (float)Math.Sin(frequency * ticks + phaseShift) * amplitudeScale;
 
             Vector2 idlePosition = ownerCentre + idleOffset + new Vector2(0f, hoverOffset);
-            idlePosition.X += (minionPosition/3 * -48 - 48) * owner.direction; // Make columns
+            idlePosition.X += (minionPosition / 3 * -48 - 48) * owner.direction; // Make columns
             idlePosition.Y += ((minionPosition + 1) % 3 - 1) * 24; // Make rows
 
             vectorToIdlePosition = idlePosition - Projectile.Center;
