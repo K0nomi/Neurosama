@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
-using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
@@ -43,7 +42,7 @@ namespace Neurosama.Content.Projectiles
 
             Projectile.aiStyle = 0;
             Projectile.localNPCHitCooldown = 10; // How often the projectile can hit an NPC
-        } 
+        }
 
         public override void AI()
         {
@@ -56,10 +55,10 @@ namespace Neurosama.Content.Projectiles
                 return;
             }
 
-            float retractSpeed = 20f; // The speed the projectile will have while retracting
-            float maxLaunchLength = 800f; // How far the projectile's chain can stretch before being forced to retract when in launched state
-            float gravity = 0.3f;
-            int gravityDelay = 20; // Higher than what matches vanilla so eliv doesnt miss everything
+            const float retractSpeed = 20f; // The speed the projectile will have while retracting
+            const float maxLaunchLength = 800f; // How far the projectile's chain can stretch before being forced to retract when in launched state
+            const float gravity = 0.3f;
+            const int gravityDelay = 20; // Higher than what matches vanilla so eliv doesnt miss everything
 
             switch (CurrentAIState)
             {
@@ -165,7 +164,6 @@ namespace Neurosama.Content.Projectiles
                 chainSegmentLength = 10; // When the chain texture is being loaded, the height is 0 which would cause infinite loops.
             }
             float chainRotation = unitVectorFromProjectileToAttackerArms.ToRotation() + MathHelper.PiOver2;
-            int chainCount = 0;
             float chainLengthRemainingToDraw = vectorFromProjectileToAttackerArms.Length() + chainSegmentLength / 2f;
 
             // This while loop draws the chain texture from the projectile to the player, looping to draw the chain texture along the path
@@ -179,7 +177,6 @@ namespace Neurosama.Content.Projectiles
 
                 // chainDrawPosition is advanced along the vector back to the player by the chainSegmentLength
                 chainDrawPosition += unitVectorFromProjectileToAttackerArms * chainSegmentLength;
-                chainCount++;
                 chainLengthRemainingToDraw -= chainSegmentLength;
             }
 

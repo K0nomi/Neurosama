@@ -10,7 +10,7 @@ namespace Neurosama.Common
     public class NeurosamaHeadLayer : PlayerDrawLayer
     {
         private static readonly Texture2D neuroFumoTexture = ModContent.Request<Texture2D>(typeof(NeuroFumo).FullName.Replace('.', '/')).Value;
-        private static readonly Texture2D evilFumoTexture  = ModContent.Request<Texture2D>(typeof(EvilFumo ).FullName.Replace('.', '/')).Value;
+        private static readonly Texture2D evilFumoTexture = ModContent.Request<Texture2D>(typeof(EvilFumo).FullName.Replace('.', '/')).Value;
 
         public override bool IsHeadLayer => true;
 

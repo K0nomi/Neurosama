@@ -5,19 +5,19 @@ using Terraria.ModLoader;
 
 namespace Neurosama.Content.Tiles
 {
-	public class Donobrick : ModTile
-	{
-		public override void SetStaticDefaults()
-		{
-			Main.tileSolid[Type] = true;
+    public class Donobrick : ModTile
+    {
+        public override void SetStaticDefaults()
+        {
+            Main.tileSolid[Type] = true;
             Main.tileBlockLight[Type] = true;
-            Main.tileMergeDirt[Type] = true; // tile has special behavior when merging with dirt
-			Main.tileBrick[Type] = true; // presumably a variant of tileBlendAll that works with predefined tiles rather than any tile
+            Main.tileMergeDirt[Type] = true; // Tile has special behavior when merging with dirt
+            Main.tileBrick[Type] = true; // Presumably a variant of tileBlendAll that works with predefined tiles rather than any tile
 
             DustType = DustID.Stone;
-			HitSound = SoundID.Tink;
+            HitSound = SoundID.Tink;
 
-			AddMapEntry(new Color(174, 92, 70));
-		}
-	}
+            AddMapEntry(new Color(174, 92, 70));
+        }
+    }
 }

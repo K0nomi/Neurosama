@@ -1,11 +1,11 @@
-﻿using System.Linq;
+﻿using Microsoft.Xna.Framework;
+using System.Linq;
+using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
-using Terraria.ModLoader.Utilities;
-using Terraria.ModLoader;
-using Terraria;
 using Terraria.Localization;
-using Microsoft.Xna.Framework;
+using Terraria.ModLoader;
+using Terraria.ModLoader.Utilities;
 
 namespace Neurosama.Content.NPCs
 {
