@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Linq;
 using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.Localization;
@@ -22,9 +23,12 @@ namespace Neurosama.Content.Tiles.Furniture
             TileID.Sets.FramesOnKillWall[Type] = true;
 
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3Wall);
+
             TileObjectData.newTile.Width = TileWidth;
             TileObjectData.newTile.Height = TileHeight;
-            TileObjectData.newTile.CoordinateHeights = Enumerable.Repeat(16, TileWidth).ToArray();
+            TileObjectData.newTile.CoordinateHeights = Enumerable.Repeat(16, TileHeight).ToArray();
+            TileObjectData.newTile.StyleLineSkip = 2;
+            TileObjectData.newTile.StyleMultiplier = 2;
 
             TileObjectData.newTile.Origin = new Point16(5, 3); // Centred with bottom left bias like paintings  
 
@@ -45,16 +49,24 @@ namespace Neurosama.Content.Tiles.Furniture
 
             player.noThrow = 2;
             player.cursorItemIconEnabled = true;
-            player.cursorItemIconID = ModContent.ItemType<Items.Furniture.AbandonedArchive>();
+
+            int style = TileObjectData.GetTileStyle(Main.tile[i, j]);
+            player.cursorItemIconID = TileLoader.GetItemDropFromTypeAndStyle(Type, style);
         }
 
         public override bool RightClick(int i, int j)
         {
-            HitWire(i, j);
+            SoundEngine.PlaySound(SoundID.Mech, new Vector2(i * 16, j * 16));
+            ToggleTile(i, j);
             return true;
         }
 
         public override void HitWire(int i, int j)
+        {
+            ToggleTile(i, j);
+        }
+
+        public static void ToggleTile(int i, int j)
         {
             Tile tile = Main.tile[i, j];
 
@@ -64,21 +76,24 @@ namespace Neurosama.Content.Tiles.Furniture
 
             short frameAdjustmentY = (short)(TileHeight * (tile.TileFrameY >= TileHeight * 18 ? -18 : 18));
 
-            for (int y = topLeftY; y < topLeftY + TileHeight; y++)
+            for (int x = topLeftX; x < topLeftX + TileWidth; x++)
             {
-                for (int x = topLeftX; x < topLeftX + TileWidth; x++)
+                for (int y = topLeftY; y < topLeftY + TileHeight; y++)
                 {
                     Main.tile[x, y].TileFrameY += frameAdjustmentY;
 
                     // SkipWire all tile coordinates covered by this tile to make sure it doesnt activate multiple times
-                    Wiring.SkipWire(x, y);
+                    if (Wiring.running)
+                    {
+                        Wiring.SkipWire(x, y);
+                    }
                 }
             }
 
             // Avoid trying to send packets in singleplayer.
             if (Main.netMode != NetmodeID.SinglePlayer)
             {
-                NetMessage.SendTileSquare(-1, topLeftX, topLeftY, TileWidth, TileHeight, TileChangeType.None);
+                NetMessage.SendTileSquare(-1, topLeftX, topLeftY, TileWidth, TileHeight);
             }
         }
     }

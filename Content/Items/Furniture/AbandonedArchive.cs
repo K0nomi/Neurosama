@@ -8,7 +8,7 @@ namespace Neurosama.Content.Items.Furniture
     {
         public override void SetDefaults()
         {
-            Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.Furniture.AbandonedArchive>());
+            Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.Furniture.AbandonedArchive>(), 0);
 
             Item.width = 32;
             Item.height = 32;
