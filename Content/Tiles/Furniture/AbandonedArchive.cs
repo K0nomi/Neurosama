@@ -96,5 +96,27 @@ namespace Neurosama.Content.Tiles.Furniture
                 NetMessage.SendTileSquare(-1, topLeftX, topLeftY, TileWidth, TileHeight);
             }
         }
+
+        public override void AnimateTile(ref int frame, ref int frameCounter)
+        {
+            if (++frameCounter >= 3)
+            {
+                frameCounter = 0;
+                frame = ++frame % 40;
+            }
+        }
+
+        public override void AnimateIndividualTile(int type, int i, int j, ref int frameXOffset, ref int frameYOffset)
+        {
+            var tile = Main.tile[i, j];
+            if (tile.TileFrameY >= TileHeight * 18)
+            {
+                frameYOffset = Main.tileFrame[type] * TileHeight * 18;
+            }
+            else
+            {
+                frameYOffset = 0;
+            }
+        }
     }
 }
