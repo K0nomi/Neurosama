@@ -58,6 +58,7 @@ namespace Neurosama.Content.NPCs.Town
             // TODO: better happiness thingies
             NPC.Happiness
                 .SetNPCAffection<Evil>(AffectionLevel.Love) // cute sisters
+                .SetNPCAffection(NPCID.Merchant, AffectionLevel.Dislike)
             ;
 
             NPCProfile = new Profiles.StackedNPCProfile(
@@ -141,11 +142,21 @@ namespace Neurosama.Content.NPCs.Town
 
             if (evilNPC != -1)
             {
-                string evilNPCName = Main.npc[evilNPC].GivenName;
+                string evilNPCName = Main.npc[evilNPC].FullName;
 
                 // Dialogue for if Evil is in world
                 chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Neuro.EvilDialogue1", evilNPCName));
                 //chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Neuro.EvilDialogue2", evilNPCName));
+            }
+
+            int nurseNPC = NPC.FindFirstNPC(NPCID.Nurse);
+
+            if (nurseNPC != -1)
+            {
+                string nurseNPCName = Main.npc[nurseNPC].FullName;
+
+                // Dialogue for if The Nurse is in world
+                chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Neuro.NurseDialogue", nurseNPCName));
             }
 
             if (Main.bloodMoon)
