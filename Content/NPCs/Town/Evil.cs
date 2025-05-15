@@ -156,7 +156,7 @@ namespace Neurosama.Content.NPCs.Town
 
             if (neuroNPC != -1)
             {
-                string neuroNPCName = Main.npc[neuroNPC].GivenName;
+                string neuroNPCName = Main.npc[neuroNPC].FullName;
 
                 // Dialogue for if Neuro is in the world
                 chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Evil.NeuroDialogue1", neuroNPCName));
