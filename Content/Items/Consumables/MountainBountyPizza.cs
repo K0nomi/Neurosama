@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Neurosama.Content.Items.Consumables
 {
-    public class PineapplePizza : ModItem
+    public class MountainBountyPizza : ModItem
     {
         public override void SetStaticDefaults()
         {
