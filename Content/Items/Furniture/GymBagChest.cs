@@ -18,7 +18,7 @@ namespace Neurosama.Content.Items.Furniture
         {
             CreateRecipe()
                 .AddIngredient<Donobrick>(8)
-                .AddIngredient(ItemID.IronBar, 2)
+                .AddRecipeGroup("IronBar", 2)
                 .AddTile(TileID.WorkBenches)
                 .Register();
         }
