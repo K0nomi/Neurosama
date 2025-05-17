@@ -73,7 +73,7 @@ namespace Neurosama.Content.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return SpawnCondition.WaterCritter.Chance * 0.00025f; // 1/400 * 0.1f
+            return SpawnCondition.Ocean.Chance * 0.00025f; // 1/400 * 0.1f
         }
 
         public override void HitEffect(NPC.HitInfo hit)
