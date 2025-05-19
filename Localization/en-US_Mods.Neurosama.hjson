@@ -143,6 +143,11 @@ Items: {
 		DisplayName: Ermfish Statue
 		Tooltip: ""
 	}
+
+	BanHammer: {
+		DisplayName: Ban Hammer
+		Tooltip: ""
+	}
 }
 
 NPCs: {

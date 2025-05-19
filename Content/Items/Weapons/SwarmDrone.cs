@@ -4,7 +4,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Neurosama.Content.Items
+namespace Neurosama.Content.Items.Weapons
 {
     public class SwarmDrone : ModItem
     {

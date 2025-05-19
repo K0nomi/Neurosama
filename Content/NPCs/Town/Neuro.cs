@@ -1,4 +1,6 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Neurosama.Content.Items.Weapons;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
@@ -33,15 +35,15 @@ namespace Neurosama.Content.NPCs.Town
 
         public override void SetStaticDefaults()
         {
-            Main.npcFrameCount[Type] = 23; // The total amount of frames the NPC has
+            Main.npcFrameCount[Type] = 23;
             NPCID.Sets.NPCFramingGroup[Type] = 1; // Uses same party hat offset as party girl
 
             NPCID.Sets.ExtraFramesCount[Type] = 9;
             NPCID.Sets.AttackFrameCount[Type] = 4;
-            NPCID.Sets.DangerDetectRange[Type] = 700; // The amount of pixels away from the center of the NPC that it tries to attack enemies
-            NPCID.Sets.AttackType[Type] = 0; // 0 = throwing, 1 = shooting, 2 = magic, 3 = melee
-            NPCID.Sets.AttackTime[Type] = 90;
-            NPCID.Sets.AttackAverageChance[Type] = 30; // The denominator for the chance for a Town NPC to attack
+            NPCID.Sets.DangerDetectRange[Type] = 80; // Neuro should be close to the enemy when she tries to attack
+            NPCID.Sets.AttackType[Type] = 3; // Melee
+            NPCID.Sets.AttackTime[Type] = 30;
+            NPCID.Sets.AttackAverageChance[Type] = 15;
 
             NPCID.Sets.ShimmerTownTransform[NPC.type] = true; // NPC has a shimmered form
             NPCID.Sets.ShimmerTownTransform[Type] = true; // Allows for this NPC to have a different texture after touching the Shimmer liquid
@@ -212,7 +214,7 @@ namespace Neurosama.Content.NPCs.Town
                 .Add<Items.Donowall>()
                 .Add<Items.NeuroMusicBox>()
                 //.Add<Items.SwarmPet>()
-                .Add<Items.Iwannadie>(Condition.IsNpcShimmered) // shimmer test
+                .Add<Iwannadie>(Condition.IsNpcShimmered) // shimmer test
             ;
 
             npcShop.Register();
@@ -223,8 +225,8 @@ namespace Neurosama.Content.NPCs.Town
 
         public override void TownNPCAttackStrength(ref int damage, ref float knockback)
         {
-            damage = 20;
-            knockback = 4f;
+            damage = 8;
+            knockback = 16f;
         }
 
         public override void TownNPCAttackCooldown(ref int cooldown, ref int randExtraCooldown)
@@ -233,15 +235,27 @@ namespace Neurosama.Content.NPCs.Town
             randExtraCooldown = 30;
         }
 
-        /* public override void TownNPCAttackProj(ref int projType, ref int attackDelay) {
-			projType = ModContent.ProjectileType<SwarmDrone>();
-			attackDelay = 1;
-		}
+        public override void TownNPCAttackSwing(ref int itemWidth, ref int itemHeight)
+        {
+            // The hitbox of the melee swing
+            itemWidth = 50;
+            itemHeight = 50;
+        }
 
-		public override void TownNPCAttackProjSpeed(ref float multiplier, ref float gravityCorrection, ref float randomOffset) {
-			multiplier = 12f;
-			randomOffset = 2f;
-			// gravityCorrection is left alone.
-		} */
+        public override void DrawTownAttackSwing(ref Texture2D item, ref Rectangle itemFrame, ref int itemSize, ref float scale, ref Vector2 offset)
+        {
+            // Load the item texture
+            Main.GetItemDrawFrame(ModContent.ItemType<BanHammer>(), out Texture2D itemTexture, out Rectangle itemRectangle);
+
+            // Set the item texture to the item texture
+            item = itemTexture;
+
+            itemFrame = itemRectangle;
+
+            itemSize = itemRectangle.Width;
+
+            // How far the arc of the swing is from nuero
+            scale = 0.15f;
+        }
     }
 }
