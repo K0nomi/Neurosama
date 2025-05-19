@@ -100,15 +100,6 @@ Items: {
 		Tooltip: ""
 	}
 
-	PineapplePizza: {
-		DisplayName: Pineapple Pizza
-		Tooltip:
-			'''
-			Medium improvements to all stats
-			'Viva la pizza revolution!'
-			'''
-	}
-
 	GymBagChest: {
 		DisplayName: Gymbag
 		Tooltip: ""
@@ -142,6 +133,15 @@ Items: {
 	ErmFishStatue: {
 		DisplayName: Ermfish Statue
 		Tooltip: ""
+	}
+
+	MountainBountyPizza: {
+		DisplayName: Mountain Bounty Pizza
+		Tooltip:
+			'''
+			Medium improvements to all stats
+			'Viva la pizza revolution!'
+			'''
 	}
 
 	BanHammer: {
