@@ -2,7 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Neurosama.Content.Items
+namespace Neurosama.Content.Items.Weapons
 {
     public class Iwannadie : ModItem
     {
