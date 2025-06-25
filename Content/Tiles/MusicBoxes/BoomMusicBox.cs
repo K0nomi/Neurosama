@@ -5,9 +5,9 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace Neurosama.Content.Tiles
+namespace Neurosama.Content.Tiles.MusicBoxes
 {
-    public class NeuroMusicBox : ModTile
+    public class BoomMusicBox : ModTile
     {
         public override void SetStaticDefaults()
         {
@@ -29,7 +29,7 @@ namespace Neurosama.Content.Tiles
             Player player = Main.LocalPlayer;
             player.noThrow = 2;
             player.cursorItemIconEnabled = true;
-            player.cursorItemIconID = ModContent.ItemType<Items.NeuroMusicBox>();
+            player.cursorItemIconID = ModContent.ItemType<Items.MusicBoxes.BoomMusicBox>();
         }
     }
 }
