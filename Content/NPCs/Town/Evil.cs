@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using Neurosama.Content.Items.MusicBoxes;
 using Neurosama.Content.Items.Weapons;
 using System.Collections.Generic;
 using Terraria;
@@ -212,6 +213,7 @@ namespace Neurosama.Content.NPCs.Town
                 .Add<Items.Furniture.EvilFumo>()
                 .Add<Items.Furniture.AbandonedArchive>()
                 .Add<Items.Furniture.Donoplank>()
+                .Add<BoomMusicBox>()
                 .Add<SwarmDrone>(Condition.DownedEyeOfCthulhu)
                 .Add<Iwannadie>(Condition.IsNpcShimmered) // shimmer test
             ;

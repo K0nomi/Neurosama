@@ -148,6 +148,11 @@ Items: {
 		DisplayName: Ban Hammer
 		Tooltip: ""
 	}
+
+	BoomMusicBox: {
+		DisplayName: Music Box (BOOM)
+		Tooltip: ""
+	}
 }
 
 NPCs: {
@@ -273,6 +278,7 @@ Tiles: {
 	NeuroFumo.MapEntry: Neuro-sama Plush
 	EvilFumo.MapEntry: Evil Neuro Plush
 	GymBagChest.MapEntry: Gymbag
+	BoomMusicBox.MapEntry: Boom Music Box
 }
 
 Buffs: {
