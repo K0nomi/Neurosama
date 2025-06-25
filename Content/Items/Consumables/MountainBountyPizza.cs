@@ -24,7 +24,7 @@ namespace Neurosama.Content.Items.Consumables
 
         public override void SetDefaults()
         {
-            Item.DefaultToFood(22, 22, BuffID.WellFed, 18000);
+            Item.DefaultToFood(22, 22, BuffID.WellFed2, 32400); // 9 Minutes of Plenty Satisfied
             Item.RebuildTooltip();
             Item.rare = ItemRarityID.Green;
             Item.value = Item.buyPrice(silver: 20); // 20 neuros

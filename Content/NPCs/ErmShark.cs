@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using Neurosama.Content.Items.Consumables;
 using System;
 using System.Linq;
 using Terraria;
@@ -147,8 +148,8 @@ namespace Neurosama.Content.NPCs
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            // Drops not final
-            npcLoot.Add(ItemDropRule.NormalvsExpert(ModContent.ItemType<Items.Furniture.NeuroCatErm>(), 8, 8));
+            //npcLoot.Add(ItemDropRule.NormalvsExpert(ModContent.ItemType<Items.Furniture.NeuroCatErm>(), 8, 8));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MountainBountyPizza>(), 8));
         }
 
         public override void FindFrame(int frameHeight)
