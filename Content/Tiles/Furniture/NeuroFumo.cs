@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Enums;
-using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
@@ -14,7 +13,7 @@ namespace Neurosama.Content.Tiles.Furniture
         {
             Main.tileFrameImportant[Type] = true;
             Main.tileLavaDeath[Type] = true;
-            TileID.Sets.FramesOnKillWall[Type] = true;
+            //TileID.Sets.FramesOnKillWall[Type] = true;
 
             // Create normal
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
