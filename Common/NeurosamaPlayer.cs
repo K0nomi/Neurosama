@@ -9,6 +9,8 @@ namespace Neurosama.Common
         public bool evilFumoEquipped;
         public bool neuroFumoVanityEquipped;
         public bool evilFumoVanityEquipped;
+        public bool vedalFumoVanityEquipped;
+        public bool vedalFumoEquipped;
 
         public override void Initialize() => ResetEquips();
         public override void ResetEffects() => ResetEquips();
@@ -24,6 +26,10 @@ namespace Neurosama.Common
             {
                 evilFumoVanityEquipped = true;
             }
+            else if (Player.armor[10].type == ModContent.ItemType<VedalFumo>())
+            {
+                vedalFumoVanityEquipped = true;
+            }
             // This is only here because it doesn't show in player select when done the recommended way for some reason
             if (Player.armor[0].type == ModContent.ItemType<NeuroFumo>())
             {
@@ -33,6 +39,10 @@ namespace Neurosama.Common
             {
                 evilFumoEquipped = true;
             }
+            else if (Player.armor[0].type == ModContent.ItemType<VedalFumo>())
+            {
+                vedalFumoEquipped = true;
+            }
         }
 
         private void ResetEquips()
@@ -41,6 +51,8 @@ namespace Neurosama.Common
             evilFumoEquipped = false;
             neuroFumoVanityEquipped = false;
             evilFumoVanityEquipped = false;
+            vedalFumoVanityEquipped = false;
+            vedalFumoEquipped = false;
         }
     }
 }
