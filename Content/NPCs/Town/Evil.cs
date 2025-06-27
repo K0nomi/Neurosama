@@ -213,8 +213,12 @@ namespace Neurosama.Content.NPCs.Town
                 .Add<Items.Furniture.EvilFumo>()
                 .Add<Items.Furniture.AbandonedArchive>()
                 .Add<Items.Furniture.Donoplank>()
+                .Add<Items.Donobrick>()
                 .Add<BoomMusicBox>()
                 .Add<SwarmDrone>(Condition.DownedEyeOfCthulhu)
+                .Add<Items.Armor.EvilVanityStockings>()
+                .Add<Items.Armor.EvilVanityUniform>()
+                .Add<Items.Armor.EvilVanityWig>()
                 .Add<Iwannadie>(Condition.IsNpcShimmered) // shimmer test
             ;
 
