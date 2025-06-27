@@ -213,8 +213,12 @@ namespace Neurosama.Content.NPCs.Town
                 .Add<Items.Furniture.NeuroFumo>()
                 .Add<Items.Furniture.AbandonedArchive>()
                 .Add<Items.Donowall>()
+                .Add<Items.Donobrick>()
                 .Add<NeuroMusicBox>()
                 //.Add<Items.SwarmPet>()
+                .Add<Items.Armor.NeuroVanityStockings>()
+                .Add<Items.Armor.NeuroVanityUniform>()
+                .Add<Items.Armor.NeuroVanityWig>()
                 .Add<Iwannadie>(Condition.IsNpcShimmered) // shimmer test
             ;
 

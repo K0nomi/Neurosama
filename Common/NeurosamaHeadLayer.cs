@@ -11,6 +11,7 @@ namespace Neurosama.Common
     {
         private static readonly Texture2D neuroFumoTexture = ModContent.Request<Texture2D>(typeof(NeuroFumo).FullName.Replace('.', '/')).Value;
         private static readonly Texture2D evilFumoTexture = ModContent.Request<Texture2D>(typeof(EvilFumo).FullName.Replace('.', '/')).Value;
+        private static readonly Texture2D vedalFumoTexture = ModContent.Request<Texture2D>(typeof(VedalFumo).FullName.Replace('.', '/')).Value;
 
         public override bool IsHeadLayer => true;
 
@@ -21,8 +22,10 @@ namespace Neurosama.Common
 
             if (modPlayer.neuroFumoEquipped & drawPlayer.armor[10].IsAir ||
                 modPlayer.evilFumoEquipped & drawPlayer.armor[10].IsAir ||
+                modPlayer.vedalFumoEquipped & drawPlayer.armor[10].IsAir ||
                 modPlayer.neuroFumoVanityEquipped ||
-                modPlayer.evilFumoVanityEquipped)
+                modPlayer.evilFumoVanityEquipped ||
+                modPlayer.vedalFumoVanityEquipped)
             {
                 return true;
             }
@@ -65,26 +68,41 @@ namespace Neurosama.Common
             int dyeShader = drawPlayer.dye?[0].dye ?? 0;
 
             // Draw the equipped items
-            int totalFumos =
-                (modPlayer.neuroFumoEquipped ? 1 : 0) +
-                (modPlayer.evilFumoEquipped ? 1 : 0) +
-                (modPlayer.neuroFumoVanityEquipped ? 1 : 0) +
-                (modPlayer.evilFumoVanityEquipped ? 1 : 0);
+            int totalTwins =
+                modPlayer.neuroFumoEquipped.ToInt() +
+                modPlayer.evilFumoEquipped.ToInt() +
+                modPlayer.neuroFumoVanityEquipped.ToInt() +
+                modPlayer.evilFumoVanityEquipped.ToInt();
 
-            if (totalFumos == 1)
+            if (totalTwins == 0)
             {
+                // No twins equipped, just draw Vedal Fumo if equipped
+                if (modPlayer.vedalFumoEquipped || modPlayer.vedalFumoVanityEquipped)
+                    DrawFumo(drawInfo, drawPlayer, dyeShader, headPosition, vedalFumoTexture);
+            }
+            else if (totalTwins == 1)
+            {
+                // Draw the single equipped twin
                 if (modPlayer.neuroFumoEquipped || modPlayer.neuroFumoVanityEquipped)
                     DrawFumo(drawInfo, drawPlayer, dyeShader, headPosition, neuroFumoTexture);
                 else if (modPlayer.evilFumoEquipped || modPlayer.evilFumoVanityEquipped)
                     DrawFumo(drawInfo, drawPlayer, dyeShader, headPosition, evilFumoTexture);
+
+                // Draw Vedal Fumo on top if equipped in vanity
+                Vector2 vedalFumoOffset = new(drawPlayer.direction == 1 ? -2 : 2, 6 - neuroFumoTexture.Height);
+                
+                if (modPlayer.vedalFumoVanityEquipped)
+                    DrawFumo(drawInfo, drawPlayer, dyeShader, headPosition + vedalFumoOffset, vedalFumoTexture);
             }
-            else if (totalFumos == 2)
+            else if (totalTwins == 2)
             {
+                // Draw the twin equipped in armour
                 if (modPlayer.neuroFumoEquipped)
                     DrawFumo(drawInfo, drawPlayer, dyeShader, headPosition, neuroFumoTexture);
                 else if (modPlayer.evilFumoEquipped)
                     DrawFumo(drawInfo, drawPlayer, dyeShader, headPosition, evilFumoTexture);
 
+                // Draw the twin equipped in vanity on top
                 Vector2 doubleFumoOffset = new(drawPlayer.direction == 1 ? -2 : 2, 6 - neuroFumoTexture.Height);
 
                 if (modPlayer.neuroFumoVanityEquipped)
