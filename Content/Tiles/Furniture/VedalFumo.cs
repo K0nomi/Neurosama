@@ -1,4 +1,5 @@
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Enums;
@@ -32,6 +33,8 @@ namespace Neurosama.Content.Tiles.Furniture
             TileObjectData.newAlternate.CopyFrom(TileObjectData.newTile);
             TileObjectData.newAlternate.Direction = TileObjectDirection.PlaceRight;
             TileObjectData.addAlternate(1); // Facing right will use the second texture style
+
+            // Add tile
             TileObjectData.addTile(Type);
 
             // Reuse the item localization for the map entry
@@ -65,6 +68,20 @@ namespace Neurosama.Content.Tiles.Furniture
 
             // Tutel should be either directly on a fumo or not at all, so allow place
             return true;
+        }
+
+        public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height, ref short tileFrameX, ref short tileFrameY)
+        {
+            Tile tile = Main.tile[i, j];
+            int left = i - (tile.TileFrameX / 18 % 2);
+            int top = j - (tile.TileFrameY / 18 % 2);
+
+            Tile tileBelowLeft = Main.tile[left, top + 2];
+
+            if (tileBelowLeft.TileType == ModContent.TileType<NeuroFumo>() || tileBelowLeft.TileType == ModContent.TileType<EvilFumo>())
+            {
+                offsetY += 6;
+            }
         }
     }
 }
