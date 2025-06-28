@@ -1,10 +1,12 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Neurosama.Common;
 using Neurosama.Content.Items.MusicBoxes;
 using Neurosama.Content.Items.Weapons;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.Personalities;
@@ -122,8 +124,23 @@ namespace Neurosama.Content.NPCs.Town
             }
         }
 
+        public override void OnSpawn(IEntitySource source)
+        {
+            if (source is EntitySource_SpawnNPC)
+            {
+                // Unlock neuro as she has spawned
+                TownNPCRespawnSystem.unlockedNeuroSpawn = true;
+            }
+        }
+
         public override bool CanTownNPCSpawn(int numTownNPCs)
         {
+            if (TownNPCRespawnSystem.unlockedNeuroSpawn)
+            {
+                // Neuro has spawned in the world before, don't need to check conditions
+                return true;
+            }
+
             if (numTownNPCs >= 3)
             {
                 return true;
