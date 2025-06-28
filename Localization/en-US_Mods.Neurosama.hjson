@@ -139,7 +139,7 @@ Items: {
 		DisplayName: Mountain Bounty Pizza
 		Tooltip:
 			'''
-			Medium improvements to all stats
+			{$CommonItemTooltip.MediumStats}
 			'Viva la pizza revolution!'
 			'''
 	}
