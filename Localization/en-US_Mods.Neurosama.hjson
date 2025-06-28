@@ -67,32 +67,32 @@ Items: {
 
 	NeuroVanityStockings: {
 		DisplayName: Neuro Stockings
-		Tooltip: ""
+		Tooltip: "'Great for impersonating streamers!"
 	}
 
 	NeuroVanityUniform: {
 		DisplayName: Neuro Uniform
-		Tooltip: ""
+		Tooltip: "'Great for impersonating streamers!"
 	}
 
 	NeuroVanityWig: {
 		DisplayName: Neuro Wig
-		Tooltip: ""
+		Tooltip: "'Great for impersonating streamers!"
 	}
 
 	EvilVanityStockings: {
 		DisplayName: Evil Stockings
-		Tooltip: ""
+		Tooltip: "'Great for impersonating streamers!"
 	}
 
 	EvilVanityUniform: {
 		DisplayName: Evil Uniform
-		Tooltip: ""
+		Tooltip: "'Great for impersonating streamers!"
 	}
 
 	EvilVanityWig: {
 		DisplayName: Evil Wig
-		Tooltip: ""
+		Tooltip: "'Great for impersonating streamers!"
 	}
 
 	ErmSharkBanner: {
