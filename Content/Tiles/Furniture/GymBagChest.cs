@@ -32,8 +32,8 @@ namespace Neurosama.Content.Tiles.Furniture
 
             AdjTiles = [TileID.Containers];
 
-            LocalizedText name = CreateMapEntryName();
-            AddMapEntry(new Color(186, 105, 106), name);
+            // Reuse the item localization for the map entry
+            AddMapEntry(new Color(186, 105, 106), ModContent.GetInstance<Items.Furniture.GymBagChest>().DisplayName);
 
             // Sometimes mods remove content, such as tile styles, or tiles accidentally get corrupted. We can, if desired, register a fallback item for any tile style that doesn't have an automatically determined item drop. This is done by omitting the tileStyles parameter.
             RegisterItemDrop(ItemID.Chest);

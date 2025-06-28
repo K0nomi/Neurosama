@@ -4,7 +4,6 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
@@ -34,8 +33,8 @@ namespace Neurosama.Content.Tiles.Furniture
 
             TileObjectData.addTile(Type);
 
-            LocalizedText name = CreateMapEntryName();
-            AddMapEntry(new Color(134, 31, 165), name);
+            // Reuse the item localization for the map entry
+            AddMapEntry(new Color(134, 31, 165), ModContent.GetInstance<Items.Furniture.AbandonedArchive>().DisplayName);
         }
 
         public override bool CreateDust(int i, int j, ref int type)

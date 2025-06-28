@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Enums;
-using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
@@ -32,8 +31,8 @@ namespace Neurosama.Content.Tiles.Furniture
             TileObjectData.addAlternate(1); // Facing right will use the second texture style
             TileObjectData.addTile(Type);
 
-            LocalizedText name = CreateMapEntryName();
-            AddMapEntry(new Color(209, 185, 177), name);
+            // Reuse the item localization for the map entry
+            AddMapEntry(new Color(209, 185, 177), ModContent.GetInstance<Items.Furniture.NeuroFumo>().DisplayName);
         }
 
         public override bool CreateDust(int i, int j, ref int type)

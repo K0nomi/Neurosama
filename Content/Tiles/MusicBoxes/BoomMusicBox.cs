@@ -20,8 +20,8 @@ namespace Neurosama.Content.Tiles.MusicBoxes
             TileObjectData.newTile.StyleLineSkip = 2;
             TileObjectData.addTile(Type);
 
-            LocalizedText name = CreateMapEntryName();
-            AddMapEntry(new Color(191, 142, 111), name);
+            // Use vanilla "Music Box" text for map entry
+            AddMapEntry(new Color(191, 142, 111), Language.GetText("ItemName.MusicBox"));
         }
 
         public override void MouseOver(int i, int j)

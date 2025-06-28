@@ -101,7 +101,7 @@ Items: {
 	}
 
 	GymBagChest: {
-		DisplayName: Gymbag
+		DisplayName: Gymbag Chest
 		Tooltip: ""
 	}
 
@@ -273,18 +273,6 @@ Dialogue: {
 	}
 
 	Vedal.StandardDialogue1: I am a femboy and I'm graduating
-}
-
-Tiles: {
-	//Can be condensed by using item names instead (see ErmFishCage)
-	NeuroMusicBox.MapEntry: Music Box
-	AbandonedArchive.MapEntry: Abandoned Archive Poster
-	NeuroCatErm.MapEntry: neuroErm
-	NeuroFumo.MapEntry: Neuro-sama Plush
-	EvilFumo.MapEntry: Evil Neuro Plush
-	GymBagChest.MapEntry: Gymbag
-	BoomMusicBox.MapEntry: Boom Music Box
-	VedalFumo.MapEntry: Vedal Fumo
 }
 
 Buffs: {
