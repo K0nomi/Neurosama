@@ -22,7 +22,7 @@ namespace Neurosama.Content.Tiles.Furniture
 
             // Anchor data to allow it to sit on the neuros
             TileObjectData.newTile.AnchorAlternateTiles = [ModContent.TileType<NeuroFumo>(), ModContent.TileType<EvilFumo>()];
-            TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidWithTop | AnchorType.AlternateTile, TileObjectData.newTile.Width, 0);
+            TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidWithTop | AnchorType.AlternateTile, TileObjectData.newTile.Width, 0);
 
             // I have no idea why you need these lines
             TileObjectData.newTile.StyleWrapLimit = 2;
