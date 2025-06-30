@@ -10,13 +10,14 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
+using Terraria.Utilities.Terraria.Utilities;
 
 namespace Neurosama.Content.NPCs
 {
     public class ErmShark : ModNPC
     {
         // would probably be better to modify the npc after spawning for depth and family
-        public ref float family => ref NPC.ai[2];
+        public ref float Family => ref NPC.ai[2];
 
         public int GetDepth() { return (int)NPC.ai[3]; }
 
@@ -28,7 +29,7 @@ namespace Neurosama.Content.NPCs
         public bool IsLastDescendant()
         {
             // this considers the original parent (1 ermShark) as the end of the family (also 1 ermShark), so we need to check for depth as well
-            int familySize = Main.npc.Count(x => x.active && x.type == NPC.type && x.ai[2] == family);
+            int familySize = Main.npc.Count(x => x.active && x.type == NPC.type && x.ai[2] == Family);
             return familySize == 1 && MaxDepthReached();
         }
 
@@ -107,7 +108,7 @@ namespace Neurosama.Content.NPCs
             // Give first ermshark a family id
             if (GetDepth() == 0)
             {
-                family = Main.rand.NextFloat();
+                Family = Main.rand.NextFloat();
                 //CombatText.NewText(new Rectangle((int)NPC.Center.X, (int)NPC.Center.Y, 0, 0), new Color(191, 191, 255), family.ToString());
             }
 
@@ -133,8 +134,12 @@ namespace Neurosama.Content.NPCs
                 int spawnOffset = Main.rand.NextBool() ? -12 : 12;
 
                 // Erm Erm
-                NPC.NewNPCDirect(entitySource, (int)NPC.Center.X + spawnOffset, (int)NPC.Center.Y, Type, NPC.whoAmI, ai2: family, ai3: newDepth);
-                NPC.NewNPCDirect(entitySource, (int)NPC.Center.X - spawnOffset, (int)NPC.Center.Y + 16, Type, NPC.whoAmI, ai2: family, ai3: newDepth);
+                NPC child1 = NPC.NewNPCDirect(entitySource, (int)NPC.Center.X + spawnOffset, (int)NPC.Center.Y, Type, NPC.whoAmI, ai2: Family, ai3: newDepth);
+                NPC child2 = NPC.NewNPCDirect(entitySource, (int)NPC.Center.X - spawnOffset, (int)NPC.Center.Y + 16, Type, NPC.whoAmI, ai2: Family, ai3: newDepth);
+
+                // Apply velocity (and therefore knockback) to children, with some variance
+                child1.velocity = Vector2.Multiply(NPC.velocity, Main.rand.NextFloat(new FloatRange(0.91f, 1.1f)));
+                child2.velocity = Vector2.Multiply(NPC.velocity, Main.rand.NextFloat(new FloatRange(0.91f, 1.1f)));
             }
 
             // Don't run onkill as it's not the last ermshark in the family
