@@ -7,8 +7,18 @@ Items: {
 	}
 
 	NeuroMusicBox: {
-		Tooltip: ""
 		DisplayName: Music Box (LIFE)
+		Tooltip: ""
+	}
+
+	BoomMusicBox: {
+		DisplayName: Music Box (BOOM)
+		Tooltip: ""
+	}
+
+	NeverMusicBox: {
+		DisplayName: Music Box (NEVER)
+		Tooltip: ""
 	}
 
 	NeuroCatErm: {
@@ -146,11 +156,6 @@ Items: {
 
 	BanHammer: {
 		DisplayName: Ban Hammer
-		Tooltip: ""
-	}
-
-	BoomMusicBox: {
-		DisplayName: Music Box (BOOM)
 		Tooltip: ""
 	}
 
