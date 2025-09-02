@@ -64,7 +64,7 @@ namespace Neurosama.Content.Tiles
             }
 
             float spawnX = (topLeftX + TileWidth * 0.5f) * 16;
-            float spawnY = (topLeftY + TileHeight * 1.125f) * 16; // Not 100% sure if this height is correct
+            float spawnY = (topLeftY + TileHeight) * 16;
 
             var entitySource = new EntitySource_TileUpdate(topLeftX, topLeftY, context: "ErmFishStatue");
 
