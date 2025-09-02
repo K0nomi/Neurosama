@@ -232,6 +232,7 @@ namespace Neurosama.Content.NPCs.Town
                 .Add<Items.Furniture.Donoplank>()
                 .Add<Items.Donobrick>()
                 .Add<BoomMusicBox>()
+                .Add<NeverMusicBox>()
                 .Add<SwarmDrone>(Condition.DownedEyeOfCthulhu)
                 .Add<Items.Armor.EvilVanityStockings>()
                 .Add<Items.Armor.EvilVanityUniform>()
