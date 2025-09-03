@@ -78,21 +78,21 @@ namespace Neurosama.Content.NPCs
 
         public override void HitEffect(NPC.HitInfo hit)
         {
-            if (NPC.life <= 0)
+            // Taken from vanilla source
+            if (NPC.life > 0)
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, Main.rand.Next(232, 234), hit.HitDirection, -1f);
+                }
+            }
+            else
             {
                 for (int i = 0; i < 20; i++)
                 {
-                    Dust dust = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.GoldCritter_LessOutline, 2 * hit.HitDirection, -2f);
-                    if (Main.rand.NextBool(2))
-                    {
-                        dust.noGravity = true;
-                        dust.scale = 1.2f * NPC.scale;
-                    }
-                    else
-                    {
-                        dust.scale = 0.7f * NPC.scale;
-                    }
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, Main.rand.Next(232, 234), 2 * hit.HitDirection, -2f);
                 }
+
             }
         }
 
