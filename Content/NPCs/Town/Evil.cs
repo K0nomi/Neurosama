@@ -40,6 +40,8 @@ namespace Neurosama.Content.NPCs.Town
             Main.npcFrameCount[Type] = 23; // The total amount of frames the NPC has
             NPCID.Sets.NPCFramingGroup[Type] = 1; // Uses same party hat offset as party girl
 
+            NPCID.Sets.IsTownChild[Type] = true; // Makes NPC death work like the Angler & Princess
+
             NPCID.Sets.ExtraFramesCount[Type] = 9;
             NPCID.Sets.AttackFrameCount[Type] = 4;
             NPCID.Sets.DangerDetectRange[Type] = 700; // The amount of pixels away from the center of the NPC that it tries to attack enemies
