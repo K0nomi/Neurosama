@@ -16,7 +16,7 @@ namespace Neurosama.Content.Items.Weapons
             Item.height = 80;
             Item.useTime = 20;
             Item.useAnimation = 20;
-            Item.useStyle = ItemUseStyleID.Swing;   
+            Item.useStyle = ItemUseStyleID.Swing;
             Item.knockBack = 4f;
             Item.value = 10000;
             Item.rare = ItemRarityID.Green;

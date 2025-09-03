@@ -76,6 +76,35 @@ namespace Neurosama.Content.NPCs
             return SpawnCondition.Ocean.Chance * 0.00025f; // 1/400 * 0.1f
         }
 
+        public override void AI()
+        {
+            // Taken from vanilla source
+            if (Main.netMode != NetmodeID.Server)
+            {
+                NPC.position += NPC.netOffset;
+                Color color = Lighting.GetColor((int)NPC.Center.X / 16, (int)NPC.Center.Y / 16);
+                if (color.R > 20 || color.B > 20 || color.G > 20)
+                {
+                    int num = color.R;
+                    if (color.G > num)
+                    {
+                        num = color.G;
+                    }
+                    if (color.B > num)
+                    {
+                        num = color.B;
+                    }
+                    num /= 30;
+                    if (Main.rand.Next(300) < num)
+                    {
+                        int num2 = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.TintableDustLighted, 0f, 0f, 254, new Color(255, 255, 0), 0.5f);
+                        Main.dust[num2].velocity *= 0f;
+                    }
+                }
+                NPC.position -= NPC.netOffset;
+            }
+        }
+
         public override void HitEffect(NPC.HitInfo hit)
         {
             // Taken from vanilla source
@@ -92,10 +121,7 @@ namespace Neurosama.Content.NPCs
                 {
                     Dust.NewDust(NPC.position, NPC.width, NPC.height, Main.rand.Next(232, 234), 2 * hit.HitDirection, -2f);
                 }
-
             }
         }
-
-        // TODO: gold critter passive particle effect
     }
 }
