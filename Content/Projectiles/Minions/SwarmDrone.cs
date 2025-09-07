@@ -88,7 +88,7 @@ namespace Neurosama.Content.Projectiles.Minions
                 shootVector *= 10f;
                 if (Main.myPlayer == Projectile.owner)
                 {
-                    Projectile.NewProjectile(new EntitySource_Parent(Main.player[Projectile.owner]), Projectile.Center, shootVector, ProjectileID.MiniRetinaLaser, Projectile.damage, Projectile.knockBack);
+                    Projectile.NewProjectile(new EntitySource_Parent(Main.player[Projectile.owner]), Projectile.Center, shootVector, ProjectileID.MiniRetinaLaser, Projectile.damage, 0f);
                 }
             }
 
