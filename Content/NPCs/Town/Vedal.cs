@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
@@ -15,6 +16,9 @@ namespace Neurosama.Content.NPCs.Town
     {
         //private static int ShimmerHeadIndex;
         private static Profiles.StackedNPCProfile NPCProfile;
+
+        private static SoundStyle deathSound = new($"{nameof(Neurosama)}/Assets/Sounds/vedal_cry");
+        private static SoundStyle hitSound = new($"{nameof(Neurosama)}/Assets/Sounds/vedal_noise");
 
         public override void Load()
         {
@@ -70,8 +74,8 @@ namespace Neurosama.Content.NPCs.Town
             NPC.damage = 10;
             NPC.defense = 15;
             NPC.lifeMax = 250;
-            NPC.HitSound = SoundID.NPCHit1; // TODO: vedal hit sound (maybe a femboy noise)
-            NPC.DeathSound = SoundID.NPCDeath27; // TODO: vedal death sound
+            NPC.HitSound = hitSound;
+            NPC.DeathSound = deathSound;
             NPC.knockBackResist = 0.5f;
             NPC.housingCategory = 1; // Can share a house with a normal Town NPC. Could be cool to make it only neuro or evil
             AnimationType = NPCID.TownBunny;
