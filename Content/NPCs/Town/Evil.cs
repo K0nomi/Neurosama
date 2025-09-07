@@ -25,7 +25,6 @@ namespace Neurosama.Content.NPCs.Town
         private static int ShimmerHeadIndex;
         private static Profiles.StackedNPCProfile NPCProfile;
 
-        // TODO: unique evil sounds
         private static SoundStyle deathSound = new($"{nameof(Neurosama)}/Assets/Sounds/evil_aaaa");
         private static SoundStyle hitSound = new($"{nameof(Neurosama)}/Assets/Sounds/evil_oh");
 
