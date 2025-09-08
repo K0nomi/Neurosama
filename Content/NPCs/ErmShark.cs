@@ -37,6 +37,8 @@ namespace Neurosama.Content.NPCs
         {
             Main.npcFrameCount[Type] = 6;
 
+            NPCID.Sets.StatueSpawnedDropRarity[Type] = 0.2f; // 0.2x drops when spawned from statue (consistent with shark)
+
             // Centre ermshark's bestiary icon
             NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new()
             {
@@ -136,6 +138,16 @@ namespace Neurosama.Content.NPCs
                 // Erm Erm
                 NPC child1 = NPC.NewNPCDirect(entitySource, (int)NPC.Center.X + spawnOffset, (int)NPC.Center.Y, Type, NPC.whoAmI, ai2: Family, ai3: newDepth);
                 NPC child2 = NPC.NewNPCDirect(entitySource, (int)NPC.Center.X - spawnOffset, (int)NPC.Center.Y + 16, Type, NPC.whoAmI, ai2: Family, ai3: newDepth);
+
+                // Preserve statue-related properties from parent
+                child1.SpawnedFromStatue = NPC.SpawnedFromStatue;
+                child2.SpawnedFromStatue = NPC.SpawnedFromStatue;
+
+                child1.npcSlots = NPC.npcSlots;
+                child2.npcSlots = NPC.npcSlots;
+
+                child1.value = NPC.value;
+                child2.value = NPC.value;
 
                 // Apply velocity (and therefore knockback) to children, with some variance
                 child1.velocity = Vector2.Multiply(NPC.velocity, Main.rand.NextFloat(new FloatRange(0.91f, 1.1f)));

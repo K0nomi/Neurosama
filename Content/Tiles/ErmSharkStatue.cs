@@ -10,7 +10,7 @@ using Terraria.ObjectData;
 
 namespace Neurosama.Content.Tiles
 {
-    public class ErmFishStatue : ModTile
+    public class ErmSharkStatue : ModTile
     {
         public override void SetStaticDefaults()
         {
@@ -65,9 +65,9 @@ namespace Neurosama.Content.Tiles
             float spawnX = (topLeftX + TileWidth * 0.5f) * 16;
             float spawnY = (topLeftY + TileHeight) * 16;
 
-            var entitySource = new EntitySource_TileUpdate(topLeftX, topLeftY, context: "ErmFishStatue");
+            var entitySource = new EntitySource_TileUpdate(topLeftX, topLeftY, context: "ErmSharkStatue");
 
-            int spawnedNpcId = ModContent.NPCType<ErmFish>();
+            int spawnedNpcId = ModContent.NPCType<ErmShark>();
 
             int npcIndex = -1;
             if (Wiring.CheckMech(topLeftX, topLeftY, 30) && NPC.MechSpawn(spawnX, spawnY, spawnedNpcId))

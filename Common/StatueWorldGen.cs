@@ -26,8 +26,8 @@ namespace Neurosama.Common.Systems
 			// set shouldBeWired to true to make traps.
 			(int type, bool shouldBeWired, ushort placeStyle)[] statueTypesToAdd = [
 				(ModContent.TileType<ErmFishStatue>(), false, 0),
-				// add more statues here if we make more
-			];
+                //(ModContent.TileType<ErmSharkStatue>(), false, 0),
+            ];
 
 			// Make space in the statueList array.
 			Array.Resize(ref GenVars.statueList, GenVars.statueList.Length + statueTypesToAdd.Length);

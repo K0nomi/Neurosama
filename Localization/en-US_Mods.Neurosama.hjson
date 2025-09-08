@@ -105,13 +105,18 @@ Items: {
 		Tooltip: "'Great for impersonating streamers!"
 	}
 
+	GymBagChest: {
+		DisplayName: Gymbag Chest
+		Tooltip: ""
+	}
+
 	ErmSharkBanner: {
 		DisplayName: Ermshark Banner
 		Tooltip: ""
 	}
 
-	GymBagChest: {
-		DisplayName: Gymbag Chest
+	ErmSharkStatue: {
+		DisplayName: Ermshark Statue
 		Tooltip: ""
 	}
 
