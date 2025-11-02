@@ -123,7 +123,8 @@ namespace Neurosama.Content.NPCs.Town
 
         public override void SetChatButtons(ref string button, ref string button2)
         {
-            button = Language.GetTextValue("UI.PetTheAnimal"); // Probably a good idea to replace this for ved lol
+            // Remove the pet button, which is there by default for town pets
+            button = "";
         }
 
         public override void PartyHatPosition(ref Vector2 position, ref SpriteEffects spriteEffects)
