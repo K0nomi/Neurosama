@@ -6,7 +6,8 @@ namespace Neurosama.Content.Items.Weapons
 {
     public class BanHammer : ModItem
     {
-        public override void SetDefaults() {
+        public override void SetDefaults()
+        {
             Item.damage = 8;
             Item.DamageType = DamageClass.Melee;
             Item.width = 50;
