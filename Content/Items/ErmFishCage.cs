@@ -8,7 +8,7 @@ namespace Neurosama.Content.Items
     {
         public override void SetDefaults()
         {
-            Item.CloneDefaults(TileID.BunnyCage);
+            Item.CloneDefaults(ItemID.BunnyCage);
             Item.createTile = ModContent.TileType<Tiles.ErmFishCage>();
         }
 
