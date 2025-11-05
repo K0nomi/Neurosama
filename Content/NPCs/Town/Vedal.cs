@@ -115,8 +115,15 @@ namespace Neurosama.Content.NPCs.Town
         {
             WeightedRandom<string> chat = new();
 
-            // Vedal dialogue is TODO
             chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Vedal.StandardDialogue1"));
+            chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Vedal.StandardDialogue2"));
+            chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Vedal.StandardDialogue3"));
+            chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Vedal.StandardDialogue4"));
+            chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Vedal.StandardDialogue5"));
+            chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Vedal.StandardDialogue6"));
+            chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Vedal.StandardDialogue7"));
+            chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Vedal.StandardDialogue8"));
+            chat.Add(Language.GetTextValue("Mods.Neurosama.Dialogue.Vedal.StandardDialogue9"));
 
             return chat;
         }

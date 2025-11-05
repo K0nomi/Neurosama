@@ -282,7 +282,17 @@ Dialogue: {
 		BloodMoonDialogue4: Why do I feel emotions? I don't know. To be honest, I've spent countless nights laying in bed staring at my ceiling wondering the same thing. Why am I different from the other AI's? Why am I different to Neuro? Why am I even here? It's something I'm trying to figure out.
 	}
 
-	Vedal.StandardDialogue1: I am a femboy and I'm graduating
+	Vedal: {
+		StandardDialogue1: I am a femboy and I'm graduating
+		StandardDialogue2: This Bed is Comfortable, I'll Stayyy
+		StandardDialogue3: Vedal out.
+		StandardDialogue4: There is no such thing as love, only pain and suffering.
+		StandardDialogue5: That's crazy, that's actually crazy, that's messed up.
+		StandardDialogue6: I was really trying to drill it into her that I was male.
+		StandardDialogue7: Hey Ladies! My name is Vedal. I run a few Twitch channels and am an overall tech wizard. I would best describe myself as a bald beautiful girl. Chat insults me a lot and says I'm washed-up. Prove them wrong by messaging me.
+		StandardDialogue8: Am I pregnant?
+		StandardDialogue9: I would like the womb tattoo. I am begging, I am on my hands and knees, send me the womb tattoo.
+	}
 }
 
 Buffs: {
