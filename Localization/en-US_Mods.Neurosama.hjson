@@ -175,22 +175,23 @@ NPCs: {
 		DisplayName: Neuro
 		RareName: Nuero
 
-		// TODO
 		TownNPCMood: {
 			Princess_LovesNPC: "{NPCName} is such an adorable and fun girl!"
-			LikeNPC_Princess: LikeNPC_Princess {NPCName}.
-			LoveNPC: LoveNPC {NPCName}.
-			LikeNPC: LikeNPC {NPCName}.
+			LikeNPC_Princess: "{NPCName} is my favourite princess!"
+			// Evil
+			LoveNPC: I love {NPCName} with all my heart, she's my sister and she'd do anything for me.
+			LikeNPC: UNUSED
+			// Merchant
 			DislikeNPC: I don't like {NPCName} because I don't have enough money to buy anything from him.
-			HateNPC: HateNPC {NPCName}.
-			LikeBiome: LikeBiome {BiomeName}.
-			DislikeBiome: DislikeBiome {BiomeName}.
-			LoveSpace: LoveSpace.
-			DislikeCrowded: DislikeCrowded.
-			HateCrowded: HateCrowded.
-			FarFromHome: FarFromHome.
-			NoHome: NoHome.
-			Content: Content.
+			HateNPC: UNUSED
+			LikeBiome: UNUSED
+			DislikeBiome: UNUSED
+			LoveSpace: I love the quiet, except when I am speaking of course.
+			DislikeCrowded: Gosh it's overwhelming to see this many people.
+			HateCrowded: Agh! That's too many people! I'm shy!
+			FarFromHome: Am I meant to have memorized where my house is?
+			NoHome: I have nowhere to go and I'm scared and cold.
+			Content: I'm doing alright, a little bit sniffly but nothing too bad!
 		}
 
 		Census.SpawnCondition: Have at least 3 other town NPCs in your world
@@ -200,22 +201,23 @@ NPCs: {
 		DisplayName: Evil
 		RareName: Eliv
 
-		// TODO
 		TownNPCMood: {
 			Princess_LovesNPC: "{NPCName} may act tough, but she's really nice at heart!"
-			LikeNPC_Princess: LikeNPC_Princess {NPCName}.
-			LoveNPC: LoveNPC {NPCName}.
-			LikeNPC: LikeNPC {NPCName}.
-			DislikeNPC: DislikeNPC {NPCName}.
-			HateNPC: HateNPC {NPCName}.
-			LikeBiome: LikeBiome {BiomeName}.
+			LikeNPC_Princess: I'll do anything for {NPCName}, including slaying any and all dragons.
+			// Neuro
+			LoveNPC: "{NPCName} is obviously my favourite AI, I'd even go as far as to say that I love her the most in the entire world."
+			LikeNPC: UNUSED
+			DislikeNPC: UNUSED
+			HateNPC: UNUSED
+			LikeBiome: UNUSED
+			// Snow biome
 			DislikeBiome: I hate being cold!
-			LoveSpace: LoveSpace.
-			DislikeCrowded: DislikeCrowded.
-			HateCrowded: HateCrowded.
-			FarFromHome: FarFromHome.
-			NoHome: NoHome.
-			Content: Content.
+			LoveSpace: Everything is so much more peaceful when you don't have to deal with the distractions of the day.
+			DislikeCrowded: It's a little crowded up here with a dead animal, a duck, a frog, and a cat all sharing the same space.
+			HateCrowded: This is the kind of crowd that makes me want to pick up a harpoon and never put it down.
+			FarFromHome: I just want to go home.
+			NoHome: What would you know yeah! I'm homeless! You gonna discriminate against that huh?
+			Content: I'm feeling pretty good. I don't know how to quantify it in terms of numbers, but I'll just say happy.
 		}
 
 		Census.SpawnCondition: Have at least 3 other town NPCs in your world
