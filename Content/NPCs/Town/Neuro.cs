@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Neurosama.Common;
+using Neurosama.Content.EmoteBubbles;
 using Neurosama.Content.Items.MusicBoxes;
 using Neurosama.Content.Items.Weapons;
 using System.Collections.Generic;
@@ -50,6 +51,8 @@ namespace Neurosama.Content.NPCs.Town
 
             NPCID.Sets.ShimmerTownTransform[NPC.type] = true; // NPC has a shimmered form
             NPCID.Sets.ShimmerTownTransform[Type] = true; // Allows for this NPC to have a different texture after touching the Shimmer liquid
+
+            NPCID.Sets.FaceEmote[Type] = ModContent.EmoteBubbleType<NeuroEmote>();
 
             // Influences how the NPC looks in the Bestiary
             NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new()
