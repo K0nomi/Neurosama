@@ -235,7 +235,6 @@ namespace Neurosama.Content.NPCs.Town
                 .Add<Items.Armor.NeuroVanityStockings>()
                 .Add<Items.Armor.NeuroVanityUniform>()
                 .Add<Items.Armor.NeuroVanityWig>()
-                .Add<Iwannadie>(Condition.IsNpcShimmered) // shimmer test
             ;
 
             npcShop.Register();
