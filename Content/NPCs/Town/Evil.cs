@@ -16,7 +16,6 @@ using Terraria.Utilities;
 
 namespace Neurosama.Content.NPCs.Town
 {
-    // [AutoloadHead] and NPC.townNPC are extremely important and absolutely both necessary for any Town NPC to work at all.
     [AutoloadHead]
     public class Evil : ModNPC
     {
@@ -44,7 +43,7 @@ namespace Neurosama.Content.NPCs.Town
             NPCID.Sets.ExtraFramesCount[Type] = 9;
             NPCID.Sets.AttackFrameCount[Type] = 4;
             NPCID.Sets.DangerDetectRange[Type] = 700; // The amount of pixels away from the center of the NPC that it tries to attack enemies
-            NPCID.Sets.AttackType[Type] = 1; // 0 = throwing, 1 = shooting, 2 = magic, 3 = melee
+            NPCID.Sets.AttackType[Type] = 1; // Ranged
             NPCID.Sets.AttackTime[Type] = 60;
             NPCID.Sets.AttackAverageChance[Type] = 30; // The denominator for the chance for a Town NPC to attack
 
@@ -127,11 +126,6 @@ namespace Neurosama.Content.NPCs.Town
                     int randomGore = gores[Main.rand.Next(gores.Count)];
                     Gore.NewGore(NPC.GetSource_Death(), NPC.position, Vector2.Zero, randomGore, 1f);
                 }
-
-                // TODO: this causes duplicate death messages, find a way to replace the default one
-                // LegacyMisc.36 is "{0} has left!"
-                //if (Main.netMode == NetmodeID.SinglePlayer) Main.NewText(Language.GetTextValue("LegacyMisc.36", NPC.FullName), 255, 25, 25);
-                //else if (Main.netMode == NetmodeID.Server) ChatHelper.BroadcastChatMessage(NetworkText.FromKey("LegacyMisc.36", NPC.GetFullNetName()), new Color(255, 25, 25));
             }
         }
 

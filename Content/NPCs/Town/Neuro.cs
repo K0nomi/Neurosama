@@ -17,7 +17,6 @@ using Terraria.Utilities;
 
 namespace Neurosama.Content.NPCs.Town
 {
-    // [AutoloadHead] and NPC.townNPC are extremely important and absolutely both necessary for any Town NPC to work at all
     [AutoloadHead]
     public class Neuro : ModNPC
     {
@@ -117,11 +116,6 @@ namespace Neurosama.Content.NPCs.Town
                     int randomGore = gores[Main.rand.Next(gores.Count)];
                     Gore.NewGore(NPC.GetSource_Death(), NPC.position, Vector2.Zero, randomGore, 1f);
                 }
-
-                // TODO: this causes duplicate death messages, find a way to replace the default one
-                // LegacyMisc.36 is "{0} has left!"
-                //if (Main.netMode == NetmodeID.SinglePlayer) Main.NewText(Language.GetTextValue("LegacyMisc.36", NPC.FullName), 255, 25, 25);
-                //else if (Main.netMode == NetmodeID.Server) ChatHelper.BroadcastChatMessage(NetworkText.FromKey("LegacyMisc.36", NPC.GetFullNetName()), new Color(255, 25, 25));
             }
         }
 

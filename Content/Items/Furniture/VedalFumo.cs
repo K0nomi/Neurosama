@@ -16,7 +16,6 @@ namespace Neurosama.Content.Items.Furniture
             Item.rare = ItemRarityID.Cyan;
             Item.value = Item.buyPrice(0, 2);
 
-            // TODO: render properly in player select menu
             Item.vanity = true;
             ArmorIDs.Head.Sets.DrawFullHair[Item.headSlot] = true;
         }
