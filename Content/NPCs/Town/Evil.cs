@@ -137,13 +137,13 @@ namespace Neurosama.Content.NPCs.Town
             if (source is EntitySource_SpawnNPC)
             {
                 // Unlock eliv as she has spawned
-                TownNPCRespawnSystem.unlockedEvilSpawn = true;
+                TownNPCRespawnSystem.UnlockedEvilSpawn = true;
             }
         }
 
         public override bool CanTownNPCSpawn(int numTownNPCs)
         {
-            if (TownNPCRespawnSystem.unlockedEvilSpawn)
+            if (TownNPCRespawnSystem.UnlockedEvilSpawn)
             {
                 // Evil has spawned in the world before, don't need to check conditions
                 return true;
