@@ -6,8 +6,20 @@ namespace Neurosama.Common
 {
     public class TownNPCRespawnSystem : ModSystem
     {
-        public static bool unlockedNeuroSpawn = false;
-        public static bool unlockedEvilSpawn = false;
+        private static bool unlockedNeuroSpawn = false;
+        private static bool unlockedEvilSpawn = false;
+
+        public static bool UnlockedNeuroSpawn
+        {
+            get => unlockedNeuroSpawn;
+            set => unlockedNeuroSpawn = value;
+        }
+
+        public static bool UnlockedEvilSpawn
+        {
+            get => unlockedEvilSpawn;
+            set => unlockedEvilSpawn = value;
+        }
 
         public override void ClearWorld()
         {
