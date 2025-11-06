@@ -127,13 +127,13 @@ namespace Neurosama.Content.NPCs.Town
             if (source is EntitySource_SpawnNPC)
             {
                 // Unlock neuro as she has spawned
-                TownNPCRespawnSystem.unlockedNeuroSpawn = true;
+                TownNPCRespawnSystem.UnlockedNeuroSpawn = true;
             }
         }
 
         public override bool CanTownNPCSpawn(int numTownNPCs)
         {
-            if (TownNPCRespawnSystem.unlockedNeuroSpawn)
+            if (TownNPCRespawnSystem.UnlockedNeuroSpawn)
             {
                 // Neuro has spawned in the world before, don't need to check conditions
                 return true;
