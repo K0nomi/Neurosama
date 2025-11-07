@@ -241,11 +241,7 @@ namespace Neurosama.Content.NPCs.Town
             // Switch to alt version
             NPC.townNpcVariationIndex = (NPC.townNpcVariationIndex + 2) % Textures.Length;
 
-            // TODO: make this replicate the dust/gore from toggling a party off
-            for (int k = 0; k < 8; k++)
-            {
-                Gore.NewGorePerfect(NPC.GetSource_FromAI(), NPC.position, new Vector2(Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-1f, 1f)), Main.rand.Next(11, 14), Main.rand.NextFloat(0.5f, 0.75f));
-            }
+            Utils.PoofOfSmoke(NPC.position);
         }
 
         public override void AddShops()
