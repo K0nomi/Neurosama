@@ -55,7 +55,7 @@ namespace Neurosama.Content.NPCs
         public override void SetDefaults()
         {
             NPC.width = 62;
-            NPC.height = 34;
+            NPC.height = 32;
             NPC.damage = 20;
             NPC.defense = 4;
             NPC.lifeMax = 240;
