@@ -64,7 +64,7 @@ namespace Neurosama.Content.Tiles.Furniture
 
         public override LocalizedText DefaultContainerName(int frameX, int frameY)
         {
-            return CreateMapEntryName();
+            return ModContent.GetInstance<Items.Furniture.GymBagChest>().DisplayName;
         }
 
         public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings)
