@@ -16,22 +16,43 @@ using Terraria.ModLoader;
 using Terraria.Utilities;
 
 namespace Neurosama.Content.NPCs.Town
-{
-    [AutoloadHead]
+{   
     public class Evil : ModNPC
     {
         public const string ShopName = "Shop";
 
-        private static int ShimmerHeadIndex;
-        private static Profiles.StackedNPCProfile NPCProfile;
+        private static string[] Textures;
+        private static int[] HeadIndexes;
+
+        private static ITownNPCProfile NPCProfile;
 
         private static SoundStyle deathSound = new($"{nameof(Neurosama)}/Assets/Sounds/evil_aaaa");
         private static SoundStyle hitSound = new($"{nameof(Neurosama)}/Assets/Sounds/evil_oh");
 
         public override void Load()
         {
-            // Adds the Shimmer Head to the NPCHeadLoader
-            ShimmerHeadIndex = Mod.AddNPCHeadTexture(Type, Texture + "_Shimmer_Head");
+            // Define the Variant Textures.
+            Textures = [
+               Texture,
+               Texture + "_Shimmer",
+               //Texture + "_Toggle",
+               //Texture + "_Toggle_Shimmer",
+            ];
+
+            // Assert that textures array is of even length, so x % Textures.Length doesn't mess with shimmer state
+            if (Textures.Length % 2 != 0)
+            {
+                throw new System.Exception($"{GetType().Name} Textures array length is not even! Each variant must have a respective shimmer variant.");
+            }
+
+            // Adds the Variant Heads to the NPCHeadLoader  
+            HeadIndexes = new int[Textures.Length];
+            for (int i = 0; i < Textures.Length; i++)
+            {
+                HeadIndexes[i] = Mod.AddNPCHeadTexture(Type, Textures[i] + "_Head");
+            }
+
+            ModContent.GetInstance<Neurosama>().Logger.Info(HeadIndexes[0]);
         }
 
         public override void SetStaticDefaults()
@@ -48,8 +69,7 @@ namespace Neurosama.Content.NPCs.Town
             NPCID.Sets.AttackTime[Type] = 60;
             NPCID.Sets.AttackAverageChance[Type] = 30; // The denominator for the chance for a Town NPC to attack
 
-            NPCID.Sets.ShimmerTownTransform[NPC.type] = true; // NPC has a shimmered form
-            NPCID.Sets.ShimmerTownTransform[Type] = true; // Allows for this NPC to have a different texture after touching the Shimmer liquid
+            NPCID.Sets.ShimmerTownTransform[Type] = true; // NPC has a shimmered form
 
             NPCID.Sets.FaceEmote[Type] = ModContent.EmoteBubbleType<EvilEmote>();
 
@@ -68,10 +88,7 @@ namespace Neurosama.Content.NPCs.Town
                 .SetNPCAffection<Neuro>(AffectionLevel.Love) // cute sisters
             ;
 
-            NPCProfile = new Profiles.StackedNPCProfile(
-                new Profiles.DefaultNPCProfile(Texture, NPCHeadLoader.GetHeadSlot(HeadTexture)),
-                new Profiles.DefaultNPCProfile(Texture + "_Shimmer", ShimmerHeadIndex)
-            );
+            NPCProfile = new TwinTownNPCProfile(Textures, HeadIndexes);
         }
 
         public override void SetDefaults()

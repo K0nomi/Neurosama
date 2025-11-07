@@ -18,21 +18,42 @@ using Terraria.Utilities;
 
 namespace Neurosama.Content.NPCs.Town
 {
-    [AutoloadHead]
     public class Neuro : ModNPC
     {
         public const string ShopName = "Shop";
 
-        private static int ShimmerHeadIndex;
-        private static Profiles.StackedNPCProfile NPCProfile;
+        private static string[] Textures;
+        private static int[] HeadIndexes;
+
+        private static ITownNPCProfile NPCProfile;
 
         private static SoundStyle deathSound = new($"{nameof(Neurosama)}/Assets/Sounds/neuro_ooo");
         private static SoundStyle hitSound = new($"{nameof(Neurosama)}/Assets/Sounds/neuro_erf");
 
         public override void Load()
         {
-            // Adds the Shimmer Head to the NPCHeadLoader
-            ShimmerHeadIndex = Mod.AddNPCHeadTexture(Type, Texture + "_Shimmer_Head");
+            // Define the Variant Textures.
+            Textures = [
+               Texture,
+               Texture + "_Shimmer",
+               //Texture + "_Toggle",
+               //Texture + "_Toggle_Shimmer",
+            ];
+
+            // Assert that textures array is of even length, so x % Textures.Length doesn't mess with shimmer state
+            if (Textures.Length % 2 != 0)
+            {
+                throw new System.Exception($"{GetType().Name} Textures array length is not even! Each variant must have a respective shimmer variant.");
+            }
+
+            // Adds the Variant Heads to the NPCHeadLoader  
+            HeadIndexes = new int[Textures.Length]; 
+            for (int i = 0; i < Textures.Length; i++)
+            {
+                HeadIndexes[i] = Mod.AddNPCHeadTexture(Type, Textures[i] + "_Head");
+            }
+
+            ModContent.GetInstance<Neurosama>().Logger.Info(HeadIndexes[0]);
         }
 
         public override void SetStaticDefaults()
@@ -49,8 +70,7 @@ namespace Neurosama.Content.NPCs.Town
             NPCID.Sets.AttackTime[Type] = 30;
             NPCID.Sets.AttackAverageChance[Type] = 15;
 
-            NPCID.Sets.ShimmerTownTransform[NPC.type] = true; // NPC has a shimmered form
-            NPCID.Sets.ShimmerTownTransform[Type] = true; // Allows for this NPC to have a different texture after touching the Shimmer liquid
+            NPCID.Sets.ShimmerTownTransform[Type] = true; // NPC has a shimmered form
 
             NPCID.Sets.FaceEmote[Type] = ModContent.EmoteBubbleType<NeuroEmote>();
 
@@ -69,10 +89,7 @@ namespace Neurosama.Content.NPCs.Town
                 .SetNPCAffection(NPCID.Merchant, AffectionLevel.Dislike)
             ;
 
-            NPCProfile = new Profiles.StackedNPCProfile(
-                new Profiles.DefaultNPCProfile(Texture, NPCHeadLoader.GetHeadSlot(HeadTexture)),
-                new Profiles.DefaultNPCProfile(Texture + "_Shimmer", ShimmerHeadIndex)
-            );
+            NPCProfile = new TwinTownNPCProfile(Textures, HeadIndexes);
         }
 
         public override void SetDefaults()
@@ -210,7 +227,7 @@ namespace Neurosama.Content.NPCs.Town
         public override void SetChatButtons(ref string button, ref string button2)
         {
             button = Language.GetTextValue("LegacyInterface.28");
-            //button2 = Language.GetTextValue("Mods.Neurosama.UI.SayItBack");
+            //button2 = "test";
         }
 
         public override void OnChatButtonClicked(bool firstButton, ref string shop)
@@ -218,6 +235,16 @@ namespace Neurosama.Content.NPCs.Town
             if (firstButton)
             {
                 shop = ShopName;
+                return;
+            }
+
+            // Switch to alt version
+            NPC.townNpcVariationIndex = (NPC.townNpcVariationIndex + 2) % Textures.Length;
+
+            // TODO: make this replicate the dust/gore from toggling a party off
+            for (int k = 0; k < 8; k++)
+            {
+                Gore.NewGorePerfect(NPC.GetSource_FromAI(), NPC.position, new Vector2(Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-1f, 1f)), Main.rand.Next(11, 14), Main.rand.NextFloat(0.5f, 0.75f));
             }
         }
 
@@ -277,5 +304,10 @@ namespace Neurosama.Content.NPCs.Town
             // How far the arc of the swing is from nuero
             scale = 0.15f;
         }
+
+        /*public override void PostAI()
+        {
+            CombatText.NewText(new Rectangle((int)NPC.Center.X, (int)NPC.Center.Y, 0, 0), new Color(255, 191, 191), NPC.IsShimmerVariant.ToString());
+        }*/
     }
 }
