@@ -49,9 +49,9 @@ namespace Neurosama.Content.Tiles
             const int TileWidth = 2;
             const int TileHeight = 3;
 
-            // Find the coordinates of top left tile square through math
+            // Find the coordinates of top left tile
             int topLeftX = i - tile.TileFrameX / 18 % TileWidth;
-            int topLeftY = j - tile.TileFrameY / 18;
+            int topLeftY = j - tile.TileFrameY / 18 % TileHeight;
 
             // SkipWire all tile coordinates covered by this tile to make sure it doesnt activate multiple times
             for (int y = topLeftY; y < topLeftY + TileHeight; y++)
@@ -62,26 +62,38 @@ namespace Neurosama.Content.Tiles
                 }
             }
 
-            float spawnX = (topLeftX + TileWidth * 0.5f) * 16;
-            float spawnY = (topLeftY + TileHeight) * 16;
-
-            var entitySource = new EntitySource_TileUpdate(topLeftX, topLeftY, context: "ErmSharkStatue");
+            int spawnX = (topLeftX + TileWidth / 2) * 16;
+            int spawnY = (topLeftY + TileHeight) * 16;
+            int npcIndex = -1;
 
             int spawnedNpcId = ModContent.NPCType<ErmShark>();
 
-            int npcIndex = -1;
+            // Check for statue cooldown and entity limit
             if (Wiring.CheckMech(topLeftX, topLeftY, 30) && NPC.MechSpawn(spawnX, spawnY, spawnedNpcId))
             {
-                npcIndex = NPC.NewNPC(entitySource, (int)spawnX, (int)spawnY - 12, spawnedNpcId);
+                // Checks if a 6x3 area around the statue is free of solid tiles
+                if (!Collision.SolidTiles(topLeftX - 2, topLeftX + TileWidth + 1, topLeftY, topLeftY + TileHeight - 1))
+                {
+                    npcIndex = NPC.NewNPC(Wiring.GetNPCSource(topLeftX, topLeftY), spawnX, spawnY - 8, spawnedNpcId); // -8 to adjust for ermshark height
+                }
+                else
+                {
+                    // Not enough space, spawn poof of smoke
+                    Vector2 position = new Vector2(spawnX - 4, spawnY - 22) - new Vector2(10f);
+                    Utils.PoofOfSmoke(position);
+                    NetMessage.SendData(MessageID.PoofOfSmoke, -1, -1, null, (int)position.X, position.Y); // Not sure if this line is needed, copied from vanilla code
+                }
             }
 
+            // Adjust spawned NPC properties if spawn was successful
             if (npcIndex >= 0)
             {
                 var npc = Main.npc[npcIndex];
 
                 npc.value = 0f;
-                npc.npcSlots = 0f; // Statue enemies don't take up npc slots
-                npc.SpawnedFromStatue = true; // Makes drops and catchability consistent with statue enemies
+                npc.npcSlots = 0f;
+                npc.SpawnedFromStatue = true; // Affects drops and catchability
+                npc.CanBeReplacedByOtherNPCs = true;
             }
         }
     }
