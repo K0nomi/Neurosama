@@ -143,6 +143,9 @@ namespace Neurosama.Content.NPCs
                 child1.SpawnedFromStatue = NPC.SpawnedFromStatue;
                 child2.SpawnedFromStatue = NPC.SpawnedFromStatue;
 
+                child1.CanBeReplacedByOtherNPCs = NPC.CanBeReplacedByOtherNPCs;
+                child2.CanBeReplacedByOtherNPCs = NPC.CanBeReplacedByOtherNPCs;
+
                 child1.npcSlots = NPC.npcSlots;
                 child2.npcSlots = NPC.npcSlots;
 
