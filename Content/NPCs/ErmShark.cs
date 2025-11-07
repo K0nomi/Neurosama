@@ -155,6 +155,8 @@ namespace Neurosama.Content.NPCs
                 // Apply velocity (and therefore knockback) to children, with some variance
                 child1.velocity = Vector2.Multiply(NPC.velocity, Main.rand.NextFloat(new FloatRange(0.91f, 1.1f)));
                 child2.velocity = Vector2.Multiply(NPC.velocity, Main.rand.NextFloat(new FloatRange(0.91f, 1.1f)));
+
+                Utils.PoofOfSmoke(NPC.position);
             }
 
             // Don't run onkill as it's not the last ermshark in the family
