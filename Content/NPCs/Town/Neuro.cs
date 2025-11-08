@@ -238,10 +238,16 @@ namespace Neurosama.Content.NPCs.Town
                 return;
             }
 
-            // Switch to alt version
-            NPC.townNpcVariationIndex = (NPC.townNpcVariationIndex + 2) % Textures.Length;
+            ToggleVariant();
 
-            Utils.PoofOfSmoke(NPC.position);
+            if (Main.netMode != NetmodeID.SinglePlayer)
+            {
+                // Send a packet to the server to sync the toggle
+                ModPacket packet = Mod.GetPacket();
+                packet.Write((byte)NeurosamaMessageType.ToggleTwinVariant);
+                packet.Write(NPC.whoAmI);
+                packet.Send();
+            }
         }
 
         public override void AddShops()
@@ -261,6 +267,13 @@ namespace Neurosama.Content.NPCs.Town
             ;
 
             npcShop.Register();
+        }
+
+        public void ToggleVariant()
+        {
+            // Switch to next variant
+            NPC.townNpcVariationIndex = (NPC.townNpcVariationIndex + 2) % Textures.Length;
+            Utils.PoofOfSmoke(NPC.position);
         }
 
         // Queen statue only
