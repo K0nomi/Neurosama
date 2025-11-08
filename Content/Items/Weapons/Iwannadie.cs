@@ -28,7 +28,7 @@ namespace Neurosama.Content.Items.Weapons
             Item.noMelee = false;
         }
 
-        public override void AddRecipes()
+        /*public override void AddRecipes()
         {
             // My beloved
             CreateRecipe()
@@ -38,8 +38,6 @@ namespace Neurosama.Content.Items.Weapons
                 .AddTile(ModContent.TileType<Tiles.Furniture.NeuroCatErm>())
                 .AddTile(TileID.WorkBenches)
                 .Register();
-
-
-        }
+        }*/
     }
 }
