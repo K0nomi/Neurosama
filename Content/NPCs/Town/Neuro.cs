@@ -255,6 +255,7 @@ namespace Neurosama.Content.NPCs.Town
             var npcShop = new NPCShop(Type, ShopName)
                 .Add<Items.Furniture.NeuroCatErm>()
                 .Add<Items.Furniture.NeuroFumo>()
+                .Add<Items.Furniture.VedalFumo>()
                 .Add<Items.Furniture.AbandonedArchive>()
                 .Add<Items.Donowall>()
                 .Add<Items.Donobrick>()
