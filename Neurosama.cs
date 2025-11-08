@@ -1,10 +1,12 @@
+using Mono.Cecil.Cil;
 using MonoMod.Cil;
+using Neurosama.Common;
 using Neurosama.Content.NPCs.Town;
 using System;
+using System.IO;
 using System.Reflection;
 using Terraria;
 using Terraria.ModLoader;
-using Mono.Cecil.Cil;
 
 namespace Neurosama
 {
@@ -59,5 +61,42 @@ namespace Neurosama
 				MonoModHooks.DumpIL(ModContent.GetInstance<Neurosama>(), il);
 			}
 		}
+
+        public override void HandlePacket(BinaryReader reader, int whoAmI)
+        {   
+            var msgType = (NeurosamaMessageType)reader.ReadByte();
+
+            switch (msgType)
+            {
+                case NeurosamaMessageType.ToggleTwinVariant:
+                    int npcID = reader.ReadInt32();
+
+                    // Sync to clients if being run on server
+                    if (Main.dedServ)
+                    {
+                        ModPacket packet = GetPacket();
+                        packet.Write((byte)msgType);
+                        packet.Write(npcID);
+                        packet.Send(ignoreClient: whoAmI); // Don't send to the person who pressed the button, it already changed for them
+                    }
+
+                    // Toggle the variant if it's nwero or eliv
+                    NPC npc = Main.npc[npcID];
+                    if (npc.ModNPC is Neuro neuro)
+                    {
+                        neuro.ToggleVariant();
+                    }
+                    else if (npc.ModNPC is Evil evil)
+                    {
+                        //evil.ToggleVariant();
+                    }
+
+                    Logger.WarnFormat("Can't change variant, NPC is not a twin: {0}", npc.type);
+                    break;
+                default:
+                    Logger.WarnFormat("Unknown Message type: {0}", msgType);
+                    break;
+            }
+        }
     }
 }
