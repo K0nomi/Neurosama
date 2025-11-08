@@ -57,9 +57,9 @@ namespace Neurosama
             }
             catch (Exception e)
             {
-				// If there are any failures with the IL editing, this method will dump the IL to Logs/ILDumps/{Mod Name}/{Method Name}.txt
-				MonoModHooks.DumpIL(ModContent.GetInstance<Neurosama>(), il);
-			}
+				// If there are any failures with the IL editing, this will dump the IL to Logs/ILDumps/Neurosama/
+                throw new ILPatchFailureException(this, il, e);
+            }
 		}
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)
