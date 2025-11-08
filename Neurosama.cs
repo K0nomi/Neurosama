@@ -85,10 +85,12 @@ namespace Neurosama
                     if (npc.ModNPC is Neuro neuro)
                     {
                         neuro.ToggleVariant();
+                        break;
                     }
                     else if (npc.ModNPC is Evil evil)
                     {
                         //evil.ToggleVariant();
+                        break;
                     }
 
                     Logger.WarnFormat("Can't change variant, NPC is not a twin: {0}", npc.type);
