@@ -19,6 +19,8 @@ namespace Neurosama.Content.Tiles.Furniture
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
             TileObjectData.newTile.Direction = TileObjectDirection.PlaceLeft;
 
+            TileObjectData.newTile.DrawYOffset = 2;
+
             // Anchor data to allow it to sit on the neuros
             TileObjectData.newTile.AnchorAlternateTiles = [ModContent.TileType<NeuroFumo>(), ModContent.TileType<EvilFumo>()];
             TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidWithTop | AnchorType.AlternateTile, TileObjectData.newTile.Width, 0);
@@ -79,7 +81,7 @@ namespace Neurosama.Content.Tiles.Furniture
 
             if (tileBelowLeft.TileType == ModContent.TileType<NeuroFumo>() || tileBelowLeft.TileType == ModContent.TileType<EvilFumo>())
             {
-                offsetY += 6;
+                offsetY += 4;
             }
         }
     }
