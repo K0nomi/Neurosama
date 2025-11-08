@@ -77,22 +77,24 @@ namespace Neurosama.Common
             if (totalTwins == 0)
             {
                 // No twins equipped, just draw Vedal Fumo if equipped
+                Vector2 vedalFumoOffset = new(0, drawPlayer.direction == 1 ? -2 : 2);
+
                 if (modPlayer.vedalFumoEquipped || modPlayer.vedalFumoVanityEquipped)
-                    DrawFumo(drawInfo, drawPlayer, dyeShader, headPosition, vedalFumoTexture);
+                    DrawFumo(drawInfo, drawPlayer, dyeShader, headPosition + vedalFumoOffset, vedalFumoTexture);
             }
             else if (totalTwins == 1)
             {
+                // Draw Vedal Fumo on top if equipped in vanity
+                Vector2 vedalFumoOffset = new(0, 6 - neuroFumoTexture.Height);
+
+                if (modPlayer.vedalFumoVanityEquipped)
+                    DrawFumo(drawInfo, drawPlayer, dyeShader, headPosition + vedalFumoOffset, vedalFumoTexture);
+
                 // Draw the single equipped twin
                 if (modPlayer.neuroFumoEquipped || modPlayer.neuroFumoVanityEquipped)
                     DrawFumo(drawInfo, drawPlayer, dyeShader, headPosition, neuroFumoTexture);
                 else if (modPlayer.evilFumoEquipped || modPlayer.evilFumoVanityEquipped)
                     DrawFumo(drawInfo, drawPlayer, dyeShader, headPosition, evilFumoTexture);
-
-                // Draw Vedal Fumo on top if equipped in vanity
-                Vector2 vedalFumoOffset = new(drawPlayer.direction == 1 ? -2 : 2, 6 - neuroFumoTexture.Height);
-                
-                if (modPlayer.vedalFumoVanityEquipped)
-                    DrawFumo(drawInfo, drawPlayer, dyeShader, headPosition + vedalFumoOffset, vedalFumoTexture);
             }
             else if (totalTwins == 2)
             {
