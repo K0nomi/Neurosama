@@ -39,7 +39,7 @@ namespace Neurosama.Content.Tiles.Furniture
             TileObjectData.addTile(Type);
 
             // Reuse the item localization for the map entry
-            AddMapEntry(new Color(209, 185, 177), ModContent.GetInstance<Items.Furniture.VedalFumo>().DisplayName);
+            AddMapEntry(new Color(49, 167, 76), ModContent.GetInstance<Items.Furniture.VedalFumo>().DisplayName);
         }
 
         public override bool CreateDust(int i, int j, ref int type)

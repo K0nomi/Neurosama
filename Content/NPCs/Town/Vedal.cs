@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Neurosama.Content.EmoteBubbles;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
@@ -39,6 +40,7 @@ namespace Neurosama.Content.NPCs.Town
             NPCID.Sets.AttackAverageChance[Type] = 1;
 
             NPCID.Sets.ShimmerTownTransform[Type] = false; // No shimmer variant atm
+
             NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Shimmer] = true;
             NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Confused] = true;
 
@@ -48,6 +50,8 @@ namespace Neurosama.Content.NPCs.Town
             NPCID.Sets.CannotSitOnFurniture[Type] = true;
 
             NPCID.Sets.TownNPCBestiaryPriority.Add(Type);
+
+            NPCID.Sets.FaceEmote[Type] = ModContent.EmoteBubbleType<VedalEmote>();
 
             // Influences how the NPC looks in the Bestiary
             NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new()

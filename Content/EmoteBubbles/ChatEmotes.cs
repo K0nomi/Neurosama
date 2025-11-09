@@ -4,15 +4,15 @@ using Terraria.ModLoader;
 
 namespace Neurosama.Content.EmoteBubbles
 {
-    public abstract class ModTownEmote : ModEmoteBubble
+    public abstract class ModChatEmote : ModEmoteBubble
     {
         // Redirect texture path.
-        public override string Texture => (GetType().Namespace + ".NPCEmotes").Replace('.', '/');
+        public override string Texture => (GetType().Namespace + ".ChatEmotes").Replace('.', '/');
 
         public override void SetStaticDefaults()
         {
-            // Add NPC emotes to "Town" category.
-            AddToCategory(EmoteID.Category.Town);
+            // Add Chat emotes to "General" category.
+            AddToCategory(EmoteID.Category.Items);
         }
 
         /// <summary>
@@ -32,18 +32,8 @@ namespace Neurosama.Content.EmoteBubbles
         }
     }
 
-    public class NeuroEmote : ModTownEmote
+    public class SmileEmote : ModChatEmote
     {
         public override int Row => 0;
-    }
-
-    public class EvilEmote : ModTownEmote
-    {
-        public override int Row => 1;
-    }
-
-    public class VedalEmote : ModTownEmote
-    {
-        public override int Row => 2;
     }
 }
