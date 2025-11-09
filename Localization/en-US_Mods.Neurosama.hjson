@@ -60,7 +60,6 @@ Items: {
 		DisplayName: Donowall
 		Tooltip:
 			'''
-			Used in crafting Donobrick and Donoplank
 			'Donohouse construction underway!'
 			'''
 	}
