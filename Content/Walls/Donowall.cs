@@ -12,6 +12,7 @@ namespace Neurosama.Content.Walls
             Main.wallHouse[Type] = true;
 
             DustType = DustID.Stone;
+            VanillaFallbackOnModDeletion = WallID.RedBrick;
 
             AddMapEntry(new Color(82, 40, 29));
         }

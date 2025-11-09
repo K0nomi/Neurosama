@@ -16,6 +16,7 @@ namespace Neurosama.Content.Tiles
 
             DustType = DustID.Stone;
             HitSound = SoundID.Tink;
+            VanillaFallbackOnModDeletion = TileID.RedBrick;
 
             AddMapEntry(new Color(174, 92, 70));
         }

@@ -31,6 +31,7 @@ namespace Neurosama.Content.Tiles.Furniture
             TileID.Sets.FriendlyFairyCanLureTo[Type] = true;
 
             AdjTiles = [TileID.Containers];
+            VanillaFallbackOnModDeletion = TileID.Containers;
 
             // Reuse the item localization for the map entry
             AddMapEntry(new Color(186, 105, 106), ModContent.GetInstance<Items.Furniture.GymBagChest>().DisplayName);

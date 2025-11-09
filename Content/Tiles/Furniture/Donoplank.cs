@@ -26,6 +26,7 @@ namespace Neurosama.Content.Tiles.Furniture
 
             //DustType = ModContent.DustType<T>(); // TODO
             AdjTiles = [TileID.Platforms];
+            VanillaFallbackOnModDeletion = TileID.Platforms;
 
             // Placement
             TileObjectData.newTile.CoordinateHeights = [16];
