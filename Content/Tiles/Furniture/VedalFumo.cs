@@ -13,7 +13,6 @@ namespace Neurosama.Content.Tiles.Furniture
         {
             Main.tileFrameImportant[Type] = true;
             Main.tileLavaDeath[Type] = true;
-            //TileID.Sets.FramesOnKillWall[Type] = true;
 
             // Create normal
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
@@ -21,11 +20,9 @@ namespace Neurosama.Content.Tiles.Furniture
 
             TileObjectData.newTile.DrawYOffset = 2;
 
-            // Anchor data to allow it to sit on the neuros
             TileObjectData.newTile.AnchorAlternateTiles = [ModContent.TileType<NeuroFumo>(), ModContent.TileType<EvilFumo>()];
-            TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidWithTop | AnchorType.AlternateTile, TileObjectData.newTile.Width, 0);
+            TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidWithTop, TileObjectData.newTile.Width, 0);
 
-            // I have no idea why you need these lines
             TileObjectData.newTile.StyleWrapLimit = 2;
             TileObjectData.newTile.StyleMultiplier = 2;
             TileObjectData.newTile.StyleHorizontal = true;
@@ -34,6 +31,19 @@ namespace Neurosama.Content.Tiles.Furniture
             TileObjectData.newAlternate.CopyFrom(TileObjectData.newTile);
             TileObjectData.newAlternate.Direction = TileObjectDirection.PlaceRight;
             TileObjectData.addAlternate(1); // Facing right will use the second texture style
+
+            // Alternate for placing on plush heads
+            TileObjectData.newAlternate.CopyFrom(TileObjectData.newTile);
+            TileObjectData.newAlternate.AnchorBottom = new AnchorData(AnchorType.AlternateTile, TileObjectData.newTile.Width, 0);
+            TileObjectData.newAlternate.DrawYOffset = 6;
+            TileObjectData.addAlternate(0);
+
+            //  And a flipped version of that
+            TileObjectData.newAlternate.CopyFrom(TileObjectData.newTile);
+            TileObjectData.newAlternate.Direction = TileObjectDirection.PlaceRight;
+            TileObjectData.newAlternate.AnchorBottom = new AnchorData(AnchorType.AlternateTile, TileObjectData.newTile.Width, 0);
+            TileObjectData.newAlternate.DrawYOffset = 6;
+            TileObjectData.addAlternate(1);
 
             // Add tile
             TileObjectData.addTile(Type);
@@ -67,10 +77,11 @@ namespace Neurosama.Content.Tiles.Furniture
                 return false;
             }
 
-            // Tutel should be either directly on a fumo or not at all, so allow place
+            // Tutel is either directly on a fumo or not at all, so allow place
             return true;
         }
 
+        // This shouldn't be needed but i cant be bothered figuring out why it doesnt work otherwise
         public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height, ref short tileFrameX, ref short tileFrameY)
         {
             Tile tile = Main.tile[i, j];
