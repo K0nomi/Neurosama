@@ -1,9 +1,9 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using System.Linq;
+using Terraria;
 using Terraria.GameContent;
 using Terraria.ModLoader;
-using Terraria;
-using System.Linq;
 
 namespace Neurosama.Common
 {

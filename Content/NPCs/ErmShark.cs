@@ -60,7 +60,7 @@ namespace Neurosama.Content.NPCs
             NPC.defense = 4;
             NPC.lifeMax = 240;
             NPC.value = 500f;
-            NPC.aiStyle = 16;
+            NPC.aiStyle = NPCAIStyleID.Piranha; // AI style used by sharks
             NPC.noGravity = true;
             NPC.HitSound = SoundID.NPCHit1; // TODO
             NPC.DeathSound = SoundID.NPCDeath1; // TODO, also maybe different sound for last ermshark?

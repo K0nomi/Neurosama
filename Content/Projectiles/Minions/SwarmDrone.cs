@@ -75,7 +75,7 @@ namespace Neurosama.Content.Projectiles.Minions
 
             //ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral(((float)minionPosition / (float)minionCount).ToString()), new Color(0xEE, 0xDD, 0xFF));
 
-            DoGeneralBehavior(owner, out Vector2 vectorToIdlePosition, out float distanceToIdlePosition, minionPosition, minionCount);
+            DoGeneralBehavior(owner, out Vector2 vectorToIdlePosition, out float distanceToIdlePosition, minionPosition);
             SearchForTargets(owner, out bool foundTarget, out float distanceFromTarget, out Vector2 targetCenter);
             DoMovement(foundTarget, distanceFromTarget, targetCenter, distanceToIdlePosition, vectorToIdlePosition, minionPosition, minionCount);
             DoVisuals();
@@ -118,7 +118,7 @@ namespace Neurosama.Content.Projectiles.Minions
             return true;
         }
 
-        private void DoGeneralBehavior(Player owner, out Vector2 vectorToIdlePosition, out float distanceToIdlePosition, int minionPosition, int minionCount)
+        private void DoGeneralBehavior(Player owner, out Vector2 vectorToIdlePosition, out float distanceToIdlePosition, int minionPosition)
         {
             var ticks = Main.GameUpdateCount;
             Vector2 ownerCentre = owner.Center;

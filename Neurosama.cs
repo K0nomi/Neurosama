@@ -57,13 +57,13 @@ namespace Neurosama
             }
             catch (Exception e)
             {
-				// If there are any failures with the IL editing, this will dump the IL to Logs/ILDumps/Neurosama/
+                // If there are any failures with the IL editing, this will dump the IL to Logs/ILDumps/Neurosama/
                 throw new ILPatchFailureException(this, il, e);
             }
-		}
+        }
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)
-        {   
+        {
             var msgType = (NeurosamaMessageType)reader.ReadByte();
 
             switch (msgType)
