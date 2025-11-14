@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Neurosama.Content.EmoteBubbles
 {
-    public class SmileEmote : ModEmoteBubble
+    public class NewlivEmote : ModEmoteBubble
     {
         public override void SetStaticDefaults()
         {
