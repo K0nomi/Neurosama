@@ -4,7 +4,7 @@ This is a fan made mod for Twitch streamer Neuro-sama and her sister Evil Neuro.
 
 The mod is still in beta-like state, so there are a few unfinished features and unsquashed bugs. If you find any, you can report themby creating an issue or in the Discord thread.
 
-Anyone is welcome to contribute to the mod! If you would like to join in the discussion, join the Neuro-sama Discord and click the link to the mod’s thread below.
+Anyone is welcome to contribute to the mod! If you would like to participate in the discussion, join the Neuro-sama Discord and click the link to the mod’s thread below.
 
 ## Current features
 - Neuro, Evil and Vedal NPCs
