@@ -164,6 +164,11 @@ Items: {
 		DisplayName: Vedal Plush
 		Tooltip: ""
 	}
+
+	LavaLamp: {
+		DisplayName: Neuro Lava Lamp
+		Tooltip: ""
+	}
 }
 
 NPCs: {
