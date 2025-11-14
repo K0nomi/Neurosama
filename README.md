@@ -38,6 +38,7 @@ Anyone is welcome to contribute to the mod! If you would like to participate in 
 - W1n7ner (Original creator of neuroErm)
 - Vedal (Creator of Neuro-sama and Abandoned Archive)
 
+##
 ### [Mod on The Steam Workshop]() (TBD)
 
 ### [Neuro-sama on Twitch](https://twitch.tv/vedal987)
