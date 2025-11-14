@@ -27,12 +27,11 @@ Anyone is welcome to contribute to the mod! If you would like to participate in 
 - A wiki on <https://terrariamods.wiki.gg/>
 - Translations into other languages
 
-## Main Credits
+## Credits
 - Konomi (Programming)
 - Mongusaeye (Art)
 - Pachekin (Art, Programming)
-
-## Additional Credits
+### Additional Credits
 - Kaseio (Fixed some bugs)
 - owobred (Drone AI Code)
 - W1n7ner (Original creator of neuroErm)
