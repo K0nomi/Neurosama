@@ -13,7 +13,7 @@ namespace Neurosama.Content.Items.Weapons
             ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true; // This lets the player target anywhere on the whole screen while using a controller
             ItemID.Sets.LockOnIgnoresCollision[Item.type] = true;
 
-            ItemID.Sets.StaffMinionSlotsRequired[Type] = 1f;
+            ItemID.Sets.StaffMinionSlotsRequired[Type] = 0.9f;
         }
 
         public override void SetDefaults()
