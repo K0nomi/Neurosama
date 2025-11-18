@@ -227,7 +227,7 @@ namespace Neurosama.Content.NPCs.Town
         public override void SetChatButtons(ref string button, ref string button2)
         {
             button = Language.GetTextValue("LegacyInterface.28");
-            //button2 = "test";
+            //button2 = "Toggle";
         }
 
         public override void OnChatButtonClicked(bool firstButton, ref string shop)
@@ -244,10 +244,17 @@ namespace Neurosama.Content.NPCs.Town
             {
                 // Send a packet to the server to sync the toggle
                 ModPacket packet = Mod.GetPacket();
-                packet.Write((byte)NeurosamaMessageType.ToggleTwinVariant);
+                packet.Write((byte)MessageType.ToggleTwinVariant);
                 packet.Write(NPC.whoAmI);
                 packet.Send();
             }
+        }
+
+        public void ToggleVariant()
+        {
+            // Switch to next variant
+            NPC.townNpcVariationIndex = (NPC.townNpcVariationIndex + 2) % Textures.Length;
+            Utils.PoofOfSmoke(NPC.position);
         }
 
         public override void AddShops()
@@ -268,13 +275,6 @@ namespace Neurosama.Content.NPCs.Town
             ;
 
             npcShop.Register();
-        }
-
-        public void ToggleVariant()
-        {
-            // Switch to next variant
-            NPC.townNpcVariationIndex = (NPC.townNpcVariationIndex + 2) % Textures.Length;
-            Utils.PoofOfSmoke(NPC.position);
         }
 
         // Queen statue only

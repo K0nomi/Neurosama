@@ -64,11 +64,11 @@ namespace Neurosama
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)
         {
-            var msgType = (NeurosamaMessageType)reader.ReadByte();
+            var msgType = (MessageType)reader.ReadByte();
 
             switch (msgType)
             {
-                case NeurosamaMessageType.ToggleTwinVariant:
+                case MessageType.ToggleTwinVariant:
                     int npcID = reader.ReadInt32();
 
                     // Sync to clients if being run on server
@@ -89,7 +89,7 @@ namespace Neurosama
                     }
                     else if (npc.ModNPC is Evil evil)
                     {
-                        //evil.ToggleVariant();
+                        evil.ToggleVariant();
                         break;
                     }
 
@@ -100,5 +100,10 @@ namespace Neurosama
                     break;
             }
         }
+    }
+
+    internal enum MessageType : byte
+    {
+        ToggleTwinVariant
     }
 }
