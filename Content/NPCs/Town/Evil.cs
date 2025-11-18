@@ -228,6 +228,7 @@ namespace Neurosama.Content.NPCs.Town
         public override void SetChatButtons(ref string button, ref string button2)
         {
             button = Language.GetTextValue("LegacyInterface.28");
+            //button2 = "Toggle";
         }
 
         public override void OnChatButtonClicked(bool firstButton, ref string shop)
@@ -235,7 +236,26 @@ namespace Neurosama.Content.NPCs.Town
             if (firstButton)
             {
                 shop = ShopName;
+                return;
             }
+
+            ToggleVariant();
+
+            if (Main.netMode != NetmodeID.SinglePlayer)
+            {
+                // Send a packet to the server to sync the toggle
+                ModPacket packet = Mod.GetPacket();
+                packet.Write((byte)MessageType.ToggleTwinVariant);
+                packet.Write(NPC.whoAmI);
+                packet.Send();
+            }
+        }
+
+        public void ToggleVariant()
+        {
+            // Switch to next variant
+            NPC.townNpcVariationIndex = (NPC.townNpcVariationIndex + 2) % Textures.Length;
+            Utils.PoofOfSmoke(NPC.position);
         }
 
         public override void AddShops()
