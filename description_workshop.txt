@@ -1,0 +1,44 @@
+[h1]Neuro-sama Mod[/h1]
+This is a fan made mod for the Twitch streamer Neuro-sama and her sister Evil Neuro. It aims to be mainly a cosmetic mod, adding a bunch of references to the Neuro twins and their community.
+
+The mod is still in beta-like state, so there are a few unfinished features and unsquashed bugs. If you find any, you can report them in the Discord thread or by creating an issue on Github.
+
+Anyone is welcome to contribute to the mod! If you would like to participate in the discussion, join the Neuro-sama Discord and click the link to the mod’s thread below.
+
+[h2]Current Features[/h2]
+[list][*] Neuro, Evil and Vedal NPCs
+[*] All 3 official plushes
+[*] Ermfish critter and Ermshark enemy
+[*] Vanity for Neuro and Evil’s outfits
+[*] Abandoned Archive (Corpa)
+[*] Music boxes for all the Neuro & Evil originals
+[*] neuroErm
+[*] Donowall building material & Gymbag chest
+[*] Swarm drone minion
+[*] Assorted emotes
+[*] Some more Neuro/Evil references
+[/list]
+[h2]Possible Future Features[/h2]
+[list][*] Ermcon event in the ocean
+[*] Updates to some sprites
+[*] Dialogue improvements
+[*] Improved AI for ermamphibians
+[*] A wiki on https://terrariamods.wiki.gg/
+[*] Translations into other languages
+[/list]
+[h2]Credits[/h2]
+[list][*] Konomi (Programming)
+[*] Mongusaeye (Art)
+[*] Pachekin (Art, Programming)
+[/list][h3]Additional Credits[/h3]
+[list][*] Kaseio (Fixed some bugs)
+[*] owobred (Drone AI Code)
+[*] W1n7ner (Original creator of neuroErm)
+[*] Vedal (Creator of Neuro-sama and Abandoned Archive)
+[/list]
+[h1]Links[/h1]
+[b][url=https://github.com/K0nomi/Neurosama]Source Code[/url]
+[url=https://twitch.tv/vedal987]Neuro-sama on Twitch[/url]
+[url=https://discord.gg/neurosama]Neuro-sama Discord[/url]
+Discord Thread for Mod Discussion TBD
+[/b]
