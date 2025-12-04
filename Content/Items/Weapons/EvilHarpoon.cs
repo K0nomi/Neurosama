@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Neurosama.Content.Items.Weapons
 {
-    public class Iwannadie : ModItem
+    public class EvilHarpoon : ModItem
     {
         // test item lol
 

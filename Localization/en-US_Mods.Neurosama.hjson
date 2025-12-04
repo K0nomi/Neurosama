@@ -1,9 +1,9 @@
 # This file will automatically update with entries for new content after a build and reload
 
 Items: {
-	Iwannadie: {
-		DisplayName: i am in a state of constant suffering
-		Tooltip: please help me god
+	EvilHarpoon: {
+		DisplayName: Evil's Harpoon
+		Tooltip: "This item is still WIP!"
 	}
 
 	NeuroMusicBox: {
@@ -157,7 +157,7 @@ Items: {
 
 	BanHammer: {
 		DisplayName: Ban Hammer
-		Tooltip: ""
+		Tooltip: "This item is still WIP!"
 	}
 
 	VedalFumo: {
