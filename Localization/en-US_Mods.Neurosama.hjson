@@ -3,7 +3,7 @@
 Items: {
 	EvilHarpoon: {
 		DisplayName: Evil's Harpoon
-		Tooltip: "This item is still WIP!"
+		Tooltip: This item is still WIP!
 	}
 
 	NeuroMusicBox: {
@@ -157,7 +157,7 @@ Items: {
 
 	BanHammer: {
 		DisplayName: Ban Hammer
-		Tooltip: "This item is still WIP!"
+		Tooltip: This item is still WIP!
 	}
 
 	VedalFumo: {
