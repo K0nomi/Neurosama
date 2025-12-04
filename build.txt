@@ -1,4 +1,4 @@
 displayName = Neuro-sama Mod
 author = Konomi
-version = 0.1.2
+version = 0.2
 homepage = https://github.com/K0nomi/Neurosama
