@@ -41,6 +41,8 @@ namespace Neurosama.Content.NPCs.Town
                Texture + "_Neko_Shimmer",
                Texture + "_Frog",
                Texture + "_Frog_Shimmer",
+               Texture + "_Duck",
+               Texture + "_Duck_Shimmer",
             ];
 
             // Assert that textures array is of even length, so x % Textures.Length doesn't mess with shimmer state
