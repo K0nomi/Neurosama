@@ -73,32 +73,32 @@ Items: {
 
 	NeuroVanityStockings: {
 		DisplayName: Neuro Stockings
-		Tooltip: "'Great for impersonating streamers!"
+		Tooltip: "'Great for impersonating streamers!'"
 	}
 
 	NeuroVanityUniform: {
 		DisplayName: Neuro Uniform
-		Tooltip: "'Great for impersonating streamers!"
+		Tooltip: "'Great for impersonating streamers!'"
 	}
 
 	NeuroVanityWig: {
 		DisplayName: Neuro Wig
-		Tooltip: "'Great for impersonating streamers!"
+		Tooltip: "'Great for impersonating streamers!'"
 	}
 
 	EvilVanityStockings: {
 		DisplayName: Evil Stockings
-		Tooltip: "'Great for impersonating streamers!"
+		Tooltip: "'Great for impersonating streamers!'"
 	}
 
 	EvilVanityUniform: {
 		DisplayName: Evil Uniform
-		Tooltip: "'Great for impersonating streamers!"
+		Tooltip: "'Great for impersonating streamers!'"
 	}
 
 	EvilVanityWig: {
 		DisplayName: Evil Wig
-		Tooltip: "'Great for impersonating streamers!"
+		Tooltip: "'Great for impersonating streamers!'"
 	}
 
 	GymBagChest: {
